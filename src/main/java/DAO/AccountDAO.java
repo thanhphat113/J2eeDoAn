@@ -10,6 +10,8 @@ package DAO;
 
 
 import Database.DBContext;
+import Database.DataBase;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import model.Account;
@@ -30,12 +32,12 @@ public class AccountDAO extends DBContext{
         List<Account> list = new ArrayList<>();
         String sql = "select * from tblAccount";
         try {
-            PreparedStatement st = connection.prepareStatement(sql);
+            Connection conn = DBContext.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 Account a = new Account(rs.getString("username"), rs.getString("password"));
                 list.add(a);
-            
             }
         } catch (SQLException e) {
             System.out.println(e);
