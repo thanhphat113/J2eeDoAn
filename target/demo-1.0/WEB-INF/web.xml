@@ -4,11 +4,18 @@
         <servlet-name>ProductsController</servlet-name>
         <servlet-class>Controller.ProductsController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>Controller.Home</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductsController</servlet-name>
         <url-pattern>/San-pham</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/trang-chu</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
