@@ -16,8 +16,11 @@ public class demo {
     public static void main(String[] args){
         sanphamDAO product=new sanphamDAO();
         List<sanpham> list= product.findAll();
+        for (sanpham sp:list){
+            
+        }
         for (sanpham sp : list) {
-            System.out.println("Mã: "+sp.getMaSP()+"Tên: "+sp.getTenSP());
+            System.out.println("Mã: "+sp.getMaSP()+"Tên: "+sp.getTenSP()+"Hinhanh: "+sp.getHinhanh()+" Giá:"+sp.getGia());
         }
     }
 }

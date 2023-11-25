@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -22,14 +23,16 @@ public class sanpham  implements Serializable{
     private String maLoai;
     private int giaNhap;
     private int giaBan;
-    private byte[] hinhanh;
+    private String hinhanh;
     private int soluong;
     private String mota;
-
+    private String gia;
+    DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
+    
     public sanpham() {
     }
 
-    public sanpham(String maSP, String tenSP, String maLoai, int giaNhap, int giaBan, byte[] hinhanh, int soluong, String mota) {
+    public sanpham(String maSP, String tenSP, String maLoai, int giaNhap, int giaBan, String hinhanh, int soluong, String mota) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.maLoai = maLoai;
@@ -38,6 +41,7 @@ public class sanpham  implements Serializable{
         this.hinhanh = hinhanh;
         this.soluong = soluong;
         this.mota = mota;
+        this.gia = decimalFormat.format(giaBan);
     }
 
     
@@ -84,11 +88,11 @@ public class sanpham  implements Serializable{
         this.giaBan = giaBan;
     }
 
-    public byte[] getHinhanh() {
+    public String getHinhanh() {
         return hinhanh;
     }
 
-    public void setHinhanh(byte[] hinhanh) {
+    public void setHinhanh(String hinhanh) {
         this.hinhanh = hinhanh;
     }
 
@@ -108,6 +112,8 @@ public class sanpham  implements Serializable{
         this.mota = mota;
     }
     
-    
+    public String getGia(){
+        return gia;
+    }
     
 }
