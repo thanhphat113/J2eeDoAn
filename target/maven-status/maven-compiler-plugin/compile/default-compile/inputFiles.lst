@@ -1,3 +1,23 @@
+<<<<<<< OURS
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Home.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\StatisticController.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Top5KhachHangControl.java
+D:\netbeansProject\J2eeDoAn\src\main\java\model\khachhang.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Top10SanPhamControl.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Top5NhanVienControl.java
+D:\netbeansProject\J2eeDoAn\src\main\java\model\nhacungcap.java
+D:\netbeansProject\J2eeDoAn\src\main\java\model\Account.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThangControl.java
+D:\netbeansProject\J2eeDoAn\src\main\java\DAO\demo.java
+D:\netbeansProject\J2eeDoAn\src\main\java\DAO\sanphamDAO.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Database\DataBase.java
+D:\netbeansProject\J2eeDoAn\src\main\java\model\sanpham.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\ProductsController.java
+D:\netbeansProject\J2eeDoAn\src\main\java\DAO\AccountDAO.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Database\DBContext.java
+D:\netbeansProject\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThuControl.java
+D:\netbeansProject\J2eeDoAn\src\main\java\model\nhanvien.java
+=======
 /Users/lythanhphat9523/Desktop/Lab6/demo/src/main/java/DAO/AccountDAO.java
 /Users/lythanhphat9523/Desktop/Lab6/demo/src/main/java/Controller/Home.java
 /Users/lythanhphat9523/Desktop/Lab6/demo/src/main/java/model/sanpham.java
@@ -10,3 +30,4 @@
 /Users/lythanhphat9523/Desktop/Lab6/demo/src/main/java/model/Account.java
 /Users/lythanhphat9523/Desktop/Lab6/demo/src/main/java/DAO/sanphamDAO.java
 /Users/lythanhphat9523/Desktop/Lab6/demo/src/main/java/DAO/demo.java
+>>>>>>> THEIRS

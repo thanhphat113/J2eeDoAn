@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.Message;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -133,7 +133,7 @@ public class OrderDAO {
 		prop.put("mail.smtp.auth", "true");
 		prop.put("mail.smtp.starttls.enable", "true");
 		prop.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
-		Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
+		Session session = Session.getInstance(prop, new jakarta.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password);
 			}
