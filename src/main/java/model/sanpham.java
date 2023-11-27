@@ -44,7 +44,16 @@ public class sanpham  implements Serializable{
         this.gia = decimalFormat.format(giaBan);
     }
 
-    
+    public sanpham(String maSP, String tenSP, String maLoai, int giaNhap, int giaBan, String hinhanh, String mota) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.maLoai = maLoai;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.hinhanh = hinhanh;
+        this.mota = mota;
+        this.gia = decimalFormat.format(giaBan);
+    }
     
     
 
