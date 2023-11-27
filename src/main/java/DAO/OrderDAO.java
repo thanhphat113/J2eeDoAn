@@ -141,8 +141,8 @@ public class OrderDAO {
 		//dang nhap dc email
 		String emailTo = kh.getEmail();
 		String emailSubject = "Email xác nhận đặt hàng";
-		String emailContent = "Mã Đơn hàng: "+order.getMaHD()+" Tổng giá: "+order.getTongTien()+" giao đến cho anh/chị: "+kh.getTenKH()+
-				" địa chỉ email là: "+kh.getEmail()+" Số điện thoại "+kh.getSdt()+". Đơn hàng sẽ giao tới trong vòng 2 ngày nữa. Cảm ơn quý khách đã mua hàng";
+		String emailContent = "Mã Đơn hàng: "+order.getMaHD()+" Tổng giá: "+order.getTongTien()+" giao đến cho anh/chị: "+kh.getHoTen()+
+				" địa chỉ email là: "+kh.getEmail()+" Số điện thoại "+kh.getSDT()+". Đơn hàng sẽ giao tới trong vòng 2 ngày nữa. Cảm ơn quý khách đã mua hàng";
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(username));
