@@ -25,13 +25,13 @@ import jakarta.servlet.http.HttpSession;
 import DAO.DetailOrderDAO;
 import DAO.KhuyenMaiDAO;
 import DAO.OrderDAO;
-import Model.Cart;
-import Model.DetailOrder;
-import Model.KhachHang;
-import Model.KhuyenMai;
-import Model.Order;
-import Model.ProductDTO;
-import Model.SanPham;
+import model.Cart;
+import model.DetailOrder;
+import model.khachhang;
+import model.KhuyenMai;
+import model.Order;
+import model.ProductDTO;
+import model.sanpham;
 
 /**
  * Servlet implementation class CartServlet
@@ -119,7 +119,7 @@ public class CartServlet extends HttpServlet {
 				String priceEx = request.getParameter("txtPriceEx");
 				int iprice = Integer.valueOf(price);
 				int ipriceEx = Integer.valueOf(priceEx);
-				SanPham sp = new SanPham(code, name, type, ipriceEx, iprice, image);
+				sanpham sp = new sanpham(code, name, type, ipriceEx, iprice, image, "Awnsome");
 				ProductDTO spDTO = new ProductDTO(sp);
 				
 				shop.addCart(spDTO);
@@ -197,7 +197,7 @@ public class CartServlet extends HttpServlet {
 				OrderDAO orderDAO = new OrderDAO();
 				String maHD = orderDAO.createNewMaHD();
 				Order order = new Order(maHD, maNV, maKH, maKM, totalPrice1, today);
-				KhachHang kh = new KhachHang("MKH001", "nguyen ha", "123124123", "thuythatthanthanh@gmail.com", today, "6");
+				khachhang kh = new khachhang("MKH001", "nguyen ha", "123124123", "thuythatthanthanh@gmail.com", today, "6");
 				orderDAO.addOrder(order);
 				
 				DetailOrderDAO detailOrderDAO = new DetailOrderDAO();
