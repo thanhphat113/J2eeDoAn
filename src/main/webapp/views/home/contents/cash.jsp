@@ -10,7 +10,7 @@
       <h1>Your Shopping Cart</h1>
 	<c:set var="shop" value="${sessionScope.SHOP }"/>
 	<c:if test="${not empty shop }">
-		<form action="/J2EE/CartServlet" method="post">
+		<form action="/J2eeDoAn/CartServlet" method="post">
 		<table class="table table-bordered">
 	    <thead>
            <tr>
@@ -45,7 +45,7 @@
     <div class="col-sm-4 sidenav">
     	<div class="container-fluid">
     		<h2>Your Information</h2>
-			<form action="/J2EE/CartServlet" style="padding-bottom: 10px" method="post">
+			<form action="/J2eeDoAn/CartServlet" style="padding-bottom: 10px" method="post">
 			  <div class="form-group">
 			    <label for="email">Fullname:</label>
 			    <input type="hidden" class="form-control" name="name">

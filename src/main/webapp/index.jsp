@@ -6,7 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="model.sanpham,DAO.sanphamDAO,java.util.List,java.io.*"%>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -104,9 +105,9 @@
     <jsp:include page="/views/home/components/search_popup.jsp"></jsp:include>
     <jsp:include page="/views/home/components/header.jsp"></jsp:include>
     <jsp:include page="/views/home/components/section2.jsp"></jsp:include>
-    <jsp:include page="/views/home/contents/product.jsp"></jsp:include>
-    <jsp:include page="views/home/components/section1.jsp"></jsp:include>
-    <jsp:include page="views/home/components/footer.jsp"></jsp:include>
+    <jsp:include page="${VIEW}"></jsp:include>
+    <jsp:include page="/views/home/components/section1.jsp"></jsp:include>
+    <jsp:include page="/views/home/components/footer.jsp"></jsp:include>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>

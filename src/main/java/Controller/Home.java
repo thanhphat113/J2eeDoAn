@@ -20,7 +20,9 @@ import model.sanpham;
  * @author lythanhphat9523
  */
 public class Home extends HttpServlet {
-
+    String urlSanPham = "/views/home/contents/product.jsp";
+    String urlSection1 = "/views/home/components/section1.jsp";
+    String urlSection2 = "/views/home/components/section2.jsp";
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -41,7 +43,9 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-        
+        req.setAttribute("VIEW", urlSanPham);
+        req.setAttribute("SECTION1", urlSection1);
+        req.setAttribute("SECTION2", urlSection2);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     } 
 
