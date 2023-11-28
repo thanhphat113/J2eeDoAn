@@ -104,9 +104,15 @@
 
     <jsp:include page="/views/home/components/search_popup.jsp"></jsp:include>
     <jsp:include page="/views/home/components/header.jsp"></jsp:include>
-    <jsp:include page="/views/home/components/section2.jsp"></jsp:include>
-    <jsp:include page="${VIEW}"></jsp:include>
-    <jsp:include page="/views/home/components/section1.jsp"></jsp:include>
+    <c:if test="${not empty SECTION2 }">
+        <jsp:include page="${SECTION2}"></jsp:include>
+    </c:if>
+    <c:if test="${not empty VIEW }">
+        <jsp:include page="${VIEW}"></jsp:include>
+    </c:if>
+    <c:if test="${not empty SECTION1 }">
+        <jsp:include page="${SECTION1}"></jsp:include>
+    </c:if>
     <jsp:include page="/views/home/components/footer.jsp"></jsp:include>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

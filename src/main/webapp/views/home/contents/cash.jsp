@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top:100px">
 
 
 
@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                             <td>No.</td>
-                            <td>Code</td>
+                            <td>Image</td>
                             <td>Name</td>
                             <td>Price</td>
                             <td>Quantity</td>
@@ -28,8 +28,8 @@
                         <c:forEach var="rows" items="${shop }">
                             <c:set var="count" value="${count+1}"/>
                             <tr>
-                                <td>${count }</td>
-                                <td>${rows.value.sanpham.maSP}<input type="hidden" value="${rows.value.sanpham.maSP}" name="coded"></td>
+                                <td>${count }</td><input type="hidden" value="${rows.value.sanpham.maSP}" name="coded">
+                                <td style="width: 20%"><img src="images${rows.value.sanpham.hinhanh}" alt="product-item" class="img-fluid" ></td>
                                 <td>${rows.value.sanpham.tenSP}<input type="hidden" value="${rows.value.sanpham.tenSP}" name="named"></td>
                                 <td>${rows.value.sanpham.giaBan} VND<input type="hidden" value="${rows.value.sanpham.giaBan}" name="priced"></td>
                                 <td>${rows.value.soluong}<input type="hidden" value="${rows.value.soluong}" name="quantityd"></td>
@@ -73,7 +73,7 @@
                         <label for="sel1">Select list:</label>
                         <select class="form-control" name="maKM">
                             <c:forEach var="km" items="${LIST_KHUYENMAI}">
-                                <option value="${km.maKM }" >${km.maKM } %${km.tileKM *100}</option>
+                                <option value="${km.maKM}" >${km.maKM } %${km.tileKM *100}</option>
                             </c:forEach>
                         </select>
                         <p>${MAKM}</p>

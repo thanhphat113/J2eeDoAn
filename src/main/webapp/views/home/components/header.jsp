@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-   <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+<header id="header" class="site-header header-scrolled position-fixed text-black bg-light" style="top:0">
         <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">

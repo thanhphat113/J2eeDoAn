@@ -8,7 +8,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
-<div class="container">    
+<div class="container" style="padding-top:100px">    
     <h1>Your Shopping Cart</h1>
     <c:set var="shop" value="${sessionScope.SHOP }"/>
     <c:if test="${not empty shop }">
@@ -55,6 +55,9 @@
                 </tbody>
             </table>
         </form>
+    </c:if>
+    <c:if test="${empty shop }">
+        <h2>Your Cart Is Empty ! <a class="nav-link me-4 active" href="/J2eeDoAn/trang-chu" style="color: lightblue">Shopping</a></h2>
     </c:if>
 
 </div><br><br>

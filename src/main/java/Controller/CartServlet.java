@@ -123,10 +123,13 @@ public class CartServlet extends HttpServlet {
                 ArrayList<KhuyenMai> ls = kmDAO.selectAllKhuyenMai();
                 request.setAttribute("LIST_KHUYENMAI", ls);
                 String maKM = request.getParameter("maKM");
-                km = kmDAO.searchByMaxKhuyenMai(maKM);
+                km = kmDAO.searchByMaxKhuyenMai(maKM.trim());
                 float tileKM = km.getTileKM();
                 float totalPrice = Float.parseFloat(request.getParameter("total"));
-                float realPrice = totalPrice - totalPrice * tileKM;
+                float realPrice = totalPrice * tileKM;
+                System.out.print(maKM);
+                System.out.print(totalPrice);
+                System.out.print(tileKM);
                 System.out.print(realPrice);
                 request.setAttribute("MAKM", "Your Are Applying " + maKM);
                 request.setAttribute("MAKM1", maKM);
@@ -134,36 +137,6 @@ public class CartServlet extends HttpServlet {
                 request.setAttribute("REALPRICE", realPrice);
                 request.setAttribute("VIEW", urlThanhToan);
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
-                rd.forward(request, response);
-            } else if (action.equals("Confirm")) {
-                String[] listProductCode = request.getParameterValues("coded");
-                String[] listProductName = request.getParameterValues("named");
-                String[] listProductPrice = request.getParameterValues("priced");
-                String[] listProductQuantity = request.getParameterValues("quantityd");
-                String[] listProductTotalPrice = request.getParameterValues("price");
-                String maKH = "MKH001";
-                String maNV = "NV003";
-                String maKM = request.getParameter("codediscount");
-                float totalPrice = Float.valueOf(request.getParameter("totalprice"));
-                int totalPrice1 = (int) totalPrice;
-                long millis = System.currentTimeMillis();
-                java.sql.Date today = new java.sql.Date(millis);
-                OrderDAO orderDAO = new OrderDAO();
-                String maHD = orderDAO.createNewMaHD();
-                Order order = new Order(maHD, maNV, maKH, maKM, totalPrice1, today);
-                khachhang kh = new khachhang("MKH001", "nguyen ha", "123124123", "thuythatthanthanh@gmail.com", today, "6");
-                orderDAO.addOrder(order);
-
-                DetailOrderDAO detailOrderDAO = new DetailOrderDAO();
-                for (int i = 0; i < listProductCode.length; i++) {
-                    DetailOrder detailOrder = new DetailOrder(maHD, listProductCode[i], Integer.parseInt(listProductPrice[i]), Integer.parseInt(listProductQuantity[i]), Integer.parseInt(listProductTotalPrice[i]));
-                    detailOrderDAO.addDetailOrder(detailOrder, i + 1);
-                }
-                orderDAO.sendEmail(request, response, kh, order);
-                HttpSession session = request.getSession(true);
-                Cart shop = (Cart) session.getAttribute("SHOP");
-                shop.clear();
-                RequestDispatcher rd = request.getRequestDispatcher("/SanPhamManagerServlet");
                 rd.forward(request, response);
             }
 
@@ -250,7 +223,10 @@ public class CartServlet extends HttpServlet {
                 km = kmDAO.searchByMaxKhuyenMai(maKM);
                 float tileKM = km.getTileKM();
                 float totalPrice = Float.parseFloat(request.getParameter("total"));
-                float realPrice = totalPrice - totalPrice * tileKM;
+                float realPrice = totalPrice * tileKM;
+                System.out.print(maKM);
+                System.out.print(totalPrice);
+                System.out.print(tileKM);
                 System.out.print(realPrice);
                 request.setAttribute("MAKM", "Your Are Applying " + maKM);
                 request.setAttribute("MAKM1", maKM);
