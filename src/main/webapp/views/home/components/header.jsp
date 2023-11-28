@@ -83,7 +83,7 @@
                                             </a>
                                         </li>
                                         <li class="pe-3">
-                                            <a href="#">
+                                            <a href="/J2eeDoAn/trang-chu?action=View Info">
                                                 <svg class="user">
                                                 <use xlink:href="#user"></use>
                                                 </svg>

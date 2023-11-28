@@ -10,6 +10,7 @@ import model.sanpham;
 import Database.DataBase;
 
 public class DetailOrderDAO {
+        sanphamDAO spDAO = new sanphamDAO();
 	public int addDetailOrder(DetailOrder detailOrder, int stt) {
 		try {
 			Connection conn = DataBase.getConnection();
@@ -40,6 +41,31 @@ public class DetailOrderDAO {
 				int soLuong = rs.getInt("SoLuong");
 				int tongTien = rs.getInt("TongTien");
 				DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien);
+				ls.add(detailOrder);
+			}
+		conn.close();
+		} catch (Exception e) {
+			System.out.print("Cant connect");
+		}
+		return ls;
+	}
+        
+        public ArrayList<DetailOrder> searchDetailOrder2(String id){
+		ArrayList<DetailOrder> ls = new ArrayList<DetailOrder>();
+		Connection conn = null;
+		try {
+			conn = DataBase.getConnection();
+			String sql = "SELECT * FROM ChiTietDonBan WHERE MaHDB ='"+id+"'";
+			Statement stmt = conn.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				String maHD = rs.getString("MaHDB");
+				String maSP = rs.getString("MaSP");
+				int  donGia = rs.getInt("DonGia");
+				int soLuong = rs.getInt("SoLuong");
+				int tongTien = rs.getInt("TongTien");
+				DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien, spDAO.findById(maSP).getTenSP());
 				ls.add(detailOrder);
 			}
 		conn.close();

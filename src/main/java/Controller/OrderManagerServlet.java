@@ -57,7 +57,7 @@ public class OrderManagerServlet extends HttpServlet {
 				rd.forward(request, response);
 			}else if(action.equals("Detail")) {
 				String maHD = request.getParameter("orderId");
-				ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder(maHD);
+				ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder2(maHD);
 				request.setAttribute("LIST_DETAILORDER", ls);
 				RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
 				request.setAttribute("VIEW", urlChiTietDonHangAdmin);

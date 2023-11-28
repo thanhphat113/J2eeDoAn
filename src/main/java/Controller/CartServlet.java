@@ -101,43 +101,6 @@ public class CartServlet extends HttpServlet {
                 String url = "CartServlet?action=View Cart";
                 RequestDispatcher rd = request.getRequestDispatcher(url);
                 rd.forward(request, response);
-            } else if (action.equals("Buy")) {
-                KhuyenMai km = new KhuyenMai();
-                KhuyenMaiDAO kmDAO = new KhuyenMaiDAO();
-                ArrayList<KhuyenMai> ls = kmDAO.selectAllKhuyenMai();
-                request.setAttribute("LIST_KHUYENMAI", ls);
-                String[] listPrice = request.getParameterValues("price");
-                int totalPrice = 0;
-                for (int i = 0; i < listPrice.length; i++) {
-                    totalPrice += Integer.valueOf(listPrice[i]);
-                }
-//				request.setAttribute("KM_APPLY", 1);
-                request.setAttribute("TOTAL", totalPrice);
-                request.setAttribute("REALPRICE", totalPrice);
-                request.setAttribute("VIEW", urlThanhToan);
-                RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
-                rd.forward(request, response);
-            } else if (action.equals("Apply Code")) {
-                KhuyenMai km = new KhuyenMai();
-                KhuyenMaiDAO kmDAO = new KhuyenMaiDAO();
-                ArrayList<KhuyenMai> ls = kmDAO.selectAllKhuyenMai();
-                request.setAttribute("LIST_KHUYENMAI", ls);
-                String maKM = request.getParameter("maKM");
-                km = kmDAO.searchByMaxKhuyenMai(maKM.trim());
-                float tileKM = km.getTileKM();
-                float totalPrice = Float.parseFloat(request.getParameter("total"));
-                float realPrice = totalPrice * tileKM;
-                System.out.print(maKM);
-                System.out.print(totalPrice);
-                System.out.print(tileKM);
-                System.out.print(realPrice);
-                request.setAttribute("MAKM", "Your Are Applying " + maKM);
-                request.setAttribute("MAKM1", maKM);
-                request.setAttribute("TOTAL", totalPrice);
-                request.setAttribute("REALPRICE", realPrice);
-                request.setAttribute("VIEW", urlThanhToan);
-                RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
-                rd.forward(request, response);
             }
 
         } catch (Exception e) {

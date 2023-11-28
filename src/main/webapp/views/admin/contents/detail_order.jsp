@@ -21,7 +21,7 @@
             <c:forEach var="order" items="${LIST_DETAILORDER}">
 
                 <tr>
-                    <td>${order.maSP }</td>
+                    <td>${order.tenSP }</td>
                     <td>${order.donGia } VND</td>
                     <td>${order.soLuong }</td>
                     <td>${order.tongTien } VND</td>

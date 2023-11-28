@@ -76,6 +76,31 @@ public class OrderDAO {
         }
         return order;
     }
+    
+    public ArrayList<Order> searchOrderByMaKH(String id) {
+        ArrayList<Order> ls = new ArrayList<Order>();
+        try {
+            Connection conn = DataBase.getConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM HoaDonBan WHERE MaKH ='" + id + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String maHD = rs.getString("MaHDB");
+                String maNV = rs.getString("MaNV");
+                String maKH = rs.getString("MaKH");
+                String maKM = rs.getString("MaKM");
+                int tongTien = rs.getInt("TongTien");
+                Date ngayTao = rs.getDate("NgayTao");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                ls.add(ord);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print("Cant connect BD");
+        }
+        return ls;
+    }
 
     public String createNewMaHD() {
         OrderDAO ordDAO = new OrderDAO();
