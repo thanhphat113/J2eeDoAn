@@ -28,6 +28,9 @@ public class khachhang {
         this.maTK = maTK;
     }
 
+    public khachhang() {
+    }
+
     
     
     

@@ -101,7 +101,7 @@
     </symbol>
     </svg>  
 
-    
+
     <jsp:include page="/views/home/components/search_popup.jsp"></jsp:include>
     <jsp:include page="/views/home/components/header.jsp"></jsp:include>
     <jsp:include page="/views/home/components/section2.jsp"></jsp:include>
