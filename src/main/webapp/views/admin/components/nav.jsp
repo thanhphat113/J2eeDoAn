@@ -11,7 +11,7 @@
         <li><a href="#section1">Home</a></li>
         <li><a href="#section2">Products Manager</a></li>
         <li><a href="#section3">Accounts Manager</a></li>
-        <li class="active"><a href="#section3">Orders Manager</a></li>
+        <li class="active"><a href="/J2eeDoAn/OrderManagerServlet">Orders Manager</a></li>
         <li><a href="#section3">Supplier Manager</a></li>
         <li><a href="#section3">Statics</a></li>        
     </ul><br>

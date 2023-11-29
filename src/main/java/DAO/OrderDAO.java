@@ -101,6 +101,81 @@ public class OrderDAO {
         }
         return ls;
     }
+    
+    public ArrayList<Order> searchOrderByMaKM(String id) {
+        ArrayList<Order> ls = new ArrayList<Order>();
+        try {
+            Connection conn = DataBase.getConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM HoaDonBan WHERE MaKM ='" + id + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String maHD = rs.getString("MaHDB");
+                String maNV = rs.getString("MaNV");
+                String maKH = rs.getString("MaKH");
+                String maKM = rs.getString("MaKM");
+                int tongTien = rs.getInt("TongTien");
+                Date ngayTao = rs.getDate("NgayTao");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                ls.add(ord);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print("Cant connect BD");
+        }
+        return ls;
+    }
+    
+    public ArrayList<Order> searchOrderByDate(String date) {
+        ArrayList<Order> ls = new ArrayList<Order>();
+        try {
+            Connection conn = DataBase.getConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM HoaDonBan WHERE NgayTao ='" + date + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String maHD = rs.getString("MaHDB");
+                String maNV = rs.getString("MaNV");
+                String maKH = rs.getString("MaKH");
+                String maKM = rs.getString("MaKM");
+                int tongTien = rs.getInt("TongTien");
+                Date ngayTao = rs.getDate("NgayTao");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                ls.add(ord);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print("Cant connect BD");
+        }
+        return ls;
+    }
+    
+    public ArrayList<Order> searchOrderByMaNV(String id) {
+        ArrayList<Order> ls = new ArrayList<Order>();
+        try {
+            Connection conn = DataBase.getConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM HoaDonBan WHERE MaNV ='" + id + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String maHD = rs.getString("MaHDB");
+                String maNV = rs.getString("MaNV");
+                String maKH = rs.getString("MaKH");
+                String maKM = rs.getString("MaKM");
+                int tongTien = rs.getInt("TongTien");
+                Date ngayTao = rs.getDate("NgayTao");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                ls.add(ord);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print("Cant connect BD");
+        }
+        return ls;
+    }
 
     public String createNewMaHD() {
         OrderDAO ordDAO = new OrderDAO();

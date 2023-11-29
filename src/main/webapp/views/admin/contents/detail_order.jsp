@@ -23,7 +23,7 @@
 
                 <tr>
                     <td>${order.tenSP }</td>
-                    <td style="width: 20%"><img src="images${order.hinhanh}" alt="product-item" class="img-fluid" ></td>
+                    <td style="width: 20%"><img src="images${order.hinhanh}" alt="product-item" style="width: 50%"></td>
                     <td>${order.donGia } VND</td>
                     <td>${order.soLuong }</td>
                     <td>${order.tongTien } VND</td>

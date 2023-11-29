@@ -22,8 +22,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>trang-chu</welcome-file>
         <welcome-file>OrderManagerServlet</welcome-file>
-        
+        <welcome-file>trang-chu</welcome-file>
     </welcome-file-list>
 </web-app>
