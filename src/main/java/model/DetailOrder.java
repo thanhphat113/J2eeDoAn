@@ -8,6 +8,7 @@ public class DetailOrder {
     private int soLuong;
     private int tongTien;
     private String tenSP;
+    private String hinhanh;
 
     public DetailOrder(String maHD, String maSP, int donGia, int soLuong, int tongTien) {
         super();
@@ -18,13 +19,23 @@ public class DetailOrder {
         this.tongTien = tongTien;
     }
 
-    public DetailOrder(String maHD, String maSP, int donGia, int soLuong, int tongTien, String tenSP) {
+    public DetailOrder(String maHD, String maSP, int donGia, int soLuong, int tongTien, String tenSP, String hinhanh) {
         this.maHD = maHD;
         this.maSP = maSP;
         this.donGia = donGia;
         this.soLuong = soLuong;
         this.tongTien = tongTien;
         this.tenSP = tenSP;
+        this.hinhanh = hinhanh;
+        
+    }
+
+    public String getHinhanh() {
+        return hinhanh;
+    }
+
+    public void setHinhanh(String hinhanh) {
+        this.hinhanh = hinhanh;
     }
 
     public String getTenSP() {

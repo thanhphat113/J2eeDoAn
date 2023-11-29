@@ -11,7 +11,8 @@
     <table class="table table-hover table-bordered">
         <thead>
             <tr class="info">
-                <th>Mã Sản Phẩm</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Hình ảnh</th>
                 <th>Đơn giá</th>
                 <th>Số lượng</th>
                 <th>Tổng tiền</th>
@@ -22,6 +23,7 @@
 
                 <tr>
                     <td>${order.tenSP }</td>
+                    <td style="width: 20%"><img src="images${order.hinhanh}" alt="product-item" class="img-fluid" ></td>
                     <td>${order.donGia } VND</td>
                     <td>${order.soLuong }</td>
                     <td>${order.tongTien } VND</td>
