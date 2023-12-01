@@ -55,6 +55,6 @@
 </div>
 <jsp:include page="/views/admin/components/footer.jsp"></jsp:include>
 
-
+<script type="text/javascript" src="js/order.js"></script>
 </body>
 </html>

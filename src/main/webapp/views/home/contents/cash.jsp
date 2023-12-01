@@ -31,7 +31,7 @@
                                 <td>${count }</td><input type="hidden" value="${rows.value.sanpham.maSP}" name="coded">
                                 <td style="width: 20%"><img src="images${rows.value.sanpham.hinhanh}" alt="product-item" class="img-fluid" ></td>
                                 <td>${rows.value.sanpham.tenSP}<input type="hidden" value="${rows.value.sanpham.tenSP}" name="named"></td>
-                                <td>${rows.value.sanpham.giaBan} VND<input type="hidden" value="${rows.value.sanpham.giaBan}" name="priced"></td>
+                                <td>${rows.value.sanpham.gia} <input type="hidden" value="${rows.value.sanpham.giaBan}" name="priced"></td>
                                 <td>${rows.value.soluong}<input type="hidden" value="${rows.value.soluong}" name="quantityd"></td>
                                 <td>${rows.value.sanpham.giaBan * rows.value.soluong} VND<input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price"></td>
 

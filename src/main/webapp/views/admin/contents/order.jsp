@@ -32,7 +32,7 @@
                     <td>${order.ngayTao }</td>
                     <td><a href="/J2eeDoAn/OrderManagerServlet?action=Detail&orderId=${order.maHD}" class="btn btn-success">Chi tiết</a></td>
                     <td><a href="/J2eeDoAn/OrderManagerServlet?action=Update&orderId=${order.maHD}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="/J2eeDoAn/OrderManagerServlet?action=Delete&orderId=${order.maHD}" class="btn btn-danger">Xóa</a></td>
+                    <td><a class="btn btn-danger" onclick="confirmDeleteOrder('${order.maHD}')">Xóa</a></td>
                 </tr>
 
             </c:forEach>

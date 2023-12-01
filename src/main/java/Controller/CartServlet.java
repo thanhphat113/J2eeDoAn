@@ -38,7 +38,7 @@ public class CartServlet extends HttpServlet {
     String urlTrangChu = "/index.jsp";
     String urlSection1 = "/views/home/components/section1.jsp";
     String urlSection2 = "/views/home/components/section2.jsp";
-
+    String urlConfirmed = "/views/home/contents/confirmed.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -241,9 +241,7 @@ public class CartServlet extends HttpServlet {
                 HttpSession session1 = request.getSession(true);
                 Cart shop = (Cart) session1.getAttribute("SHOP");
                 shop.clear();
-                request.setAttribute("VIEW", urlSanPham);
-                request.setAttribute("SECTION1", urlSection1);
-                request.setAttribute("SECTION2", urlSection2);
+                request.setAttribute("VIEW", urlConfirmed);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
 
