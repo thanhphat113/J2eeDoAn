@@ -35,13 +35,13 @@
                             <td style="width: 20%"><img src="images${rows.value.sanpham.hinhanh}" alt="product-item" class="img-fluid" ></td>
                             <td>${rows.value.sanpham.tenSP}</td>
                             <td>${rows.value.sanpham.giaBan} VND</td>
-                            <td style="width: 15%"><input type="number" value="${rows.value.soluong}" ></td>
+                            <td style="width: 15%"><input type="number" value="${rows.value.soluong}" name="quantity"><input type="hidden" value="${rows.value.sanpham.maSP}" name="code"></td>
                             <td>${rows.value.sanpham.giaBan * rows.value.soluong} VND<input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price"></td>
                             <td><input type="checkbox" name="rmv" value="${rows.value.sanpham.maSP}" /></td>
                         </tr>
                     </c:forEach>
                     <tr>
-
+                        <td><input type="submit" value="Update" name="action"/></td>
                         <td><input type="submit" value="Remove" name="action"/></td>
                     </tr>
 

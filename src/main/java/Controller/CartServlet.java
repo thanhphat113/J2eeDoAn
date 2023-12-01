@@ -1,19 +1,8 @@
 package Controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-
-import jakarta.mail.Message;
-import jakarta.mail.PasswordAuthentication;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -47,6 +36,8 @@ public class CartServlet extends HttpServlet {
     String urlDonHang = "/views/home/contents/information.jsp";
     String urlThanhToan = "/views/home/contents/cash.jsp";
     String urlTrangChu = "/index.jsp";
+    String urlSection1 = "/views/home/components/section1.jsp";
+    String urlSection2 = "/views/home/components/section2.jsp";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -54,6 +45,23 @@ public class CartServlet extends HttpServlet {
     public CartServlet() {
         super();
         // TODO Auto-generated constructor stub
+    }
+
+    public void changeQuantity(HttpServletRequest request, HttpServletResponse response) {
+        String[] listQuantity = request.getParameterValues("quantity");
+        String[] listCode = request.getParameterValues("code");
+        if (listQuantity != null) {
+            HttpSession session1 = request.getSession();
+            if (session1 != null) {
+                Cart shop = (Cart) session1.getAttribute("SHOP");
+                if (shop != null) {
+                    for (int i = 0; i < shop.size(); i++) {
+                        shop.updateCart(listCode[i], Integer.parseInt(listQuantity[i]));
+                    }
+                    session1.setAttribute("SHOP", shop);
+                }
+            }
+        }
     }
 
     /**
@@ -141,6 +149,7 @@ public class CartServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
                 rd.forward(request, response);
             } else if (action.equals("View Cart")) {
+                changeQuantity(request, response);
                 request.setAttribute("VIEW", urlGioHang);
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
                 rd.forward(request, response);
@@ -161,7 +170,13 @@ public class CartServlet extends HttpServlet {
                 String url = "CartServlet?action=View Cart";
                 RequestDispatcher rd = request.getRequestDispatcher(url);
                 rd.forward(request, response);
+            } else if (action.equals("Update")) {
+                changeQuantity(request, response);
+                String url = "CartServlet?action=View Cart";
+                RequestDispatcher rd = request.getRequestDispatcher(url);
+                rd.forward(request, response);
             } else if (action.equals("Buy")) {
+                changeQuantity(request, response);
                 KhuyenMai km = new KhuyenMai();
                 KhuyenMaiDAO kmDAO = new KhuyenMaiDAO();
                 ArrayList<KhuyenMai> ls = kmDAO.selectAllKhuyenMai();
@@ -204,8 +219,8 @@ public class CartServlet extends HttpServlet {
                 String[] listProductPrice = request.getParameterValues("priced");
                 String[] listProductQuantity = request.getParameterValues("quantityd");
                 String[] listProductTotalPrice = request.getParameterValues("price");
-                String maKH = "MKH001";
-                String maNV = "NV003";
+                String maKH = "MKH005";
+                String maNV = "NV006";
                 String maKM = request.getParameter("codediscount");
                 float totalPrice = Float.valueOf(request.getParameter("totalprice"));
                 int totalPrice1 = (int) totalPrice;
@@ -214,7 +229,7 @@ public class CartServlet extends HttpServlet {
                 OrderDAO orderDAO = new OrderDAO();
                 String maHD = orderDAO.createNewMaHD();
                 Order order = new Order(maHD, maNV, maKH, maKM, totalPrice1, today);
-                khachhang kh = new khachhang("MKH001", "nguyen ha", "123124123", "thuythatthanthanh@gmail.com", today, "6");
+                khachhang kh = new khachhang("MKH005", "nguyen ha", "123124123", "thuythatthanthanh@gmail.com", today, "10");
                 orderDAO.addOrder(order);
 
                 DetailOrderDAO detailOrderDAO = new DetailOrderDAO();
@@ -223,11 +238,13 @@ public class CartServlet extends HttpServlet {
                     detailOrderDAO.addDetailOrder(detailOrder, i + 1);
                 }
                 orderDAO.sendEmail(request, response, kh, order);
-                HttpSession session = request.getSession(true);
-                Cart shop = (Cart) session.getAttribute("SHOP");
+                HttpSession session1 = request.getSession(true);
+                Cart shop = (Cart) session1.getAttribute("SHOP");
                 shop.clear();
-                RequestDispatcher rd = request.getRequestDispatcher("/trang-chu");
-                rd.forward(request, response);
+                request.setAttribute("VIEW", urlSanPham);
+                request.setAttribute("SECTION1", urlSection1);
+                request.setAttribute("SECTION2", urlSection2);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

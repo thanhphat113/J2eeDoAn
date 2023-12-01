@@ -233,14 +233,17 @@ public class OrderDAO {
 
     public void sendEmail(HttpServletRequest request, HttpServletResponse response, khachhang kh, Order order) {
         final String username = "thuythatthanthanh@gmail.com";// email
-        final String password = "kwhp htbh nfpt rxre";//email app password
+        final String password = "lkee laza cdsi tzmo";//email app password
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true");
         prop.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
-        Session session = Session.getInstance(prop, new jakarta.mail.Authenticator() {
+        prop.put("mail.smtp.ssl.trust", "*");
+        Session session;
+        session = Session.getInstance(prop, new jakarta.mail.Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }

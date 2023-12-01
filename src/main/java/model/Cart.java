@@ -21,11 +21,10 @@ public class Cart extends HashMap{
 		}
 		return false;
 	}
-	
-//	public ArrayList<ProductDTO> all(){
-//		ArrayList<ProductDTO> list = 
-//		return list;
-//	}
+        
+        public void updateCart(String code, int quantity) {
+		((ProductDTO)this.get(code)).setSoluong(quantity);
+	}
 	
 	public Cart() {
 		super();
