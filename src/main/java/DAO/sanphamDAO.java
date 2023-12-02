@@ -122,8 +122,39 @@ public class sanphamDAO {
 
     public List<sanpham> findByKey(String key) {
         List<sanpham> list = new ArrayList();
-
+        
         return list;
+    }
+    
+    public sanpham findById(String id) {
+        sanpham sp = new sanpham();
+        Connection conn = null;
+        try {
+            conn = DataBase.getConnection();
+
+            Statement st = conn.createStatement();
+
+            String query = "select * from SanPham where MaSP='"+id+"'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String maSP = rs.getString("MaSP");
+                String tenSP = rs.getString("TenSP");
+                String maLoai = rs.getString("maLoai");
+                int giaNhap = rs.getInt("GiaNhap");
+                int giaBan = rs.getInt("GiaBan");
+                int soLuong = rs.getInt("SoLuong");
+                String hinhAnh = rs.getString("HinhAnh");
+                String MoTa = rs.getString("MoTa");
+
+                sanpham spc = new sanpham(maSP, tenSP, maLoai, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+                sp = spc;
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return sp;
     }
 
 }
