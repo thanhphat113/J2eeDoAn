@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Controller\ProductsController.class
 model\DetailOrder.class
 model\nhacungcap.class
@@ -21,3 +22,9 @@ DAO\sanphamDAO.class
 model\KhuyenMai.class
 Controller\Home.class
 DAO\OrderDAO.class
+=======
+model\ChiTietDonBan.class
+DAO\KhachHangDAO.class
+DAO\NhanVienDAO.class
+model\TongChiTieuBanHang.class
+>>>>>>> phu

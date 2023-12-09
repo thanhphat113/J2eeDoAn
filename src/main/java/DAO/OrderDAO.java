@@ -268,6 +268,46 @@ public class OrderDAO {
             e.printStackTrace();
             // TODO: handle exception
         }
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.print("Cant connect BD");
+		}
+	}
+	public void sendEmail(HttpServletRequest request, HttpServletResponse response, khachhang kh, Order order) {
+    	final String username = "thuythatthanthanh@gmail.com";// email
+		final String password = "kwhp htbh nfpt rxre";//email app password
+		Properties prop = new Properties();
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtp.port", "587");
+		prop.put("mail.smtp.auth", "true");
+		prop.put("mail.smtp.starttls.enable", "true");
+		prop.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+		Session session = Session.getInstance(prop, new jakarta.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+		//dang nhap dc email
+		String emailTo = kh.getEmail();
+		String emailSubject = "Email xác nhận đặt hàng";
+		String emailContent = "Mã Đơn hàng: "+order.getMaHD()+" Tổng giá: "+order.getTongTien()+" giao đến cho anh/chị: "+kh.getHoTen()+
+				" địa chỉ email là: "+kh.getEmail()+" Số điện thoại "+kh.getSDT()+". Đơn hàng sẽ giao tới trong vòng 2 ngày nữa. Cảm ơn quý khách đã mua hàng";
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.setRecipients(
+					Message.RecipientType.TO, 
+					InternetAddress.parse(emailTo)
+			);
+			message.setSubject(emailSubject);
+			message.setText(emailContent);
+			Transport.send(message);
+			System.out.print("Done");
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
     }
 //	public static void main(String[] args) {
 //		long millis = System.currentTimeMillis();
