@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * @author lythanhphat9523
  */
 
-public class khachhang {
+public class khachhang implements Serializable{
     private String maKH;
     private String hoTen;
     private String SDT;
@@ -28,10 +29,13 @@ public class khachhang {
         this.maTK = maTK;
     }
 
-    
-    
-    
+    @Override
+    public String toString() {
+        return "khachhang{" + "maKH=" + maKH + ", hoTen=" + hoTen + ", SDT=" + SDT + ", email=" + email + ", ngaySinh=" + ngaySinh + ", maTK=" + maTK + '}';
+    }
 
+    public khachhang(){}
+    
     public String getMaKH() {
         return maKH;
     }

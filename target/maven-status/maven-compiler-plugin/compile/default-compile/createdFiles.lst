@@ -1,7 +1,4 @@
-Controller\Top10SanPhamControl.class
-Controller\DoanhThuTheoThuControl.class
-Controller\StatisticController.class
-Controller\DoanhThuTheoThangControl.class
-Controller\Top5NhanVienControl.class
-Controller\Top5KhachHangControl.class
-Controller\Home.class
+model\ChiTietDonBan.class
+DAO\KhachHangDAO.class
+DAO\NhanVienDAO.class
+model\TongChiTieuBanHang.class

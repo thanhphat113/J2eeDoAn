@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import DAO.KhachHangDAO;
+import DAO.ThongKeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.TongChiTieuBanHang;
+import model.khachhang;
+import java.util.List;
 
 /**
  *
@@ -32,7 +37,15 @@ public class Top5KhachHangControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //
+        
+        ThongKeDAO thongke = new ThongKeDAO();
+        KhachHangDAO khachhang = new KhachHangDAO();
+        List<khachhang> listKhachHang = khachhang.GetAllKhachHang();
+        List<TongChiTieuBanHang> listTop5KhachHang = thongke.getTop5KhachHang();
+        
+        request.setAttribute("listAllAccount", listKhachHang);
+        request.setAttribute("listTop5KhachHang", listTop5KhachHang);
+        
         request.getRequestDispatcher("Top5KhachHang.jsp").forward(request, response);
     }
 

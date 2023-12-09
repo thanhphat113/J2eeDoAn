@@ -7,12 +7,13 @@ public class DBContext {
         Connection conn = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=Web;encrypt=true";
+            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCHDienThoai;encrypt=false";
             String username = "sa";
             String password = "123";
             conn = DriverManager.getConnection(dbUrl, username, password);
+            System.out.println("Ket noi thanh cong");
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace();            
         }
         return conn;
     }

@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import DAO.NhanVienDAO;
+import DAO.ThongKeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.TongChiTieuBanHang;
+import model.nhanvien;
 
 /**
  *
@@ -34,6 +39,14 @@ public class Top5NhanVienControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         //
+        ThongKeDAO thongke = new ThongKeDAO();
+        NhanVienDAO nhanvien = new NhanVienDAO();
+        List<nhanvien> listNhanVien = nhanvien.GetAllNhanVien();
+        List<TongChiTieuBanHang> listTop5NhanVien = thongke.getTop5NhanVien();
+        
+        request.setAttribute("listNhanVien", listNhanVien);
+        request.setAttribute("listTop5NhanVien", listTop5NhanVien);
+        
         request.getRequestDispatcher("Top5NhanVien.jsp").forward(request, response);
     }
 

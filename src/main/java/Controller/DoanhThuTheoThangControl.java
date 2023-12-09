@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DAO.ThongKeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -32,7 +33,35 @@ public class DoanhThuTheoThangControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        
         //
+        ThongKeDAO thongke = new ThongKeDAO();
+        double totalMoneyMonth1 = thongke.totalMoneyMonth(1);
+        double totalMoneyMonth2 = thongke.totalMoneyMonth(2);
+        double totalMoneyMonth3 = thongke.totalMoneyMonth(3);
+        double totalMoneyMonth4 = thongke.totalMoneyMonth(4);
+        double totalMoneyMonth5 = thongke.totalMoneyMonth(5);
+        double totalMoneyMonth6 = thongke.totalMoneyMonth(6);
+        double totalMoneyMonth7 = thongke.totalMoneyMonth(7);
+        double totalMoneyMonth8 = thongke.totalMoneyMonth(8);
+        double totalMoneyMonth9 = thongke.totalMoneyMonth(9);
+        double totalMoneyMonth10 = thongke.totalMoneyMonth(10);
+        double totalMoneyMonth11 = thongke.totalMoneyMonth(11);
+        double totalMoneyMonth12 = thongke.totalMoneyMonth(12);
+        
+        request.setAttribute("totalMoneyMonth1", totalMoneyMonth1);
+        request.setAttribute("totalMoneyMonth2", totalMoneyMonth2);
+        request.setAttribute("totalMoneyMonth3", totalMoneyMonth3);
+        request.setAttribute("totalMoneyMonth4", totalMoneyMonth4);
+        request.setAttribute("totalMoneyMonth5", totalMoneyMonth5);
+        request.setAttribute("totalMoneyMonth6", totalMoneyMonth6);
+        request.setAttribute("totalMoneyMonth7", totalMoneyMonth7);
+        request.setAttribute("totalMoneyMonth8", totalMoneyMonth8);
+        request.setAttribute("totalMoneyMonth9", totalMoneyMonth9);
+        request.setAttribute("totalMoneyMonth10", totalMoneyMonth10);
+        request.setAttribute("totalMoneyMonth11", totalMoneyMonth11);
+        request.setAttribute("totalMoneyMonth12", totalMoneyMonth12);
+        
         request.getRequestDispatcher("DoanhThuTheoThang.jsp").forward(request, response);
     }
 

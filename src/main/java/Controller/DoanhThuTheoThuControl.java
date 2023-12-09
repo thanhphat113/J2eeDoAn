@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DAO.ThongKeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -33,6 +34,24 @@ public class DoanhThuTheoThuControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         //
+        ThongKeDAO thongke = new ThongKeDAO();
+        
+        double totalMoney1 = thongke.totalMoneyDay(1);
+        double totalMoney2 = thongke.totalMoneyDay(2);
+        double totalMoney3 = thongke.totalMoneyDay(3);
+        double totalMoney4 = thongke.totalMoneyDay(4);
+        double totalMoney5 = thongke.totalMoneyDay(5);
+        double totalMoney6 = thongke.totalMoneyDay(6);
+        double totalMoney7 = thongke.totalMoneyDay(7);
+        
+        request.setAttribute("totalMoney1", totalMoney1);
+        request.setAttribute("totalMoney2", totalMoney2);
+        request.setAttribute("totalMoney3", totalMoney3);
+        request.setAttribute("totalMoney4", totalMoney4);
+        request.setAttribute("totalMoney5", totalMoney5);
+        request.setAttribute("totalMoney6", totalMoney6);
+        request.setAttribute("totalMoney7", totalMoney7);
+        
         request.getRequestDispatcher("DoanhThuTheoThu.jsp").forward(request, response);
     }
 

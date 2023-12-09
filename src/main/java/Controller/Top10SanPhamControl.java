@@ -4,13 +4,18 @@
  */
 package Controller;
 
+import model.sanpham;
+import DAO.ThongKeDAO;
+import DAO.sanphamDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.ChiTietDonBan;
 
 /**
  *
@@ -33,6 +38,14 @@ public class Top10SanPhamControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         //
+        ThongKeDAO thongke = new ThongKeDAO();
+        sanphamDAO sanpham = new sanphamDAO();
+        List<sanpham> listSanPham = sanpham.findAll();
+        List<ChiTietDonBan> listTop10Product = thongke.getTop10SanPhamBanChay();
+        
+        request.setAttribute("listAllProduct", listSanPham);
+        request.setAttribute("listTop10Product", listTop10Product);
+        
         request.getRequestDispatcher("Top10SanPhamBanChay.jsp").forward(request, response);
     }
 
