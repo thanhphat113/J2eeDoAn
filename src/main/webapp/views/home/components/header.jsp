@@ -47,7 +47,7 @@
                                             </a>
                                         </li>
                                         <li class="pe-3">
-                                            <a href="/Trang-chu/Dang-nhap">
+                                             <a href="login.jsp">
                                                 <svg class="user">
                                                 <use xlink:href="#user"></use>
                                                 </svg>

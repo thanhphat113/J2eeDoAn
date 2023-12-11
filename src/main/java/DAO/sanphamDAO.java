@@ -109,8 +109,8 @@ public class sanphamDAO {
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
 
-                sanpham sp = new sanpham(maSP, tenSP, maLoai, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-                list.add(sp);
+             //    sanpham sp = new sanpham(maSP, tenSP, maLoai, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+               // list.add(sp);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -144,8 +144,8 @@ public class sanphamDAO {
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
 
-                sanpham spc = new sanpham(maSP, tenSP, maLoai, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-                sp = spc;
+                //sanpham spc = new sanpham(maSP, tenSP, maLoai, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+               // sp = spc;
             }
             conn.close();
         } catch (Exception e) {
