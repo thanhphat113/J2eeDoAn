@@ -25,15 +25,12 @@ public class sanphamDAO {
     }
 
     public boolean create(sanpham sp) {
-        try {
-            Connection conn = DataBase.getConnection();
-
+        try( Connection conn = DataBase.getConnection()) {
             Statement st = conn.createStatement();
 
             //Buoc 3:
-            String sql = "INSERT INTO SinhVien() values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO SanPham() values('SP' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM SanPham) AS VARCHAR(3)), 3),?,?,?,?,?)"+" insert into ChiTietSanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM ChiTietSanPham) AS VARCHAR(3)), 3),?,?,?,?,?,?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(1, sp.getMaSP());
                 pstmt.setString(2, sp.getTenSP());
                 pstmt.setString(3, sp.getMaLoai());
                 pstmt.setDouble(4, sp.getGiaNhap());
@@ -71,19 +68,20 @@ public class sanphamDAO {
 
             Statement st = conn.createStatement();
 
-            String query = "select * from SanPham";
+            String query = "select sp.MaSP,sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP join Loaisanpham lsp on lsp.MaLoai=sp.MaLoai";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 String maSP = rs.getString("MaSP");
                 String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("maLoai");
+                String maLoai = rs.getString("TenLoai");
+                String mau=rs.getString("Mau");
                 int giaNhap = rs.getInt("GiaNhap");
                 int giaBan = rs.getInt("GiaBan");
                 int soLuong = rs.getInt("SoLuong");
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
 
-                sanpham sp = new sanpham(maSP, tenSP, maLoai, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+                sanpham sp = new sanpham(maSP, tenSP, maLoai,mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
                 list.add(sp);
             }
         } catch (Exception e) {

@@ -19,7 +19,6 @@ import model.sanpham;
  * @author lythanhphat9523
  */
 public class ProductsController extends HttpServlet {
-
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -40,10 +39,7 @@ public class ProductsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        sanphamDAO sp = new sanphamDAO();
-        List<sanpham> list = sp.findAll();
-        req.setAttribute("sanphamList", list);
-        req.getRequestDispatcher("views/QLSanPham.jsp").forward(req, resp);
+        req.getRequestDispatcher("/productsmanager.jsp").forward(req, resp);
     }
 
     @Override

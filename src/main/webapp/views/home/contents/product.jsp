@@ -21,6 +21,7 @@
                     for (sanpham product:listIP){
                     %>
                     <div class="swiper-slide">
+                        <span id="product" style="display:none;"><%=product.getMaSP()%></span>
                         <div class="product-card position-relative">
                             <div class="image-holder">
                                 <img src="images<%=product.getHinhanh()%>" alt="product-item" class="img-fluid">
@@ -62,6 +63,7 @@
                     for (sanpham product:listSS){
                     %>
                     <div class="swiper-slide">
+                        <span id="product" style="display:none;"><%=product.getMaSP()%></span>
                         <div class="product-card position-relative">
                             <div class="image-holder">
                                 <img src="images<%=product.getHinhanh()%>" alt="product-item" class="img-fluid">
@@ -73,7 +75,7 @@
                             </div>
                             <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                                 <h3 class="card-title text-uppercase">
-                                    <a href="#"><%=product.getTenSP()%></a>
+                                    <a href="product.jsp?productId=<%=product.getMaSP()%>"><%=product.getTenSP()%></a>
                                 </h3>
 
                             </div>

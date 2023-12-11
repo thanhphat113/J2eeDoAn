@@ -8,12 +8,12 @@ public class DataBase {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=DatabaseJ2ee;encrypt=false";
+            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=DoAnJ2EE;encrypt=false";
 
             //String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCHDienThoai;encrypt=false";
 
             String username = "sa";
-            String password = "123";
+            String password = "123456aA@$";
             conn = DriverManager.getConnection(dbUrl, username, password);
         } catch (Exception e) {
             e.printStackTrace();
