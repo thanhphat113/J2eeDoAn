@@ -27,3 +27,8 @@
     font-size: 50px;
     font-style: italic;
 }
+
+
+.nav-pills li a:hover{
+    background-color: #33CCFF;
+}
