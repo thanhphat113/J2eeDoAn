@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="css/mdb.min.css"/>
         <!-- Custom styles -->
         <link rel="stylesheet" href="css/style.css"/>
-
+        <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/> 
         <style>
             body {
                 margin: 0;
@@ -102,8 +102,8 @@
                             </div>
 
                             <div class="row py-3">
-                                <div class="col-sm-12 text-right">
-                                    <form action="xuatExcelTop5EmployeeControl" method="get"> 
+                                <div class="col-sm-12 text-left">
+                                    <form action="ExportTop5NV" method="get"> 
                                         <button type="submit" class="mb-0 text-center btn btn-primary">Xuất file Excel</button> 
                                     </form>    
                                 </div>
@@ -120,9 +120,9 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">Email</th>
+                                            <th scope="col">Mã Nhân Viên</th>
+                                            <th scope="col">Tên Nhân Viên</th>
+                                            <th scope="col">Địa chỉ Email</th>
                                             <th scope="col">Tổng bán hàng</th>
                                         </tr>
                                     </thead>

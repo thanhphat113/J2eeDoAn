@@ -1,3 +1,4 @@
+Controller\ExportTop5NV.class
 Controller\CartServlet.class
 Database\DataBase.class
 model\Cart.class
@@ -8,7 +9,9 @@ DAO\KhachHangDAO.class
 DAO\NhanVienDAO.class
 model\sanpham.class
 DAO\DetailOrderDAO.class
+Controller\ExportTop5KH.class
 DAO\OrderDAO$1.class
+Controller\ExportTop10SP.class
 model\Account.class
 DAO\sanphamDAO.class
 Controller\Home.class

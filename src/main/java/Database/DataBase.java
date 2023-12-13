@@ -8,7 +8,7 @@ public class DataBase {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=DatabaseJ2ee;encrypt=false";
+            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCHDienThoai;encrypt=false";
 
             //String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCHDienThoai;encrypt=false";
 

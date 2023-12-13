@@ -13,8 +13,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!------ Include the above in your HEAD tag ------>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link href="css/style.css" rel="stylesheet" type="text/css"/> 
-
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/> 
+        <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
@@ -106,41 +106,34 @@
             <!--Main layout-->
             <main>
                 <div class="container pt-4">
-
-
-
-
                     <!--Section: Top 10 san pham ban chay-->
                     <section class="mb-4">
                         <div class="card"> 
                             <div class="card-header py-3">
                                 <h5 class="mb-0 text-center"><strong>Top 10 sản phẩm bán chạy nhất</strong></h5>
                             </div>
-
                             <div class="row">
-                                <div class="col-sm-12 text-right">
-                                    <form action="xuatExcelTop10ProductControl" method="get"> 
+                                <div class="col-sm-12 text-left">
+                                    <form action="ExportTop10SP" method="get"> 
                                         <button type="submit" class="mb-0 text-center btn btn-primary">Xuất file Excel</button> 
                                     </form>    
                                 </div>
                             </div>
-
                         <c:if test="${mess!=null }">
                             <div class="alert alert-success" role="alert">
                                 ${mess}
                             </div>
                         </c:if>
-
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">SoLuongDaBan</th>
+                                            <th scope="col">Mã Sản Phẩm</th>
+                                            <th scope="col">Tên Sản Phẩm</th>
+                                            <th scope="col">Hình Ảnh</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Số Lượng Đã Bán</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -153,7 +146,7 @@
                                                         <td>
                                                             <img src="${o.hinhanh}">
                                                         </td>
-                                                        <td>${o.gia} $</td>
+                                                        <td>${o.gia}</td>
                                                         <td>${t.soLuong }</td>
                                                     </tr>
                                                 </c:if>

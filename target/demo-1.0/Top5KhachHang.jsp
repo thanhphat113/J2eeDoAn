@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="css/mdb.min.css"/>
         <!-- Custom styles -->
         <link rel="stylesheet" href="css/style.css"/>
-
+        <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/> 
         <style>
             body {
                 margin: 0;
@@ -91,10 +91,6 @@
             <!--Main layout-->
             <main>
                 <div class="container pt-4">
-
-
-
-
                     <!--Section: Quan Ly tai Khoan-->
                     <section class="mb-4">
                         <div class="card">
@@ -103,8 +99,8 @@
                             </div>
 
                             <div class="row py-3">
-                                <div class="col-sm-12 text-right">
-                                    <form action="xuatExcelTop5CustomerControl" method="get"> 
+                                <div class="col-sm-12 text-left">
+                                    <form action="ExportTop5KH" method="get"> 
                                         <button type="submit" class="mb-0 text-center btn btn-primary">Xuất file Excel</button> 
                                     </form>    
                                 </div>
@@ -121,9 +117,9 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Username</th> 
-                                            <th scope="col">Email</th>
+                                            <th scope="col">Mã Khách Hàng</th>
+                                            <th scope="col">Tên Khách Hàng</th> 
+                                            <th scope="col">Địa Chỉ Email</th>
                                             <th scope="col">Tổng chi tiêu</th>
                                         </tr>
                                     </thead>
@@ -150,12 +146,7 @@
                 </section>
                 <!--Section: Quan Ly tai Khoan-->
             </div>
-
-
         </main>
-
-
-
         <script src="js/manager.js" type="text/javascript"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
