@@ -3,23 +3,18 @@ package Database;
 import java.sql.*;
 
 public class DataBase {
+
     public static Connection getConnection() {
         Connection conn = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCHDienThoai;encrypt=false";
-
-            //String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=DoAnJ2EE;encrypt=false";
-
-
-            //String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCHDienThoai;encrypt=false";
-
+            String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=DoAnJ2EE;encrypt=false";
             String username = "sa";
-            String password = "123456aA@$";
+            String password = "123";
             conn = DriverManager.getConnection(dbUrl, username, password);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
+            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
         }
         return conn;
     }

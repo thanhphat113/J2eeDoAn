@@ -41,11 +41,11 @@ public class sanpham  implements Serializable{
         this.mau = mau;
     }
 
-    public sanpham(String maSP, String tenSP, String maLoai, String hinhanh) {
+    public sanpham(String maSP, String tenSP, String maLoai, String mota) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.maLoai = maLoai;
-        this.hinhanh = hinhanh;
+        this.hinhanh = mota;
     }
     
     

@@ -47,6 +47,7 @@ public class CartServlet extends HttpServlet {
     String urlSection1 = "/views/home/components/section1.jsp";
     String urlSection2 = "/views/home/components/section2.jsp";
     String urlConfirmed = "/views/home/contents/confirmed.jsp";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
