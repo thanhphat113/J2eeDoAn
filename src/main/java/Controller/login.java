@@ -37,6 +37,7 @@ public class login extends HttpServlet {
            } else {
                
             HttpSession session = request.getSession();
+               System.out.println("a"+a.getQuyen()+a.getUsername());
             session.setAttribute("loginSuccessMessage", "Đăng nhập thành công!");
                // response.sendRedirect("qlac");
                switch (a.getQuyen()) {
