@@ -82,6 +82,7 @@ public class Home extends HttpServlet {
             req.setAttribute("VIEW", urlChiTietDonHang);
             rd.forward(req, resp);
         }
+        
 
     }
 
@@ -92,6 +93,7 @@ public class Home extends HttpServlet {
         if (action == null) {
             doGet(req, resp);
         }
+
     }
     
 }

@@ -22,7 +22,6 @@
         <title>Document</title>
     </head>
     <body class="bg-light">
-        <%@include file="Sidebar.jsp"%>
         <!--Sản phẩm-->
         <div class="container rounded ml-3 col-md-10">
             <div class="text-center title">Danh sách sản phẩm</div>
@@ -145,8 +144,6 @@
                     phẩm</button>
             </div>
         </div>
-    </div>
-</div>
 
 <script>
     const toggleButtons = document.querySelectorAll('#toggleButton');
