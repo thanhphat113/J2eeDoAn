@@ -9,5 +9,5 @@
 <h2>Thanks you for ordering !
     <br> Your Order Was Ordered !
     <br> We sent you an email confirmed your order, check your email for more information
-    <br> <a class="nav-link me-4 active" href="/J2eeDoAn/trang-chu" style="color: lightblue"> Continue Shopping</a></h2>
+    <br> <a class="nav-link me-4 active" href="/Trang-chu" style="color: lightblue"> Continue Shopping</a></h2>
 </div>

@@ -33,6 +33,13 @@ public class sanpham  implements Serializable{
     public sanpham() {
     }
 
+    public sanpham(String maSP, String tenSP, String maLoai, String MoTa) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.maLoai = maLoai;
+        this.mota = mota;
+    }
+
     public String getMau() {
         return mau;
     }
