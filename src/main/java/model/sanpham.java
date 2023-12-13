@@ -18,9 +18,10 @@ import java.text.DecimalFormat;
 
 
 public class sanpham  implements Serializable{
-    private String maSP;    
+    private String maSP;   
     private String tenSP;    
     private String maLoai;
+    private String mau;
     private int giaNhap;
     private int giaBan;
     private String hinhanh;
@@ -32,7 +33,24 @@ public class sanpham  implements Serializable{
     public sanpham() {
     }
 
-    public sanpham(String maSP, String tenSP, String maLoai, int giaNhap, int giaBan, String hinhanh, int soluong, String mota) {
+    public String getMau() {
+        return mau;
+    }
+
+    public void setMau(String mau) {
+        this.mau = mau;
+    }
+
+    public sanpham(String maSP, String tenSP, String maLoai, String hinhanh) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.maLoai = maLoai;
+        this.hinhanh = hinhanh;
+    }
+    
+    
+
+    public sanpham(String maSP, String tenSP, String maLoai,String mau, int giaNhap, int giaBan, String hinhanh, int soluong, String mota) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.maLoai = maLoai;
@@ -41,6 +59,7 @@ public class sanpham  implements Serializable{
         this.hinhanh = hinhanh;
         this.soluong = soluong;
         this.mota = mota;
+        this.mau=mau;
         this.gia = decimalFormat.format(giaBan);
     }
 

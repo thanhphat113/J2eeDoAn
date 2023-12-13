@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Controller\ExportTop5NV.class
 Controller\CartServlet.class
 Database\DataBase.class
@@ -28,3 +29,5 @@ DAO\AccountDAO.class
 Controller\OrderManagerServlet.class
 model\nhanvien.class
 model\KhuyenMai.class
+=======
+>>>>>>> 25a5eb308f021b8706d186ba88e5367b86e6c626
