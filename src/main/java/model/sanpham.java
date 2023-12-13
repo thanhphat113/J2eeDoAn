@@ -41,6 +41,15 @@ public class sanpham  implements Serializable{
         this.mau = mau;
     }
 
+    public sanpham(String maSP, String tenSP, String maLoai, String hinhanh) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.maLoai = maLoai;
+        this.hinhanh = hinhanh;
+    }
+    
+    
+
     public sanpham(String maSP, String tenSP, String maLoai,String mau, int giaNhap, int giaBan, String hinhanh, int soluong, String mota) {
         this.maSP = maSP;
         this.tenSP = tenSP;

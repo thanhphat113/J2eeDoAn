@@ -21,9 +21,6 @@ import model.Account;
  */
 @WebServlet(name="login", urlPatterns={"/login"})
 public class login extends HttpServlet {
-   
-
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

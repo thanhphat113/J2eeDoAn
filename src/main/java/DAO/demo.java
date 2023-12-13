@@ -14,13 +14,10 @@ import model.sanpham;
  */
 public class demo {
     public static void main(String[] args){
-        sanphamDAO product=new sanphamDAO();
-        List<sanpham> list= product.findAll();
-        for (sanpham sp:list){
-            
-        }
+        List<sanpham> list = new sanphamDAO().findAllToIndex();
         for (sanpham sp : list) {
-            System.out.println("Mã: "+sp.getMaSP()+"Tên: "+sp.getTenSP()+"Hinhanh: "+sp.getHinhanh()+" Giá:"+sp.getGia());
+            System.out.println(list.indexOf(sp.getTenSP())+"");
+            System.out.println("Mã: "+sp.getMaSP()+"Tên: "+sp.getTenSP()+"Hinhanh: "+sp.getHinhanh()+" Giá:"+sp.getMaLoai());
         }
     }
 }
