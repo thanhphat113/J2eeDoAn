@@ -42,6 +42,33 @@ public class AccountDAO extends DBContext {
         return list;
     }
 
+  
+  
+
+    public List<Account> searchByUsername(String search) {
+        List<Account> list = new ArrayList<>();
+          String sql = "select * from Taikhoan where Username like ? ";
+        try {
+            Connection conn = DBContext.getConnection();
+             PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, "%" + search + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Account a = new Account(rs.getInt("UserID"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getInt("Quyen"),
+                        rs.getInt("TrangThai")
+                );
+                list.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+    }
+
     public Account findByUsername(String username) {
         String sql = "select * from Taikhoan where Username = ? ";
         try {
@@ -49,7 +76,7 @@ public class AccountDAO extends DBContext {
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, username);
             Account a = null;
-            
+
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     a = new Account(rs.getInt("UserID"),
@@ -59,7 +86,7 @@ public class AccountDAO extends DBContext {
                             rs.getInt("TrangThai")
                     );
                 }
-            }catch(SQLException e1){
+            } catch (SQLException e1) {
             }
             return a;
         } catch (SQLException e) {

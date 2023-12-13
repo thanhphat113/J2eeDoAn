@@ -88,12 +88,12 @@ public class CartServlet extends HttpServlet {
                 if (shop == null) {
                     shop = new Cart();
                 }
-                String code = request.getParameter("productid");
-                sanphamDAO spDAO = new sanphamDAO();
+                //String code = request.getParameter("productid");
+              ///  sanphamDAO spDAO = new sanphamDAO();
 
-                sanpham sp = spDAO.findById(code);
-                ProductDTO spDTO = new ProductDTO(sp);
-                shop.addCart(spDTO);
+             //   sanpham sp = spDAO.findById(code);
+//                ProductDTO spDTO = new ProductDTO(sp);
+            //    shop.addCart(spDTO);
                 session.setAttribute("SHOP", shop);
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
                 rd.forward(request, response);
@@ -147,10 +147,10 @@ public class CartServlet extends HttpServlet {
                 String price = request.getParameter("txtPrice");
                 String type = request.getParameter("txtCodeType");
                 String image = request.getParameter("txtPicture");
-                String priceEx = request.getParameter("txtPriceEx");
-                int iprice = Integer.valueOf(price);
-                int ipriceEx = Integer.valueOf(priceEx);
-                sanpham sp = new sanpham(code, name, type, ipriceEx, iprice, image, "Awnsome");
+              //  String priceEx = request.getParameter("txtPriceEx");
+                //int iprice = Integer.valueOf(price);
+                //int ipriceEx = Integer.valueOf(priceEx);
+              //  sanpham sp = new sanpham(code, name, type, ipriceEx, iprice, image, "Awnsome");
                 ProductDTO spDTO = new ProductDTO(sp);
 
                 shop.addCart(spDTO);

@@ -145,23 +145,23 @@
             </div>
         </div>
 
-<script>
-    const toggleButtons = document.querySelectorAll('#toggleButton');
+        <script>
+            const toggleButtons = document.querySelectorAll('#toggleButton');
 
-    toggleButtons.forEach((button) => {
-        const toggleIcon = button.querySelector('i');
+            toggleButtons.forEach((button) => {
+                const toggleIcon = button.querySelector('i');
 
-        button.addEventListener('click', function () {
-            button.classList.toggle('active');
-            toggleIcon.classList.toggle('fa-check');
-            toggleIcon.classList.toggle('fa-dash');
-        });
-    });
+                button.addEventListener('click', function () {
+                    button.classList.toggle('active');
+                    toggleIcon.classList.toggle('fa-check');
+                    toggleIcon.classList.toggle('fa-dash');
+                });
+            });
 
-    function updateButtonText(selectedText, id) {
-        document.getElementById(id).innerText = selectedText;
-    }
+            function updateButtonText(selectedText, id) {
+                document.getElementById(id).innerText = selectedText;
+            }
 
-</script>
-</body>
+        </script>
+    </body>
 </html>
