@@ -23,7 +23,8 @@ import model.nhanvien;
  */
 @WebServlet(name = "Top5NhanVienControl", urlPatterns = {"/top5nhanvien"})
 public class Top5NhanVienControl extends HttpServlet {
-
+    String urlTop5NhanVien = "/views/admin/contents/Top5NhanVien.jsp";
+    String urlAdmin = "/admin.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,8 +47,8 @@ public class Top5NhanVienControl extends HttpServlet {
         
         request.setAttribute("listNhanVien", listNhanVien);
         request.setAttribute("listTop5NhanVien", listTop5NhanVien);
-        
-        request.getRequestDispatcher("Top5NhanVien.jsp").forward(request, response);
+        request.setAttribute("VIEW", urlTop5NhanVien);
+        request.getRequestDispatcher(urlAdmin).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

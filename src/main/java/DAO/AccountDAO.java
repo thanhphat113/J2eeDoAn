@@ -95,7 +95,6 @@ public class AccountDAO extends DBContext {
         }
 
     }
-
     public Account checkLogin(String username, String password) {
         String sql = "SELECT * FROM Taikhoan WHERE Username = ? AND Password = ?";
         try {
@@ -198,7 +197,6 @@ public class AccountDAO extends DBContext {
             e.printStackTrace(); // Xử lý lỗi nếu có
         }
     }
-
     public static void main(String[] args) throws SQLException {
         /*  AccountDAO a = new AccountDAO();
         List<Account> list = a.getAll();

@@ -19,7 +19,8 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DoanhThuTheoThangControl", urlPatterns = {"/doanhThuTheoThang"})
 public class DoanhThuTheoThangControl extends HttpServlet {
-
+    String urlDoanhThuTheoThang = "/views/admin/contents/DoanhThuTheoThang.jsp";
+    String urlAdmin = "/admin.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -61,8 +62,8 @@ public class DoanhThuTheoThangControl extends HttpServlet {
         request.setAttribute("totalMoneyMonth10", totalMoneyMonth10);
         request.setAttribute("totalMoneyMonth11", totalMoneyMonth11);
         request.setAttribute("totalMoneyMonth12", totalMoneyMonth12);
-        
-        request.getRequestDispatcher("DoanhThuTheoThang.jsp").forward(request, response);
+        request.setAttribute("VIEW", urlDoanhThuTheoThang);
+        request.getRequestDispatcher(urlAdmin).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

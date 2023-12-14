@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThangControl.java
@@ -131,3 +132,47 @@ D:\netbeansProject\J2eeDoAn\src\main\java\model\nhanvien.java
 >>>>>>> 25a5eb308f021b8706d186ba88e5367b86e6c626
 >>>>>>> 8de0c51989fcf1e9a4a730da694c4005e9590e43
 >>>>>>> 09d7f71ec5c8d7803ba786702a231b14c1096cc3
+=======
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\TongChiTieuBanHang.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\Top5NhanVienControl.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\ThongKeDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Database\DBContext.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\nhacungcap.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\OrderManagerServlet.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\nhanvien.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThangControl.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\Order.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\demo.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\QLAC.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\LoginController.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\KhachHangDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\KhuyenMai.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThuControl.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\ExportTop5NV.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\ProductsController.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\UpdateAccountServlet.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\Register.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\sanphamDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Database\DataBase.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\login.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\ChiTietDonBan.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\ExportTop5KH.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\CartServlet.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\Home.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\Top5KhachHangControl.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\DetailOrderDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\DeleteAccountServerlet.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\NhanVienDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\ProductDTO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\sanpham.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\Cart.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\DetailOrder.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\KhuyenMaiDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\OrderDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\DAO\AccountDAO.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\Account.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\StatisticController.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\model\khachhang.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\ExportTop10SP.java
+C:\Users\ACER\Desktop\doan\J2eeDoAn\src\main\java\Controller\Top10SanPhamControl.java
+>>>>>>> thuy

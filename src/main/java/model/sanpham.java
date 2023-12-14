@@ -33,6 +33,13 @@ public class sanpham  implements Serializable{
     public sanpham() {
     }
 
+    public sanpham(String maSP, String tenSP, String maLoai, String MoTa) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.maLoai = maLoai;
+        this.mota = mota;
+    }
+
     public String getMau() {
         return mau;
     }
@@ -40,15 +47,6 @@ public class sanpham  implements Serializable{
     public void setMau(String mau) {
         this.mau = mau;
     }
-
-    public sanpham(String maSP, String tenSP, String maLoai, String mota) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.maLoai = maLoai;
-        this.hinhanh = mota;
-    }
-    
-    
 
     public sanpham(String maSP, String tenSP, String maLoai,String mau, int giaNhap, int giaBan, String hinhanh, int soluong, String mota) {
         this.maSP = maSP;
@@ -73,8 +71,6 @@ public class sanpham  implements Serializable{
         this.mota = mota;
         this.gia = decimalFormat.format(giaBan);
     }
-    
-    
 
     public String getMaSP() {
         return maSP;

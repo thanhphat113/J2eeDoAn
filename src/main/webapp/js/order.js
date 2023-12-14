@@ -4,7 +4,7 @@
  */
 function confirmDeleteOrder(maHD){
     if(confirm("Delete ?")===true){
-        window.location.href = "/J2eeDoAn/OrderManagerServlet?action=Delete&orderId="+maHD.toString();
+        window.location.href = "OrderManagerServlet?action=Delete&orderId="+maHD.toString();
     };
 }
 
