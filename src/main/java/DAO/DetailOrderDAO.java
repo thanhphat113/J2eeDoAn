@@ -68,7 +68,7 @@ public class DetailOrderDAO {
                 int donGia = rs.getInt("DonGia");
                 int soLuong = rs.getInt("SoLuong");
                 int tongTien = rs.getInt("TongTien");
-                DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien, spDAO.findById(maSP).getTenSP(), spDAO.findById(maSP).getHinhanh());
+                DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien,"123","123" /*spDAO.findById(maSP).getTenSP(), spDAO.findById(maSP).getHinhanh()*/);
                 ls.add(detailOrder);
             }
             conn.close();
