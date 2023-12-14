@@ -15,6 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/detail_product.css">
         <script src="https://cdn.tailwindcss.com"></script>
         <title>Document</title>
     </head>
@@ -44,17 +45,19 @@
                             <div class="text-black text-[24px] mt-2" >
                                 <%=sp.getTenSP()%>
                             </div>
+
                             <div class="px-5 py-4 text-[#338dbc]">
                                 <span class="item-price text-primary" id="gia"><%=sp.getGia()%></span>
                             </div>
                             <form action="/Trang-chu/Chi-tiet?productId=<%=masp%>" method="post">
-
-                                <select id="ColorSelection" name="selectedColor">
+                                <ul class="nav">
                                     <% for (int i = 0; i < list.size(); i++) {
                                             sanpham sp1 = list.get(i);%>
-                                    <option value="<%=i%>"><%=sp1.getMau()%></option>
+                                    <li class="nav-item hover">
+                                        <a class="nav-link" href="Detail-Product?productId=<%=masp%>&choise=<%=i%>"><%=sp1.getMau()%></a>
+                                    </li>
                                     <% } %>
-                                </select>
+                                </ul>
                             </form>
                             <div class="pt-4 grid grid-cols-8 px-5 text-gray-600">
                                 <span class="col-span-2 text-base">Số lượng</span>

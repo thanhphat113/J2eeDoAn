@@ -11,7 +11,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import DAO.DetailOrderDAO;
+import DAO.NhanVienDAO;
 import DAO.OrderDAO;
+import jakarta.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,12 +28,13 @@ import model.Order;
  */
 @WebServlet("/OrderManagerServlet")
 public class OrderManagerServlet extends HttpServlet {
-
+    
     private static final long serialVersionUID = 1L;
     Account acc = new Account();
     khachhang kh = new khachhang();
     nhanvien nv = new nhanvien();
     Order ord = new Order();
+    NhanVienDAO nvDAO = new NhanVienDAO();
     OrderDAO ordDAO = new OrderDAO();
     DetailOrder dord = new DetailOrder();
     DetailOrderDAO dordDAO = new DetailOrderDAO();
@@ -53,7 +56,12 @@ public class OrderManagerServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        HttpSession sessionDangNhap = request.getSession();
+        System.out.println(sessionDangNhap.getAttribute("loginUserID")+"ThuyGodBRRR");
         try {
+            if(sessionDangNhap.getAttribute("loginUserID")==null){
+                response.sendRedirect("login.jsp");
+            }
             String action = request.getParameter("action");
             if (action == null) {
                 RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
@@ -71,6 +79,15 @@ public class OrderManagerServlet extends HttpServlet {
             } else if (action.equals("Delete")) {
                 String maHD = request.getParameter("orderId");
                 ordDAO.deleteOrder(maHD);
+                RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
+                request.setAttribute("VIEW", urlDonHangAdmin);
+                ArrayList<Order> ls = ordDAO.selectAllOrder();
+                request.setAttribute("LIST_ORDER", ls);
+                rd.forward(request, response);
+            } else if (action.equals("Confirm")) {
+                String maNhanVien = nvDAO.searchNhanVienByMaTK(Integer.parseInt(request.getParameter("nhanvienId"))).getMaNV();
+                String maHoaDon = request.getParameter("orderId");
+                ordDAO.confirmOrder(maHoaDon, maNhanVien);
                 RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
                 request.setAttribute("VIEW", urlDonHangAdmin);
                 ArrayList<Order> ls = ordDAO.selectAllOrder();

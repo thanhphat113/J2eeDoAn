@@ -48,24 +48,20 @@
             <form action="CartServlet" style="padding-bottom: 10px" method="post">
                 <div class="form-group">
                     <label for="email">Fullname:</label>
-                    <input type="hidden" class="form-control" name="name">
-                    <p>Tang Xuan Thuy</p>
+                    <input type="text" class="form-control" name="name" required="Please input your name" placeholder="Your Name">
 
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address:</label>
-                    <input type="hidden" class="form-control" name="email">
-                    <p>thuy@gmail.com</p>
+                    <input type="email" class="form-control" name="email" required="Please input email" placeholder="Your Email">
                 </div>
                 <div class="form-group">
                     <label for="email">Phone Number:</label>
-                    <input type="hidden" class="form-control" name="phone">
-                    <p>0987654321</p>
+                    <input type="text" class="form-control" name="phone" required="Please input phone number" placeholder="Your Phone Number">
                 </div>
                 <div class="form-group">
                     <label for="pwd">Address:</label>
-                    <input type="hidden" class="form-control" name="address">
-                    <p>TP HCM, Q12</p>
+                    <input type="text" class="form-control" name="address" required="Please input your address" placeholder="Your Address">
                 </div>
                 <div class="form-group">
                     <label for="email">Discount Code:</label>
