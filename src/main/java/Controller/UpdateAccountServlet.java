@@ -86,7 +86,7 @@ public class UpdateAccountServlet extends HttpServlet {
             accountDAO.updateAccount(updatedAccount); // Phương thức updateAccount cần được cài đặt trong DAO
 
             // Chuyển hướng trở lại trang QLAccount.jsp
-            response.sendRedirect("qlac");
+            response.sendRedirect("AccountServletManager");
         } else {
             // Xử lý khi không tìm thấy tài khoản để cập nhật
             // Có thể chuyển hướng đến trang thông báo lỗi

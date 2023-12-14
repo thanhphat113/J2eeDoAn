@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.AccountDAO;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,8 +20,13 @@ import model.Account;
  *
  * @author thine
  */
-@WebServlet(name = "QLAC", urlPatterns = {"/qlac"})
+
+@WebServlet("/AccountServletManager")
 public class QLAC extends HttpServlet {
+
+    String urlTaiKhoanAdmin = "/views/admin/contents/account.jsp";
+    String urlUpdateAccountAdmin = "/views/admin/contents/update_account.jsp";
+    String urlAdmin = "/admin.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,19 +59,24 @@ public class QLAC extends HttpServlet {
             throws ServletException, IOException {
         AccountDAO accountDAO = new AccountDAO();
         String search = request.getParameter("search");
+        List<Account> account = accountDAO.getAll();
+        request.setAttribute("accounts", account);
+        RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
+        request.setAttribute("VIEW", urlTaiKhoanAdmin);
+        rd.forward(request, response);
 
-        if (search == null || search.isEmpty()) {
-            List<Account> account = accountDAO.getAll();
-
-            request.setAttribute("accounts", account);
-            request.getRequestDispatcher("qlacmoi.jsp").forward(request, response);
-        } else {
-
-            List<Account> account = accountDAO.searchByUsername(search);
-
-            request.setAttribute("accounts", account);
-            request.getRequestDispatcher("qlacmoi.jsp").forward(request, response);
-        }
+//        if (search == null || search.isEmpty()) {
+//            List<Account> account = accountDAO.getAll();
+//
+//            request.setAttribute("accounts", account);
+//            request.getRequestDispatcher("qlacmoi.jsp").forward(request, response);
+//        } else {
+//
+//            List<Account> account = accountDAO.searchByUsername(search);
+//
+//            request.setAttribute("accounts", account);
+//            request.getRequestDispatcher("qlacmoi.jsp").forward(request, response);
+//        }
     }
 
     @Override
@@ -78,14 +89,15 @@ public class QLAC extends HttpServlet {
             AccountDAO accountDAO = new AccountDAO();
             Account account = accountDAO.getAccountById(userId);
             request.setAttribute("accountToUpdate", account);
-            request.getRequestDispatcher("update.jsp").forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
+            request.setAttribute("VIEW", urlUpdateAccountAdmin);
+            rd.forward(request, response);
         } else {
             // Xử lý tác vụ khác ở đây nếu cần
 
         }
 
     }
-
 
 
     @Override

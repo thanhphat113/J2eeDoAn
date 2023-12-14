@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
-<div class="panel-body">
+<div class="panel-body" style="padding-left: 250px">
     <table class="table table-hover table-bordered">
         <thead>
             <tr class="info">
@@ -32,12 +32,5 @@
             </c:forEach>
 
         </tbody>
-    </table>
-    <ul class="pagination">
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-    </ul>			  		    	
+    </table>			  		    	
 </div>

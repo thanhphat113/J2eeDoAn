@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 model\Cart.class
 model\ChiTietDonBan.class
 model\khachhang.class
@@ -16,3 +17,12 @@ model\TongChiTieuBanHang.class
 DAO\AccountDAO.class
 model\nhanvien.class
 model\KhuyenMai.class
+=======
+Controller/DeleteAccountServerlet.class
+Controller/Top5NhanVienControl.class
+DAO/OrderDAO.class
+model/ChiTietDonBan.class
+Database/DBContext.class
+DAO/OrderDAO$1.class
+model/nhanvien.class
+>>>>>>> e8d7d61244e0a35e928577639c0236ac7fbfe412

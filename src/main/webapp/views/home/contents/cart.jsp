@@ -12,7 +12,7 @@
     <h1>Your Shopping Cart</h1>
     <c:set var="shop" value="${sessionScope.SHOP }"/>
     <c:if test="${not empty shop }">
-        <form action="/J2eeDoAn/CartServlet" method="post">
+        <form action="CartServlet" method="post">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -57,7 +57,7 @@
         </form>
     </c:if>
     <c:if test="${empty shop }">
-        <h2>Your Cart Is Empty ! <a class="nav-link me-4 active" href="/J2eeDoAn/trang-chu" style="color: lightblue">Shopping</a></h2>
+        <h2>Your Cart Is Empty ! <a class="nav-link me-4 active" href="/Trang-chu" style="color: lightblue">Shopping</a></h2>
     </c:if>
 
 </div><br><br>

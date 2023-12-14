@@ -36,7 +36,8 @@ public class ThongKeDAO {
             }
         } catch (Exception e) {
             // Handle SQL exceptions appropriately
-            e.printStackTrace();
+            System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
+            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
         } finally {
             try {
                 if (rs != null) {
@@ -68,7 +69,8 @@ public class ThongKeDAO {
             }
         } catch (Exception e) {
             // Handle or log the exception properly, don't leave the catch block empty
-            e.printStackTrace(); // Example: Log the exception to the console
+            System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
+            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
         } finally {
             // Close resources in a finally block to ensure closure
             try {
@@ -82,7 +84,8 @@ public class ThongKeDAO {
                     conn.close();
                 }
             } catch (Exception e) {
-                e.printStackTrace(); // Log potential closure exceptions
+                System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
+                e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
             }
         }
         return total;
@@ -141,7 +144,8 @@ public class ThongKeDAO {
         }
         return list;
     }
-        public List<TongChiTieuBanHang> getTop5NhanVien() {
+
+    public List<TongChiTieuBanHang> getTop5NhanVien() {
         List<TongChiTieuBanHang> list = new ArrayList<>();
         String query = "SELECT TOP 5 NhanVien.MaNV, SUM(HoaDonBan.TongTien) AS DoanhThu "
                 + "FROM NhanVien "
@@ -172,6 +176,4 @@ public class ThongKeDAO {
         }
         return list;
     }
-    
-    
 }

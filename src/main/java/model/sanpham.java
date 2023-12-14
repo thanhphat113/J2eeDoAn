@@ -4,116 +4,50 @@
  */
 package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import java.io.Serializable;
-import java.text.DecimalFormat;
-
 /**
  *
  * @author lythanhphat9523
  */
-
-
-public class sanpham  implements Serializable{
-    private String maSP;   
-    private String tenSP;    
-    private String maLoai;
-    private String mau;
-    private int giaNhap;
-    private int giaBan;
-    private String hinhanh;
-    private int soluong;
+public class sanpham {
+    private String masp;
+    private String tensp;
+    private String maloai;
     private String mota;
-    private String gia;
-    DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
+    private String hinhanh;
+
+    public sanpham(String masp,String maloai, String tensp, String mota, String hinhanh) {
+        this.masp = masp;
+        this.tensp = tensp;
+        this.mota = mota;
+        this.hinhanh = hinhanh;
+        this.maloai = maloai;
+    }
     
     public sanpham() {
     }
 
-    public String getMau() {
-        return mau;
+    public String getMasp() {
+        return masp;
     }
 
-    public void setMau(String mau) {
-        this.mau = mau;
+    public void setMasp(String masp) {
+        this.masp = masp;
     }
 
-    public sanpham(String maSP, String tenSP, String maLoai, String hinhanh) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.maLoai = maLoai;
-        this.hinhanh = hinhanh;
+    public String getTensp() {
+        return tensp;
     }
-    
-    
 
-    public sanpham(String maSP, String tenSP, String maLoai,String mau, int giaNhap, int giaBan, String hinhanh, int soluong, String mota) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.maLoai = maLoai;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
-        this.hinhanh = hinhanh;
-        this.soluong = soluong;
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
+    }
+
+    public String getMota() {
+        return mota;
+    }
+
+    public void setMota(String mota) {
         this.mota = mota;
-        this.mau=mau;
-        this.gia = decimalFormat.format(giaBan);
-    }
-
-    public sanpham(String maSP, String tenSP, String maLoai, int giaNhap, int giaBan, String hinhanh, String mota) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.maLoai = maLoai;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
-        this.hinhanh = hinhanh;
-        this.mota = mota;
-        this.gia = decimalFormat.format(giaBan);
-    }
-    
-    
-
-    public String getMaSP() {
-        return maSP;
-    }
-
-    public void setMaSP(String maSP) {
-        this.maSP = maSP;
-    }
-
-    public String getTenSP() {
-        return tenSP;
-    }
-
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
-    }
-
-    public String getMaLoai() {
-        return maLoai;
-    }
-
-    public void setMaLoai(String maLoai) {
-        this.maLoai = maLoai;
-    }
-
-    public int getGiaNhap() {
-        return giaNhap;
-    }
-
-    public void setGiaNhap(int giaNhap) {
-        this.giaNhap = giaNhap;
-    }
-
-    public int getGiaBan() {
-        return giaBan;
-    }
-
-    public void setGiaBan(int giaBan) {
-        this.giaBan = giaBan;
     }
 
     public String getHinhanh() {
@@ -124,24 +58,13 @@ public class sanpham  implements Serializable{
         this.hinhanh = hinhanh;
     }
 
-    public int getSoluong() {
-        return soluong;
+    public String getMaloai() {
+        return maloai;
     }
 
-    public void setSoluong(int soluong) {
-        this.soluong = soluong;
-    }
-
-    public String getMota() {
-        return mota;
-    }
-
-    public void setMota(String mota) {
-        this.mota = mota;
+    public void setMaloai(String maloai) {
+        this.maloai = maloai;
     }
     
-    public String getGia(){
-        return gia;
-    }
     
 }
