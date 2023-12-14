@@ -19,6 +19,10 @@ import java.sql.SQLException;
  */
 public class AccountDAO extends DBContext {
 
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
     public List<Account> getAll() {
         List<Account> list = new ArrayList<>();
         String sql = "select * from Taikhoan";
@@ -42,15 +46,12 @@ public class AccountDAO extends DBContext {
         return list;
     }
 
-  
-  
-
     public List<Account> searchByUsername(String search) {
         List<Account> list = new ArrayList<>();
-          String sql = "select * from Taikhoan where Username like ? ";
+        String sql = "select * from Taikhoan where Username like ? ";
         try {
             Connection conn = DBContext.getConnection();
-             PreparedStatement st = conn.prepareStatement(sql);
+            PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, "%" + search + "%");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -95,6 +96,7 @@ public class AccountDAO extends DBContext {
         }
 
     }
+
     public Account checkLogin(String username, String password) {
         String sql = "SELECT * FROM Taikhoan WHERE Username = ? AND Password = ?";
         try {
@@ -197,6 +199,25 @@ public class AccountDAO extends DBContext {
             e.printStackTrace(); // Xử lý lỗi nếu có
         }
     }
+
+    public int checkAccountAdmin(int userID) {
+
+        String query = "select quyen from taikhoan where [userID]=?";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, userID);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+
     public static void main(String[] args) throws SQLException {
         /*  AccountDAO a = new AccountDAO();
         List<Account> list = a.getAll();

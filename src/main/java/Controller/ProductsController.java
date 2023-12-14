@@ -4,11 +4,9 @@
  */
 package Controller;
 
-<<<<<<< HEAD
-=======
 import DAO.sanphamDAO;
 import jakarta.servlet.RequestDispatcher;
->>>>>>> thuy
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,23 +14,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.List;
 import model.Order;
 import model.sanpham;
->>>>>>> thuy
 
 /**
  *
  * @author lythanhphat9523
  */
-<<<<<<< HEAD
-
-=======
 @WebServlet("/ProductsController")
->>>>>>> thuy
 public class ProductsController extends HttpServlet {
 
     String urlSanPhamAdmin = "/views/admin/contents/products.jsp";

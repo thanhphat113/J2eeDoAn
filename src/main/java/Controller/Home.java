@@ -76,8 +76,8 @@ public class Home extends HttpServlet {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else if (action.equals("Detail")) {
             String maHD = req.getParameter("orderId");
-            ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder2(maHD);
-            req.setAttribute("LIST_DETAILORDER", ls);
+            //ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder2(maHD);
+            //req.setAttribute("LIST_DETAILORDER", ls);
             RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
             req.setAttribute("VIEW", urlChiTietDonHang);
             rd.forward(req, resp);
