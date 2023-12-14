@@ -43,7 +43,7 @@ public class DetailProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-//        req.setAttribute("VIEW", urlChiTietSanPham);
+        req.setAttribute("VIEW", urlChiTietSanPham);
         RequestDispatcher rd = req.getRequestDispatcher(urlChiTietSanPham);
         rd.forward(req, resp);
     }
@@ -54,7 +54,7 @@ public class DetailProduct extends HttpServlet {
         String masp = req.getParameter("selectedColor");
         int a = Integer.parseInt(req.getParameter("selectedColor"));
         req.setAttribute("choise", a);
-//        req.getRequestDispatcher("product.jsp").forward(req, resp);
+        req.getRequestDispatcher("product.jsp").forward(req, resp);
     }
 
 }

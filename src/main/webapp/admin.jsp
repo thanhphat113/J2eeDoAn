@@ -54,8 +54,7 @@
 
 
         <!-- Font Awesome -->
-        <link rel="stylesheet"
-              href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <script src="https://kit.fontawesome.com/bf8f778c02.js" crossorigin="anonymous"></script>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet"
               href="https://mdbootstrap.com/previews/ecommerce-demo/css/bootstrap.min.css">
@@ -79,6 +78,7 @@
             rel="stylesheet"
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
             crossorigin="anonymous">
+        <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css"
               href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">

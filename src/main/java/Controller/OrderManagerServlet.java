@@ -127,8 +127,8 @@ public class OrderManagerServlet extends HttpServlet {
                 rd.forward(request, response);    
             }else if (action.equals("SearchByDate")) {
                 long millis = System.currentTimeMillis();
-//                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//                Date date = format.parse(request.getParameter("date"));
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = format.parse(request.getParameter("date"));
                 String date = request.getParameter("date");
                 RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
                 ArrayList<Order> ls = ordDAO.searchOrderByDate(date);

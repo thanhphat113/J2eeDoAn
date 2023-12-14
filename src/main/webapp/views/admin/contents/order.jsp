@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12 text-right">
+                    <div class="col-sm-12 text-left">
                         <form action="xuatExcelTop10ProductControl" method="get"> 
                             <button type="submit" class="mb-0 text-center btn btn-primary" style="width: 150px;height: 40px">Xuất file Excel</button> 
                         </form>    
