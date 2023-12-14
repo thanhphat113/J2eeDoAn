@@ -36,6 +36,7 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>DeleteAccountServerlet</servlet-name>
         <servlet-class>Controller.DeleteAccountServerlet</servlet-class>
@@ -44,6 +45,19 @@
         <servlet-name>DeleteAccountServerlet</servlet-name>
         <url-pattern>/deleteAc</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <servlet-class>Controller.UpdateAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <url-pattern>/UpdateAccountServlet</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
     <servlet-mapping>
         <servlet-name>ProductsController</servlet-name>
         <url-pattern>/San-pham</url-pattern>

@@ -1,9 +1,10 @@
-<<<<<<< HEAD
+D:\Github nhóm\J2eeDoAn\src\main\java\Controller\ExportTop10SP.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThangControl.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\OrderManagerServlet.java
 D:\Github nhóm\J2eeDoAn\src\main\java\model\Cart.java
 D:\Github nhóm\J2eeDoAn\src\main\java\model\ProductDTO.java
 D:\Github nhóm\J2eeDoAn\src\main\java\DAO\KhuyenMaiDAO.java
+D:\Github nhóm\J2eeDoAn\src\main\java\Controller\ExportTop5NV.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\login.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThuControl.java
 D:\Github nhóm\J2eeDoAn\src\main\java\model\sanpham.java
@@ -31,6 +32,7 @@ D:\Github nhóm\J2eeDoAn\src\main\java\Controller\Top5KhachHangControl.java
 D:\Github nhóm\J2eeDoAn\src\main\java\model\Order.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\DetailProduct.java
 D:\Github nhóm\J2eeDoAn\src\main\java\DAO\ThongKeDAO.java
+D:\Github nhóm\J2eeDoAn\src\main\java\Controller\ExportTop5KH.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\Home.java
 D:\Github nhóm\J2eeDoAn\src\main\java\DAO\NhanVienDAO.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\StatisticController.java
@@ -38,82 +40,3 @@ D:\Github nhóm\J2eeDoAn\src\main\java\DAO\sanphamDAO.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\CartServlet.java
 D:\Github nhóm\J2eeDoAn\src\main\java\Controller\Top5NhanVienControl.java
 D:\Github nhóm\J2eeDoAn\src\main\java\DAO\KhachHangDAO.java
-=======
-<<<<<<< HEAD
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\StatisticController.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Top5KhachHangControl.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\TongChiTieuBanHang.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\Cart.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\khachhang.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Top10SanPhamControl.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\ThongKeDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\Account.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\KhuyenMaiDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\sanphamDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\ProductsController.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\OrderManagerServlet.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\KhuyenMai.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\DetailOrderDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Database\DBContext.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\CartServlet.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThuControl.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Home.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\NhanVienDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\DetailOrder.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\Order.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\KhachHangDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\Top5NhanVienControl.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\nhacungcap.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\DoanhThuTheoThangControl.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\demo.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\ProductDTO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Database\DataBase.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\sanpham.java
-D:\netbeansProject\J2eeDoAn\src\main\java\Controller\ExportTop10SP.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\AccountDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\ChiTietDonBan.java
-D:\netbeansProject\J2eeDoAn\src\main\java\DAO\OrderDAO.java
-D:\netbeansProject\J2eeDoAn\src\main\java\model\nhanvien.java
-=======
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/Register.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/login.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/DetailOrderDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/Home.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/QLAC.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/nhacungcap.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/Account.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/OrderManagerServlet.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/khachhang.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/TongChiTieuBanHang.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/KhuyenMai.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/DetailOrder.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/Top5KhachHangControl.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Database/DBContext.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/OrderDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/Order.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/DoanhThuTheoThangControl.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/ThongKeDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/sanphamDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/DoanhThuTheoThuControl.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/ProductsController.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/AccountDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/StatisticController.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/ProductDTO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/nhanvien.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/KhuyenMaiDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/demo.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/Cart.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/ChiTietDonBan.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Database/DataBase.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/LoginController.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/KhachHangDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/Top5NhanVienControl.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/DAO/NhanVienDAO.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/Top10SanPhamControl.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/model/sanpham.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/CartServlet.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/DetailProduct.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/UpdateAccountServlet.java
-/Users/lythanhphat9523/Desktop/Lab6/J2eeDoAn/src/main/java/Controller/DeleteAccountServerlet.java
->>>>>>> 25a5eb308f021b8706d186ba88e5367b86e6c626
->>>>>>> 8de0c51989fcf1e9a4a730da694c4005e9590e43
