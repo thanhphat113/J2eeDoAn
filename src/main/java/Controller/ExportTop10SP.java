@@ -98,29 +98,29 @@ public class ExportTop10SP extends HttpServlet {
         int i = 0;
         for (ChiTietDonBan soluong : listTop10Product) {
             for (sanpham pro : listSanPham) {
-                if (soluong.getMaSp().equals(pro.getMaSP())) {
+                if (soluong.getMaSp().equals(pro.getMasp())) {
                     i = i + 1;
-                    row = workSheet.createRow(i);
-                    cell0 = row.createCell(0);
-                    cell0.setCellValue(pro.getMaSP());
-                    cell1 = row.createCell(1);
-                    cell1.setCellValue(pro.getTenSP());
-                    cell2 = row.createCell(2);
-                    cell2.setCellValue(pro.getMaLoai());
-                    cell3 = row.createCell(3);
-                    cell3.setCellValue(pro.getGiaNhap());
-                    cell4 = row.createCell(4);
-                    cell4.setCellValue(pro.getGiaBan());
-                    cell4 = row.createCell(5);
-                    cell4.setCellValue(pro.getHinhanh());
-                    cell4 = row.createCell(6);
-                    cell4.setCellValue(pro.getSoluong());
-                    cell4 = row.createCell(7);
-                    cell4.setCellValue(pro.getMota());
-                    cell4 = row.createCell(8);
-                    cell4.setCellValue(pro.getGia());
-                    cell4 = row.createCell(9);
-                    cell4.setCellValue(soluong.getSoLuong());
+//                    row = workSheet.createRow(i);
+//                    cell0 = row.createCell(0);
+//                    cell0.setCellValue(pro.getMasp());
+//                    cell1 = row.createCell(1);
+//                    cell1.setCellValue(pro.getTensp());
+//                    cell2 = row.createCell(2);
+//                    cell2.setCellValue(pro.getMaloai());
+//                    cell3 = row.createCell(3);
+//                    cell3.setCellValue(pro.getGiaNhap());
+//                    cell4 = row.createCell(4);
+//                    cell4.setCellValue(pro.getGiaBan());
+//                    cell4 = row.createCell(5);
+//                    cell4.setCellValue(pro.getHinhanh());
+//                    cell4 = row.createCell(6);
+//                    cell4.setCellValue(pro.getSoluong());
+//                    cell4 = row.createCell(7);
+//                    cell4.setCellValue(pro.getMota());
+//                    cell4 = row.createCell(8);
+//                    cell4.setCellValue(pro.getGia());
+//                    cell4 = row.createCell(9);
+//                    cell4.setCellValue(soluong.getSoLuong());
                 }
             }
         }

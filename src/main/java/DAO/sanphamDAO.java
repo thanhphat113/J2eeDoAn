@@ -5,8 +5,6 @@
 package DAO;
 
 import Database.DataBase;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,191 +17,112 @@ import model.sanpham;
  *
  * @author lythanhphat9523
  */
-public class sanphamDAO {
+public class sanphamDAO implements iDAO<sanpham> {
 
-    public sanphamDAO() {
-    }
-
-    public boolean create(sanpham sp) {
+    @Override
+    public int insert(sanpham sp) {
         try (Connection conn = DataBase.getConnection()) {
-            Statement st = conn.createStatement();
-
-            //Buoc 3:
-            String sql = "INSERT INTO SanPham() values('SP' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM SanPham) AS VARCHAR(3)), 3),?,?,?,?,?)" + " insert into ChiTietSanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM ChiTietSanPham) AS VARCHAR(3)), 3),?,?,?,?,?,?";
+            String sql="insert into SanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM SanPham) AS VARCHAR(3)), 3),?,?,?,?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(2, sp.getTenSP());
-                pstmt.setString(3, sp.getMaLoai());
-                pstmt.setDouble(4, sp.getGiaNhap());
-                pstmt.setDouble(5, sp.getGiaBan());
-                pstmt.setString(6, sp.getMota());
-                pstmt.setString(7, sp.getHinhanh());
-                pstmt.setInt(8, sp.getSoluong());
-
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                pstmt.setString(1, sp.getMasp());
+                pstmt.setString(2, sp.getTensp());
+                pstmt.setString(3, sp.getMaloai());
+                pstmt.setString(4, sp.getMota());
+                pstmt.setString(5, sp.getHinhanh());
+                pstmt.executeUpdate();
             }
-            int ketqua = st.executeUpdate(sql);
-            if (ketqua > 0) {
-                return true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return 1;
+        }catch (Exception e){
+            return 0;
         }
-        return false;
-
     }
 
-    public void update(sanpham sanpham) {
-
+    @Override
+    public int update(sanpham sp) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void delete(sanpham sp) {
-
+    @Override
+    public int delete(String sp) {
+        try(Connection conn = new DataBase().getConnection()){
+            Statement st = conn.createStatement();
+            String query="delete from SanPham where MaSP = '"+sp+"'";
+            return st.executeUpdate(query);
+        }catch(Exception e){
+            return 0;
+        }
     }
 
+    @Override
     public List<sanpham> findAll() {
-        List<sanpham> list = new ArrayList();
-        try (Connection conn = DataBase.getConnection()) {
-            Statement st = conn.createStatement();
-
-            String query = "select sp.MaSP,sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa \n"
-                    + "from SanPham sp \n"
-                    + "join ChiTietSanPham ct on sp.MaSP=ct.MaSP join Loaisanpham lsp on lsp.MaLoai=sp.MaLoai";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("TenLoai");
-                String mau = rs.getString("Mau");
-                int giaNhap = rs.getInt("GiaNhap");
-                int giaBan = rs.getInt("GiaBan");
-                int soLuong = rs.getInt("SoLuong");
-                String hinhAnh = rs.getString("HinhAnh");
-                String MoTa = rs.getString("MoTa");
-
-                sanpham sp = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-                list.add(sp);
-            }
-        } catch (Exception e) {
-            System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
-            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
-        }
-        return list;
-    }
-
-    public List<sanpham> findAllToIndex() {
-        List<sanpham> list = new ArrayList();
-        try (Connection conn = DataBase.getConnection()) {
-            Statement st = conn.createStatement();
+        List<sanpham> list=new ArrayList<>();
+        try (Connection conn = DataBase.getConnection()){
+             Statement st = conn.createStatement();
 
             String query = "select * from SanPham";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("MaLoai");;
-                String hinhAnh = rs.getString("HinhAnh");
-                String MoTa = rs.getString("MoTa");
-
-                sanpham sp = new sanpham(maSP, tenSP, maLoai, hinhAnh);
+                String masp = rs.getString("MaSP");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                sanpham sp = new sanpham(masp,maloai,tensp,mota,hinhanh);
                 list.add(sp);
             }
-        } catch (Exception e) {
-            System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
-            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
+        }catch(Exception e){
+            e.printStackTrace();
         }
         return list;
     }
 
-    public List<sanpham> findByStyle(String condition) {
-        List<sanpham> list = new ArrayList();
-        try (Connection conn = DataBase.getConnection()) {
+    @Override
+    public sanpham findById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
+    public List<sanpham> findAllByMaSP(String Masp) {
+        List<sanpham> list=new ArrayList<>();
+        try (Connection conn = DataBase.getConnection()){
+             Statement st = conn.createStatement();
 
-            Statement st = conn.createStatement();
-
-            String query = "select * from SanPham where MaLoai='" + condition + "'";
+            String query = "select * from SanPham where MaSP like '%"+Masp+"%'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String mota = rs.getString("mota");
-                sanpham sp = new sanpham(maSP, tenSP, condition, mota);
+                String masp = rs.getString("MaSP");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                sanpham sp = new sanpham(masp,maloai,tensp,mota,hinhanh);
                 list.add(sp);
             }
-        } catch (Exception e) {
-            System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
-            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
+        }catch(Exception e){
+            e.printStackTrace();
         }
         return list;
     }
+    
+    public List<sanpham> findAllByName(String Tensp) {
+        List<sanpham> list=new ArrayList<>();
+        try (Connection conn = DataBase.getConnection()){
+             Statement st = conn.createStatement();
 
-    public List<sanpham> findByKey(String key) {
-        List<sanpham> list = new ArrayList();
-
+            String query = "select * from SanPham where TenSP like '%"+Tensp+"%'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String masp = rs.getString("MaSP");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                sanpham sp = new sanpham(masp,maloai,tensp,mota,hinhanh);
+                list.add(sp);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return list;
     }
-
-    public List<sanpham> findById(String id) {
-        List<sanpham> sp = new ArrayList<>();
-        try (Connection conn = DataBase.getConnection()) {
-
-            Statement st = conn.createStatement();
-
-            String query = "select sp.MaSP, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaSP ='" + id + "' OR sp.MaSP IS NULL";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("TenLoai");
-                String mau = rs.getString("Mau");
-                int giaNhap = rs.getInt("GiaNhap");
-                int giaBan = rs.getInt("GiaBan");
-                int soLuong = rs.getInt("SoLuong");
-                String hinhAnh = rs.getString("HinhAnh");
-                String MoTa = rs.getString("MoTa");
-
-                sanpham sp1 = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-                sp.add(sp1);
-            }
-
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return sp;
-    }
-
-    public List<sanpham> findById2(String id) {
-        List<sanpham> sp = new ArrayList<>();
-        Connection conn = null;
-        try {
-            conn = DataBase.getConnection();
-
-            Statement st = conn.createStatement();
-
-            String query = "select sp.MaSP,sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP join Loaisanpham lsp on lsp.MaLoai=sp.MaLoai where sp.MaSP='" + id + "'";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("TenLoai");
-                String mau = rs.getString("Mau");
-                int giaNhap = rs.getInt("GiaNhap");
-                int giaBan = rs.getInt("GiaBan");
-                int soLuong = rs.getInt("SoLuong");
-                String hinhAnh = rs.getString("HinhAnh");
-                String MoTa = rs.getString("MoTa");
-                sanpham spc = new sanpham(id, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-                sp.add(spc);
-            }
-
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return sp;
-    }
-
 }

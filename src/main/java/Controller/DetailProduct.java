@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package Controller;
 
 import jakarta.servlet.RequestDispatcher;
@@ -56,5 +57,4 @@ public class DetailProduct extends HttpServlet {
         req.setAttribute("choise", a);
         req.getRequestDispatcher("product.jsp").forward(req, resp);
     }
-
 }

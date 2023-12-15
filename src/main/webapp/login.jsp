@@ -202,7 +202,4 @@
     </script>
 </body>
 </html>
-<<<<<<< HEAD
-=======
 
->>>>>>> thuy
