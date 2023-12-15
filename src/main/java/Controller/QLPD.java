@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.File;
 import java.nio.file.Files;
@@ -79,12 +80,15 @@ public class QLPD extends HttpServlet {
                 req.getRequestDispatcher("productsmanager.jsp").forward(req, resp);
             }
         } else if (action.equals("action2")) {
-
+            sanpham sp=new sanphamDAO().findById(masp);
+            req.setAttribute("sp", sp);
+            req.setAttribute("masp",masp);
+            req.getRequestDispatcher("SuaSP.jsp").forward(req, resp);
+            
         } else if (action.equals("action3")) {
             new sanphamDAO().delete(masp);
             resp.sendRedirect("Danh-sach-san-pham");
         } else {
-            try{
             String tensp = req.getParameter("tensp");
             String maloai = req.getParameter("loai");
             String mota = req.getParameter("mota");
@@ -100,10 +104,6 @@ public class QLPD extends HttpServlet {
             sanpham sp=new sanpham("",tensp,maloai,mota,"/"+filename);
             new sanphamDAO().insert(sp);
             resp.sendRedirect("Danh-sach-san-pham");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
             
         }
     }

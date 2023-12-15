@@ -22,11 +22,11 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
 
     public chitietsanphamDAO() {
     }
-    
-        @Override
+
+    @Override
     public int insert(chitietsanpham sp) {
         try (Connection conn = DataBase.getConnection()) {
-            String sql="insert into ChiTietSanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM ChiTietSanPham) AS VARCHAR(3)), 3),?,?,?,?,?)";
+            String sql = "INSERT INTO ChiTietSanPham VALUES ('CT' + RIGHT('000' + CAST(ISNULL((SELECT MAX(CAST(SUBSTRING(MaCT, 3, LEN(MaCT) - 2) AS INT)) FROM ChiTietSanPham), 0) + 1 AS VARCHAR(3)), 3),?,?,?,?,?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, sp.getMasp());
                 pstmt.setString(2, sp.getMau());
@@ -36,40 +36,51 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
                 pstmt.executeUpdate();
             }
             return 0;
-        }catch (Exception e){
+        } catch (Exception e) {
             return 1;
         }
     }
 
-
     @Override
     public int update(chitietsanpham a) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         try (Connection conn = DataBase.getConnection()) {
+            String sql = "update ChiTietSanPham set Mau=?,SoLuong=?,GiaNhap=?,GiaBan=? where MaCT='"+a.getMact()+"'";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, a.getMau());
+                pstmt.setInt(3, a.getGiaNhap());
+                pstmt.setInt(4, a.getGiaBan());
+                pstmt.setInt(2, a.getSoluong());
+                pstmt.executeUpdate();
+            }
+            return 0;
+        } catch (Exception e) {
+            return 1;
+        }
     }
 
     @Override
     public int delete(String a) {
-        try(Connection conn = DataBase.getConnection()){
-            Statement st=conn.createStatement();
-            String query="delete from ChiTietSanPham where MaCT='"+a+"'";
+        try (Connection conn = DataBase.getConnection()) {
+            Statement st = conn.createStatement();
+            String query = "delete from ChiTietSanPham where MaCT='" + a + "'";
             return st.executeUpdate(query);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
     }
-    
+
     public int deleteByMaSP(String a) {
-        try(Connection conn = DataBase.getConnection()){
-            Statement st=conn.createStatement();
-            String query="delete from ChiTietSanPham where MaSP='"+a+"'";
+        try (Connection conn = DataBase.getConnection()) {
+            Statement st = conn.createStatement();
+            String query = "delete from ChiTietSanPham where MaSP='" + a + "'";
             return st.executeUpdate(query);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
     }
-    
+
     @Override
     public List<chitietsanpham> findAll() {
         List<chitietsanpham> list = new ArrayList();
@@ -92,7 +103,7 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
                 String hinhanh = rs.getString("HinhAnh");
                 String mota = rs.getString("MoTa");
 
-                chitietsanpham sp = new chitietsanpham(mact,mau,giaNhap,giaBan,soLuong,masp,maloai,tensp,mota,hinhanh);
+                chitietsanpham sp = new chitietsanpham(mact, mau, giaNhap, giaBan, soLuong, masp, maloai, tensp, mota, hinhanh);
                 list.add(sp);
             }
         } catch (Exception e) {
@@ -102,13 +113,11 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         return list;
     }
 
-
     public List<sanpham> findByKey(String key) {
         List<sanpham> list = new ArrayList();
 
         return list;
     }
-
 
     public List<chitietsanpham> findByCondition(String id) {
         List<chitietsanpham> sp = new ArrayList<>();
@@ -140,15 +149,30 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         return sp;
     }
 
-
     @Override
     public chitietsanpham findById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        chitietsanpham ct = new chitietsanpham();
+        try (Connection conn = new DataBase().getConnection()) {
+            Statement st = conn.createStatement();
+            String query = "select * from ChiTietSanPham where MaCT='" + id + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String masp = rs.getString("MaSP");
+                String mau = rs.getString("Mau");
+                int gianhap = rs.getInt("GiaNhap");
+                int giaban = rs.getInt("GiaBan");
+                int soluong = rs.getInt("SoLuong");
+                ct = new chitietsanpham(id,masp, mau, gianhap, giaban, soluong);
+            }
+        } catch (Exception e) {
+
+        }
+        return ct;
     }
-    
-    public List<chitietsanpham> findByIdList(String id){
-        List<chitietsanpham> list=new ArrayList<>();
-        try(Connection conn = new DataBase().getConnection()){
+
+    public List<chitietsanpham> findByIdList(String id) {
+        List<chitietsanpham> list = new ArrayList<>();
+        try (Connection conn = new DataBase().getConnection()) {
             Statement st = conn.createStatement();
 
             String query = "select * from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP where sp.MaSP='" + id + "'";
@@ -163,18 +187,13 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
                 int soluong = rs.getInt("SoLuong");
                 String hinhanh = rs.getString("HinhAnh");
                 String mota = rs.getString("MoTa");
-                chitietsanpham sp = new chitietsanpham(mact,mau,gianhap,giaban,soluong, id,maloai,tensp,mota,hinhanh);
+                chitietsanpham sp = new chitietsanpham(mact, mau, gianhap, giaban, soluong, id, maloai, tensp, mota, hinhanh);
                 list.add(sp);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
-
-
-    
-
-    
 }

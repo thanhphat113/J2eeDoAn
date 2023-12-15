@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
         <title>Document</title>
         <style>
-            #myForm {
+            #myForm,#myFormFix {
                 display: none;
                 position: fixed;
                 top: 50%;
@@ -99,7 +99,7 @@
                                     <td>
                                         <form action="Chi-tiet" method="get">
                                             <input type="hidden" name="id" value="${sp.getMasp()}">
-                                            <button style="sumit" class="btn btn-danger size d-flex align-items-center justify-content-center">
+                                            <button style="sumit" class="btn btn-secondary size d-flex align-items-center justify-content-center">
                                                 <i class="fas fa-bars"></i>
                                             </button>
                                         </form>
@@ -108,8 +108,9 @@
                                         <form action="Danh-sach-san-pham" method="post">
                                             <input type="hidden" name="id" value="${sp.getMasp()}">
                                             <input type="hidden" name="action" value="action2">
-                                            <div class="d-flex justify-content-center"><a href="#" class="btn btn-primary size d-flex align-items-center justify-content-center"><i
-                                                        class="fa fa-pencil-alt"></i></a></div>
+                                            <button style="submit" name="action" class="btn btn-primary size d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-tools"></i>
+                                            </button>
                                         </form>
                                     </td>
                                     <td>
@@ -133,6 +134,7 @@
                         phẩm</button>                  
                 </div>
             </div>
+            
             <form id="myForm" action="Danh-sach-san-pham" method="post" enctype="multipart/form-data" style="weight:300px;">
                 <input type="hidden" name="action" value="action4">
                 <div class="text-center title">Thêm sản phẩm</div>
@@ -146,6 +148,43 @@
                             <br><select class="m-1" id="loai" name="cars">
                                 <%List<loaisanpham> list=new loaisanphamDAO().findAll();
                                 for (loaisanpham a:list){%>
+                                <option value="<%=a.getMaloai()%>"><%=a.getTenloai()%></option>
+                                <%}%>
+                            </select><br>
+                            Mô tả
+                            <br><textarea style="resize:none;" class="m-1" name="mota" row="4" cols="30"></textarea><br>
+
+                            <button style="width: 100px;" type="submit" class="btn btn-primary" id="submit">Xác nhận</button>
+                            <button style="width: 100px;" type="button" class="btn btn-danger ms-4" id="cancel">Huỷ</button>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="container m-2">
+                                <div class="form-group d-flex align-items-center justify-content-center" onclick="chooseFile()">
+                                    <div id="image-container" class="d-flex align-items-center justify-content-center">
+                                        <img id="selected-image" src="#" alt="Selected Image" class="img-thumbnail">
+                                        <input type="file" name="hinhanh" id="file-input" style="display: none;" class="form-control-file" onchange="displayImage()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form id="myFormFix" action="Danh-sach-san-pham" method="post" enctype="multipart/form-data" style="weight:300px;">
+                <input type="hidden" name="action" value="action4">
+                <div class="text-center title">Sửa sản phẩm</div>
+                <!-- Nội dung form -->
+                <div class="container-fluid m-0 p-0">
+                    <div class="row">
+                        <c:set var="myVariable" value="${requestScope.myValue}" />
+                        <div class="col-md-6">
+                            Tên sản phẩm
+                            <br><input class="m-1" stype="text" name="tensp" cols="30"><br>
+                            Loại sản phẩm
+                            <br><select class="m-1" id="loai" name="cars">
+                                <%List<loaisanpham> list1=new loaisanphamDAO().findAll();
+                                for (loaisanpham a:list1){%>
                                 <option value="<%=a.getMaloai()%>"><%=a.getTenloai()%></option>
                                 <%}%>
                             </select><br>
@@ -190,8 +229,12 @@
                         $("#myForm").fadeToggle();
                         resetForm();
                     });
-                    
-                   
+                    $("#Fix").click(function () {
+                        $("#myFormFix").fadeToggle();
+                        resetForm();
+                    });
+
+
                 });
 
                 function chooseFile() {
