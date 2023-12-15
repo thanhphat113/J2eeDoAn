@@ -24,7 +24,7 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
     }
     
         @Override
-    public Boolean insert(chitietsanpham sp) {
+    public int insert(chitietsanpham sp) {
         try (Connection conn = DataBase.getConnection()) {
             String sql="insert into ChiTietSanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM ChiTietSanPham) AS VARCHAR(3)), 3),?,?,?,?,?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -33,22 +33,22 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
                 pstmt.setDouble(3, sp.getGiaNhap());
                 pstmt.setDouble(4, sp.getGiaBan());
                 pstmt.setInt(5, sp.getSoluong());
-                
+                pstmt.executeUpdate();
             }
-            return true;
+            return 0;
         }catch (Exception e){
-            return false;
+            return 1;
         }
     }
 
 
     @Override
-    public Boolean update(chitietsanpham a) {
+    public int update(chitietsanpham a) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Boolean delete(chitietsanpham a) {
+    public int delete(String a) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
@@ -202,6 +202,32 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
     @Override
     public chitietsanpham findById(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public List<chitietsanpham> findByIdList(String id){
+        List<chitietsanpham> list=new ArrayList<>();
+        try(Connection conn = new DataBase().getConnection()){
+            Statement st = conn.createStatement();
+
+            String query = "select * from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP where sp.MaSP='" + id + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String mact = rs.getString("MaCT");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String mau = rs.getString("Mau");
+                int gianhap = rs.getInt("GiaNhap");
+                int giaban = rs.getInt("GiaBan");
+                int soluong = rs.getInt("SoLuong");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                chitietsanpham sp = new chitietsanpham(mact,mau,gianhap,giaban,soluong, id,maloai,tensp,mota,hinhanh);
+                list.add(sp);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return list;
     }
 
 

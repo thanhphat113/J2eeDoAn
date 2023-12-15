@@ -31,93 +31,107 @@
         <div class="container rounded ml-3 col-md-10">
             <div class="text-center title">Danh sách sản phẩm</div>
             <div class="container mt-3">
-                <div class="col-md-6">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm">
-                        <button class="btn btn-success bg-blue" type="submit">Tìm kiếm</button>
+                <form action="Danh-sach-san-pham" method="post">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button"
+                                    class="btn btn-secondary btn-fixed-size dropdown-toggle bg-white text-body"
+                                    id="selectedStyle" data-bs-toggle="dropdown">
+                                --Kiểu tìm kiếm--
+                            </button>
+                            <ul name="Style" class="dropdown-menu">
+                                <li><a class="dropdown-item"
+                                       onclick="updateStyle('--Kiểu tìm kiếm--')">--Không--</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                       onclick="updateStyle('Mã sản phẩm')">Mã
+                                        sản phẩm</a></li>
+                                <li><a class="dropdown-item"
+                                       onclick="updateStyle('Tên sản phẩm')">Tên sản
+                                        phẩm</a>
+                                </li>
+                                <input type="hidden" name="style" id="hiddenStyle" value="">
+                                <input type="hidden" name="action" value="action0">
+                            </ul>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-group mb-3">
+                                <input type="input" name="text" class="form-control" placeholder="Tìm kiếm">
+                                <button class="btn btn-success bg-blue" type="submit">Tìm kiếm</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="container mt-1">
-                <div class="list-group overflow-auto border border-secondary" style="max-height: 600px;height: 600px;">
-                    <table class="table table-striped">
-                        <tr class="bg-grey">
-                            <th></th>
-                            <th>Hình ảnh</th>
-                            <th>Mã sản phẩm</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Loại Sản Phẩm</th>
-                            <th>Mô tả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                        
-                        
-                        <%List<sanpham> list = new sanphamDAO().findAll();
-                            for(sanpham sp:list){
-                        %>
+                </form>
+                <div class="container mt-1">
+                    <div class="list-group overflow-auto border border-secondary" style="max-height: 600px;height: 600px;">
+                        <table class="table table-striped">
+                            <tr class="bg-grey">
+                                <th>Hình ảnh</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Loại Sản Phẩm</th>
+                                <th>Mô tả</th>
+                                <th>Xem</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                            <c:forEach items="${products}" var="sp">
                             <tr>
+                                <td><img src="images${sp.getHinhanh()}" style="height: 40px;width: 30px;" alt="${sp.getTensp()}" class="img-fluid"></td>
+                                <td>${sp.getMasp()}</td>
+                                <td>${sp.getTensp()}</td>
+                                <td>${sp.getTenloai()}</td>
+                                <td>${sp.getMota()}</td>
                                 <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button type="button" id="toggleButton"
-                                                class="size btn btn-light border rounded-circle d-flex align-items-center justify-content-center"
-                                                autocomplete="">
-                                            <i id="toggleIcon" class="fas fa-dash"></i>
+                                    <form action="Danh-sach-san-pham" method="post">
+                                        <input type="hidden" name="id" value="${sp.getMasp()}">
+                                        <input type="hidden" name="action" value="action1">
+                                        <button style="sumit" class="btn btn-danger size d-flex align-items-center justify-content-center">
+                                            <i class="fas fa-bars"></i>
                                         </button>
-                                    </div>
+                                    </form>
                                 </td>
-                                <td><img src="images<%=sp.getHinhanh()%>" style="height: 40px;width: 30px;" alt="<%=sp.getTensp()%>" class="img-fluid"></td>
-                                <td><%=sp.getMasp()%></td>
-                                <td><%=sp.getTensp()%></td>
-                                <td><%=new loaisanphamDAO().findById(sp.getMaloai()).getTenloai()%></td>
-                                <td><%=sp.getMota()%></td>
                                 <td>
-                                    <form action="edit" method="post">
+                                    <form action="Danh-sach-san-pham" method="post">
+                                        <input type="hidden" name="id" value="${sp.getMasp()}">
+                                        <input type="hidden" name="action" value="action2">
                                         <div class="d-flex justify-content-center"><a href="#" class="btn btn-primary size d-flex align-items-center justify-content-center"><i
                                                     class="fa fa-pencil-alt"></i></a></div>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="deletePd" method="post">
-                                        <input type="hidden" name="id" value="<%=sp.getMasp()%>">
+                                    <form action="Danh-sach-san-pham" method="post">
+                                        <input type="hidden" name="id" value="${sp.getMasp()}">
+                                        <input type="hidden" name="action" value="action3">
                                         <button style="sumit" name="action" class="btn btn-danger size d-flex align-items-center justify-content-center">
                                             <i class="fa fa-trash-alt"></i>
                                         </button>
-
                                     </form>
                                 </td>
                             </tr>
-                        <%}%>
-                    </table>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button type="button" class="btn btn-primary btn-block m-2 bg-blue"><i class="fas fa-plus"></i>
+                        Thêm
+                        sản
+                        phẩm</button>                  
                 </div>
             </div>
-            <div class="d-grid">
-                <button type="button" class="btn btn-primary btn-block m-2 bg-blue"><i class="fas fa-plus"></i>
-                    Thêm
-                    sản
-                    phẩm</button>
-                <button type="button" class="btn btn-primary btn-block ms-2 me-2 mb-2 bg-blue"><i
-                        class="fas fa-minus"></i>Xóa sản phẩm</button>
-            </div>
-        </div>
 
-        <script>
-            const toggleButtons = document.querySelectorAll('#toggleButton');
+            <script>
+                function updateStyle(value) {
+                    var selectedStyleElement = document.getElementById("selectedStyle");
+                    var hiddenStyleInput = document.getElementById("hiddenStyle");
 
-            toggleButtons.forEach((button) => {
-                const toggleIcon = button.querySelector('i');
+                    selectedStyleElement.innerHTML = value;
 
-                button.addEventListener('click', function () {
-                    button.classList.toggle('active');
-                    toggleIcon.classList.toggle('fa-check');
-                    toggleIcon.classList.toggle('fa-dash');
-                });
-            });
+                    // Cập nhật giá trị trong input hidden
+                    hiddenStyleInput.value = value;
+                }
 
-            function updateButtonText(selectedText, id) {
-                document.getElementById(id).innerText = selectedText;
-            }
-
-        </script>
+            </script>
     </body>
 </html>

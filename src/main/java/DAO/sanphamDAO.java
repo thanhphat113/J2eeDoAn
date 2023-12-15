@@ -20,7 +20,7 @@ import model.sanpham;
 public class sanphamDAO implements iDAO<sanpham> {
 
     @Override
-    public Boolean insert(sanpham sp) {
+    public int insert(sanpham sp) {
         try (Connection conn = DataBase.getConnection()) {
             String sql="insert into SanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM SanPham) AS VARCHAR(3)), 3),?,?,?,?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -29,21 +29,28 @@ public class sanphamDAO implements iDAO<sanpham> {
                 pstmt.setString(3, sp.getMaloai());
                 pstmt.setString(4, sp.getMota());
                 pstmt.setString(5, sp.getHinhanh());
+                pstmt.executeUpdate();
             }
-            return true;
+            return 1;
         }catch (Exception e){
-            return false;
+            return 0;
         }
     }
 
     @Override
-    public Boolean update(sanpham sp) {
+    public int update(sanpham sp) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Boolean delete(sanpham sp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(String sp) {
+        try(Connection conn = new DataBase().getConnection()){
+            Statement st = conn.createStatement();
+            String query="delete from SanPham where MaSP = '"+sp+"'";
+            return st.executeUpdate(query);
+        }catch(Exception e){
+            return 0;
+        }
     }
 
     @Override
@@ -74,4 +81,48 @@ public class sanphamDAO implements iDAO<sanpham> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    
+    public List<sanpham> findAllByMaSP(String Masp) {
+        List<sanpham> list=new ArrayList<>();
+        try (Connection conn = DataBase.getConnection()){
+             Statement st = conn.createStatement();
+
+            String query = "select * from SanPham where MaSP like '%"+Masp+"%'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String masp = rs.getString("MaSP");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                sanpham sp = new sanpham(masp,maloai,tensp,mota,hinhanh);
+                list.add(sp);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    public List<sanpham> findAllByName(String Tensp) {
+        List<sanpham> list=new ArrayList<>();
+        try (Connection conn = DataBase.getConnection()){
+             Statement st = conn.createStatement();
+
+            String query = "select * from SanPham where TenSP like '%"+Tensp+"%'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String masp = rs.getString("MaSP");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                sanpham sp = new sanpham(masp,maloai,tensp,mota,hinhanh);
+                list.add(sp);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

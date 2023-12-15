@@ -4,6 +4,8 @@
  */
 package model;
 
+import DAO.loaisanphamDAO;
+
 /**
  *
  * @author lythanhphat9523
@@ -11,6 +13,7 @@ package model;
 public class sanpham {
     private String masp;
     private String tensp;
+    private String tenloai;
     private String maloai;
     private String mota;
     private String hinhanh;
@@ -18,6 +21,7 @@ public class sanpham {
     public sanpham(String masp,String maloai, String tensp, String mota, String hinhanh) {
         this.masp = masp;
         this.tensp = tensp;
+        this.tenloai=new loaisanphamDAO().findById(maloai).getTenloai();
         this.mota = mota;
         this.hinhanh = hinhanh;
         this.maloai = maloai;
@@ -64,6 +68,10 @@ public class sanpham {
 
     public void setMaloai(String maloai) {
         this.maloai = maloai;
+    }
+
+    public String getTenloai() {
+        return tenloai;
     }
     
     

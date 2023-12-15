@@ -20,17 +20,17 @@ import model.loaisanpham;
 public class loaisanphamDAO implements iDAO<loaisanpham> {
 
     @Override
-    public Boolean insert(loaisanpham a) {
+    public int insert(loaisanpham a) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Boolean update(loaisanpham a) {
+    public int update(loaisanpham a) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Boolean delete(loaisanpham a) {
+    public int delete(String a) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

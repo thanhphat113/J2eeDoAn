@@ -42,17 +42,17 @@
                         <tr class="bg-grey">
                             <th></th>
                             <th>Hình ảnh</th>
+                            <th>Mã chi tiết</th>
                             <th>Tên sản phẩm</th>
-                            <th>Mã sản phẩm</th>
-                            <th>Số lượng</th>
                             <th>Màu sắc</th>
+                            <th>Số lượng</th>
+                            <th>Giá nhập</th>
                             <th>Giá bán</th>
-                            <th>Mô tả</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
 
-                        <c:forEach items="${Products}" var="sp">
+                        <c:forEach items="${products}" var="sp">
                             <tr>
                                 <td>
                                     <div class="d-flex justify-content-center">
@@ -63,13 +63,14 @@
                                         </button>
                                     </div>
                                 </td>
-                                <td><img src="images${sp.getHinhanh()}" style="height: 40px;width: 30px;" alt="${sp.getTenSP()}" class="img-fluid"></td>
-                                <td>${sp.getTenSP()}</td>
-                                <td>${sp.getMaSP()}</td>
-                                <td>${sp.getSoluong()}</td>
+                                <td><img src="images${sp.getHinhanh()}" style="height: 40px;width: 30px;" alt="${sp.getTensp()}" class="img-fluid"></td>
+                                <td>${sp.getMact()}</td>
+                                <td>${sp.getTensp()}</td>
                                 <td>${sp.getMau()}</td>
+                                <td>${sp.getSoluong()}</td>
+                                <td>${sp.getGiaIm()}</td>
                                 <td>${sp.getGia()}</td>
-                                <td>${sp.getMota()}</td>
+
                                 <!-- Sửa mã để sử dụng biểu tượng FontAwesome -->
                                 <!-- Sửa mã để sử dụng biểu tượng FontAwesome -->
                                 <td>
@@ -80,8 +81,7 @@
                                 </td>
                                 <td>
                                     <form action="deletePd" method="post">
-                                        <input type="hidden" name="id" value="${sp.getMaSP()}">
-                                        <input type="hidden" name="mau" value="${sp.getMau()}">
+                                        <input type="hidden" name="id" value="${sp.getMact()}">
                                         <!--                                <div class="d-flex justify-content-center"><a href="#" class="btn btn-danger size d-flex align-items-center justify-content-center"><i
                                                                                     class="fa fa-trash-alt"></i></a></div>-->
                                         <button style="sumit" name="action" class="btn btn-danger size d-flex align-items-center justify-content-center">

@@ -19,6 +19,7 @@ public class chitietsanpham extends sanpham implements Serializable {
     private int giaNhap;
     private int giaBan;
     private int soluong;
+    private String giaIm;
     private String gia;
     DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
     
@@ -32,6 +33,7 @@ public class chitietsanpham extends sanpham implements Serializable {
         this.giaBan = giaBan;
         this.soluong = soluong;
         this.gia = decimalFormat.format(giaBan);
+        this.giaIm = decimalFormat.format(giaNhap);
         this.mact=mact;
     }
     
@@ -88,6 +90,14 @@ public class chitietsanpham extends sanpham implements Serializable {
     
     public void setGia(int gia) {
         this.gia = decimalFormat.format(gia);
+    }
+
+    public String getGiaIm() {
+        return giaIm;
+    }
+
+    public void setGiaIm(int gia) {
+        this.giaIm = decimalFormat.format(gia);
     }
     
 }

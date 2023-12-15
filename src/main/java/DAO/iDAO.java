@@ -11,9 +11,9 @@ import java.util.List;
  * @author lythanhphat9523
  */
 public interface iDAO<T> {
-    public Boolean insert(T a);
-    public Boolean update(T a);
-    public Boolean delete(T a);
+    public int insert(T a);
+    public int update(T a);
+    public int delete(String a);
     public List<T> findAll();
     public T findById(String id);
 }
