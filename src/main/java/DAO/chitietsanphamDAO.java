@@ -49,7 +49,25 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
 
     @Override
     public int delete(String a) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try(Connection conn = DataBase.getConnection()){
+            Statement st=conn.createStatement();
+            String query="delete from ChiTietSanPham where MaCT='"+a+"'";
+            return st.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public int deleteByMaSP(String a) {
+        try(Connection conn = DataBase.getConnection()){
+            Statement st=conn.createStatement();
+            String query="delete from ChiTietSanPham where MaSP='"+a+"'";
+            return st.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
     }
     
     @Override
@@ -84,51 +102,6 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         return list;
     }
 
-    public List<sanpham> findAllToIndex() {
-        List<sanpham> list = new ArrayList();
-        try (Connection conn = DataBase.getConnection()) {
-            Statement st = conn.createStatement();
-
-            String query = "select * from SanPham";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("MaLoai");;
-                String hinhAnh = rs.getString("HinhAnh");
-                String mota = rs.getString("MoTa");
-
-                sanpham sp = new sanpham(maSP, tenSP, maLoai, hinhAnh,mota);
-                list.add(sp);
-            }
-        } catch (Exception e) {
-            System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console
-            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
-        }
-        return list;
-    }
-
-    public List<sanpham> findByStyle(String condition) {
-        List<sanpham> list = new ArrayList();
-        try (Connection conn = DataBase.getConnection()) {
-
-            Statement st = conn.createStatement();
-
-            String query = "select * from SanPham where MaLoai='" + condition + "'";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String mota = rs.getString("mota");
-                String hinhanh = rs.getString("HinhAnh");
-                sanpham sp = new sanpham(maSP, tenSP, condition,mota, hinhanh);
-                list.add(sp);
-            }
-        } catch (Exception e) {
-            e.printStackTrace(); // In stack trace lên console để xem chi tiết lỗi
-        }
-        return list;
-    }
 
     public List<sanpham> findByKey(String key) {
         List<sanpham> list = new ArrayList();
@@ -167,37 +140,6 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         return sp;
     }
 
-    public List<sanpham> findById2(String id) {
-        List<sanpham> sp = new ArrayList<>();
-        Connection conn = null;
-        try {
-            conn = DataBase.getConnection();
-
-            Statement st = conn.createStatement();
-
-            String query = "select sp.MaSP,sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP join Loaisanpham lsp on lsp.MaLoai=sp.MaLoai where sp.MaSP='" + id + "'";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String maSP = rs.getString("MaSP");
-                String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("TenLoai");
-                String mau = rs.getString("Mau");
-                int giaNhap = rs.getInt("GiaNhap");
-                int giaBan = rs.getInt("GiaBan");
-                int soLuong = rs.getInt("SoLuong");
-                String hinhAnh = rs.getString("HinhAnh");
-                String MoTa = rs.getString("MoTa");
-//                sanpham spc = new sanpham(id, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-//                sp.add(spc);
-            }
-
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return sp;
-    }
 
     @Override
     public chitietsanpham findById(String id) {

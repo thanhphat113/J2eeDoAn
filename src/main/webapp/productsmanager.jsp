@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.sanpham" %>
+<%@ page import="model.loaisanpham" %>
 <%@ page import="DAO.sanphamDAO" %>
 <%@ page import="DAO.loaisanphamDAO"%>
 
@@ -24,11 +25,24 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
         <title>Document</title>
+        <style>
+            #myForm {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+        </style>
     </head>
     <body class="bg-light">
-
         <!--Sản phẩm-->
-        <div class="container rounded ml-3 col-md-10">
+        <div class="container rounded ml-3 ">
             <div class="text-center title">Danh sách sản phẩm</div>
             <div class="container mt-3">
                 <form action="Danh-sach-san-pham" method="post">
@@ -51,7 +65,7 @@
                                         phẩm</a>
                                 </li>
                                 <input type="hidden" name="style" id="hiddenStyle" value="">
-                                <input type="hidden" name="action" value="action0">
+                                <input type="hidden" name="action" value="action1">
                             </ul>
                         </div>
                         <div class="col-md-9">
@@ -76,50 +90,84 @@
                                 <th>Xóa</th>
                             </tr>
                             <c:forEach items="${products}" var="sp">
-                            <tr>
-                                <td><img src="images${sp.getHinhanh()}" style="height: 40px;width: 30px;" alt="${sp.getTensp()}" class="img-fluid"></td>
-                                <td>${sp.getMasp()}</td>
-                                <td>${sp.getTensp()}</td>
-                                <td>${sp.getTenloai()}</td>
-                                <td>${sp.getMota()}</td>
-                                <td>
-                                    <form action="Danh-sach-san-pham" method="post">
-                                        <input type="hidden" name="id" value="${sp.getMasp()}">
-                                        <input type="hidden" name="action" value="action1">
-                                        <button style="sumit" class="btn btn-danger size d-flex align-items-center justify-content-center">
-                                            <i class="fas fa-bars"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="Danh-sach-san-pham" method="post">
-                                        <input type="hidden" name="id" value="${sp.getMasp()}">
-                                        <input type="hidden" name="action" value="action2">
-                                        <div class="d-flex justify-content-center"><a href="#" class="btn btn-primary size d-flex align-items-center justify-content-center"><i
-                                                    class="fa fa-pencil-alt"></i></a></div>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="Danh-sach-san-pham" method="post">
-                                        <input type="hidden" name="id" value="${sp.getMasp()}">
-                                        <input type="hidden" name="action" value="action3">
-                                        <button style="sumit" name="action" class="btn btn-danger size d-flex align-items-center justify-content-center">
-                                            <i class="fa fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td><img src="images${sp.getHinhanh()}" style="height: 40px;width: 30px;" alt="${sp.getTensp()}" class="img-fluid"></td>
+                                    <td>${sp.getMasp()}</td>
+                                    <td>${sp.getTensp()}</td>
+                                    <td>${sp.getTenloai()}</td>
+                                    <td>${sp.getMota()}</td>
+                                    <td>
+                                        <form action="Chi-tiet" method="get">
+                                            <input type="hidden" name="id" value="${sp.getMasp()}">
+                                            <button style="sumit" class="btn btn-danger size d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-bars"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="Danh-sach-san-pham" method="post">
+                                            <input type="hidden" name="id" value="${sp.getMasp()}">
+                                            <input type="hidden" name="action" value="action2">
+                                            <div class="d-flex justify-content-center"><a href="#" class="btn btn-primary size d-flex align-items-center justify-content-center"><i
+                                                        class="fa fa-pencil-alt"></i></a></div>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="Danh-sach-san-pham" method="post">
+                                            <input type="hidden" name="id" value="${sp.getMasp()}">
+                                            <input type="hidden" name="action" value="action3">
+                                            <button style="submit" name="action" class="btn btn-danger size d-flex align-items-center justify-content-center">
+                                                <i class="fa fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
                             </c:forEach>
                         </table>
                     </div>
                 </div>
                 <div class="d-grid">
-                    <button type="button" class="btn btn-primary btn-block m-2 bg-blue"><i class="fas fa-plus"></i>
+                    <button type="button" id="toggleForm" class="btn btn-primary btn-block m-2 bg-blue"><i class="fas fa-plus"></i>
                         Thêm
                         sản
                         phẩm</button>                  
                 </div>
             </div>
+            <form id="myForm" action="Danh-sach-san-pham" method="post" enctype="multipart/form-data" style="weight:300px;">
+                <input type="hidden" name="action" value="action4">
+                <div class="text-center title">Thêm sản phẩm</div>
+                <!-- Nội dung form -->
+                <div class="container-fluid m-0 p-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Tên sản phẩm
+                            <br><input class="m-1" stype="text" name="tensp" cols="30"><br>
+                            Loại sản phẩm
+                            <br><select class="m-1" id="loai" name="cars">
+                                <%List<loaisanpham> list=new loaisanphamDAO().findAll();
+                                for (loaisanpham a:list){%>
+                                <option value="<%=a.getMaloai()%>"><%=a.getTenloai()%></option>
+                                <%}%>
+                            </select><br>
+                            Mô tả
+                            <br><textarea style="resize:none;" class="m-1" name="mota" row="4" cols="30"></textarea><br>
+
+                            <button style="width: 100px;" type="submit" class="btn btn-primary" id="submit">Xác nhận</button>
+                            <button style="width: 100px;" type="button" class="btn btn-danger ms-4" id="cancel">Huỷ</button>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="container m-2">
+                                <div class="form-group d-flex align-items-center justify-content-center" onclick="chooseFile()">
+                                    <div id="image-container" class="d-flex align-items-center justify-content-center">
+                                        <img id="selected-image" src="#" alt="Selected Image" class="img-thumbnail">
+                                        <input type="file" name="hinhanh" id="file-input" style="display: none;" class="form-control-file" onchange="displayImage()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
             <script>
                 function updateStyle(value) {
@@ -131,6 +179,54 @@
                     // Cập nhật giá trị trong input hidden
                     hiddenStyleInput.value = value;
                 }
+
+                $(document).ready(function () {
+                    $("#toggleForm").click(function () {
+                        $("#myForm").fadeToggle();
+                        resetForm();
+                    });
+
+                    $("#cancel").click(function () {
+                        $("#myForm").fadeToggle();
+                        resetForm();
+                    });
+                    
+                   
+                });
+
+                function chooseFile() {
+                    document.getElementById('file-input').click();
+                }
+
+                function displayImage() {
+                    var input = document.getElementById('file-input');
+                    var imageContainer = document.getElementById('image-container');
+                    var selectedImage = document.getElementById('selected-image');
+                    var uploadIcon = document.getElementById('upload-icon');
+
+                    var file = input.files[0];
+
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            selectedImage.src = e.target.result;
+                            uploadIcon.style.display = 'none';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        selectedImage.src = '#';
+                        uploadIcon.style.display = 'block';
+                    }
+                }
+
+                function resetForm() {
+                    // Thiết lập giá trị các trường form về rỗng
+                    document.getElementsByName('tensp')[0].value = '';
+                    document.getElementById('loai').value = 'IP';
+                    document.getElementsByName('mota')[0].value = '';
+                    document.getElementById('selected-image').src = '#';
+                }
+
 
             </script>
     </body>

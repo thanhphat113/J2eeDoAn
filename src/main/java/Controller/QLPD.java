@@ -4,22 +4,29 @@
  */
 package Controller;
 
-import DAO.chitietsanphamDAO;
 import DAO.sanphamDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-import model.chitietsanpham;
 import model.sanpham;
 
 /**
  *
  * @author lythanhphat9523
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, // 1 MB
+        maxFileSize = 1024 * 1024 * 5, // 5 MB
+        maxRequestSize = 1024 * 1024 * 5 * 5) // 25 MB
 public class QLPD extends HttpServlet {
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -42,7 +49,8 @@ public class QLPD extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<sanpham> product= new sanphamDAO().findAll();
+
+        List<sanpham> product = new sanphamDAO().findAll();
         req.setAttribute("products", product);
         req.getRequestDispatcher("productsmanager.jsp").forward(req, resp);
     }
@@ -53,16 +61,10 @@ public class QLPD extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         String masp = req.getParameter("id");
+        String style = req.getParameter("style");
+        String text = req.getParameter("text");
         String action = req.getParameter("action");
-        if (action.equals("action1")) {
-            List<chitietsanpham> list = new chitietsanphamDAO().findByIdList(masp);
-            req.setAttribute("products", list);
-            req.getRequestDispatcher("DetailProduct.jsp").forward(req, resp);
-        } else if (action.equals("action0")) {
-            String style = req.getParameter("style");
-            String text = req.getParameter("text");
-            System.out.println(text);
-            System.out.println(style);
+        if (action.equals("action1") && text != null && !text.isEmpty()) {
             if (style.equals("--Kiểu tìm kiếm--")) {
                 List<sanpham> list = new sanphamDAO().findAllByName(text);
                 req.setAttribute("products", list);
@@ -76,11 +78,33 @@ public class QLPD extends HttpServlet {
                 req.setAttribute("products", list);
                 req.getRequestDispatcher("productsmanager.jsp").forward(req, resp);
             }
+        } else if (action.equals("action2")) {
 
-        } else {
+        } else if (action.equals("action3")) {
             new sanphamDAO().delete(masp);
             resp.sendRedirect("Danh-sach-san-pham");
+        } else {
+            try{
+            String tensp = req.getParameter("tensp");
+            String maloai = req.getParameter("loai");
+            String mota = req.getParameter("mota");
+            Part part = req.getPart("hinhanh");
+            
+            String realPath=req.getServletContext().getRealPath("images");
+            String filename=Path.of(part.getSubmittedFileName()).getFileName().toString();
+            
+            if(!Files.exists(Path.of(realPath))){
+                    Files.createDirectory(Path.of(realPath));
+            }
+            part.write(realPath+"/"+filename);
+            sanpham sp=new sanpham("",tensp,maloai,mota,"/"+filename);
+            new sanphamDAO().insert(sp);
+            resp.sendRedirect("Danh-sach-san-pham");
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
         }
     }
-
 }
