@@ -22,7 +22,9 @@
     <body>
         <%String masp=request.getParameter("productId");
             int a = Integer.parseInt(request.getParameter("choise"));
-        
+//        if(a == null||a == ""||a.equals(null)){
+//            a=0;
+//        }
         if (masp != null) {
             List<sanpham> list=new sanphamDAO().findById2(masp);
             if (!list.isEmpty()) {
@@ -54,7 +56,7 @@
                                     <% for (int i = 0; i < list.size(); i++) {
                                             sanpham sp1 = list.get(i);%>
                                     <li class="nav-item hover">
-                                        <a class="nav-link" href="Detail-Product?productId=<%=masp%>&choise=<%=i%>"><%=sp1.getMau()%></a>
+                                        <a class="nav-link" href="Detail-Product?productId=<%=masp%>&choise=<%=i%>&productCT=<%=sp1.getMaCT()%>"><%=sp1.getMau()%></a>
                                     </li>
                                     <% } %>
                                 </ul>
@@ -164,7 +166,7 @@
                                         />
                                     </svg>
 
-                                    <a href="CartServlet?action=AddToCart&productid=<%=masp%>" class="text-[#338dbc]">Thêm vào giỏ hàng</a>
+                                    <a href="CartServlet?action=AddToCart&productid=<%=sp.getMaCT()%>" class="text-[#338dbc]">Thêm vào giỏ hàng</a>
                                 </button>
                                 <a href="/cart/a">
                                     <button

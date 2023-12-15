@@ -34,17 +34,16 @@
                             <td>${count }</td>
                             <td style="width: 20%"><img src="images${rows.value.sanpham.hinhanh}" alt="product-item" class="img-fluid" ></td>
                             <td><a href="Detail-Product?productId=${rows.value.sanpham.maSP}&choise=0" style="text-decoration: none; color: #000">${rows.value.sanpham.tenSP}</a></td>
-                            <td>Color</td>
+                            <td>${rows.value.sanpham.mau}</td>
                             <td>${rows.value.sanpham.gia}</td>
-                            <td style="width: 15%"><input type="number" value="${rows.value.soluong}" name="quantity" min="1" required><input type="hidden" value="${rows.value.sanpham.maSP}" name="code"></td>
-                            <input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price">
-                            <td><input type="checkbox" name="rmv" value="${rows.value.sanpham.maSP}" /></td>
-                        </tr>
-                    </c:forEach>
-                    <tr>
-                        <td><input type="submit" value="Update" name="action"/></td>
-                        <td><input type="submit" value="Remove" name="action"/></td>
+                            <td style="width: 15%"><input type="number" value="${rows.value.soluong}" name="quantity" min="1" required><input type="hidden" value="${rows.value.sanpham.maCT}" name="code"></td>
+                    <input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price">
+                    <td><input type="checkbox" name="rmv" value="${rows.value.sanpham.maCT}" /></td>
                     </tr>
+                </c:forEach>
+                <tr>
+                    <td><input type="submit" value="Remove" name="action"/></td>
+                </tr>
 
                 </tbody>
             </table>

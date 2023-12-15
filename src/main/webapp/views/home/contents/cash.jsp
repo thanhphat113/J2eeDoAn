@@ -17,6 +17,7 @@
                             <td>No.</td>
                             <td>Image</td>
                             <td>Name</td>
+                            <td>Color</td>
                             <td>Price</td>
                             <td>Quantity</td>
                             <td>Total Price</td>
@@ -28,9 +29,10 @@
                         <c:forEach var="rows" items="${shop }">
                             <c:set var="count" value="${count+1}"/>
                             <tr>
-                                <td>${count }</td><input type="hidden" value="${rows.value.sanpham.maSP}" name="coded">
+                                <td>${count }</td><input type="hidden" value="${rows.value.sanpham.maCT}" name="coded">
                                 <td style="width: 20%"><img src="images${rows.value.sanpham.hinhanh}" alt="product-item" class="img-fluid" ></td>
                                 <td>${rows.value.sanpham.tenSP}<input type="hidden" value="${rows.value.sanpham.tenSP}" name="named"></td>
+                                <td>${rows.value.sanpham.mau}<input type="hidden" value="${rows.value.sanpham.mau}" name="colord"></td>
                                 <td>${rows.value.sanpham.gia} <input type="hidden" value="${rows.value.sanpham.giaBan}" name="priced"></td>
                                 <td>${rows.value.soluong}<input type="hidden" value="${rows.value.soluong}" name="quantityd"></td>
                                 <td>${rows.value.sanpham.giaBan * rows.value.soluong} VND<input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price"></td>
@@ -82,8 +84,9 @@
 
                     <p>${REALPRICE} VND</p>
                     <c:forEach var="rows" items="${shop }">
-                        <input type="hidden" value="${rows.value.sanpham.maSP}" name="coded">
+                        <input type="hidden" value="${rows.value.sanpham.maCT}" name="coded">
                         <input type="hidden" value="${rows.value.sanpham.tenSP}" name="named">
+                        <input type="hidden" value="${rows.value.sanpham.mau}" name="colord">
                         <input type="hidden" value="${rows.value.sanpham.giaBan}" name="priced">
                         <input type="hidden" value="${rows.value.soluong}" name="quantityd">
                         <input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price">

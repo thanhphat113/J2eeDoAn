@@ -25,11 +25,11 @@ public class sanphamDAO {
     }
 
     public boolean create(sanpham sp) {
-        try( Connection conn = DataBase.getConnection()) {
+        try (Connection conn = DataBase.getConnection()) {
             Statement st = conn.createStatement();
 
             //Buoc 3:
-            String sql = "INSERT INTO SanPham() values('SP' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM SanPham) AS VARCHAR(3)), 3),?,?,?,?,?)"+" insert into ChiTietSanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM ChiTietSanPham) AS VARCHAR(3)), 3),?,?,?,?,?,?";
+            String sql = "INSERT INTO SanPham() values('SP' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM SanPham) AS VARCHAR(3)), 3),?,?,?,?,?)" + " insert into ChiTietSanPham values('CT' + RIGHT('000' + CAST((SELECT COUNT(*) + 1 FROM ChiTietSanPham) AS VARCHAR(3)), 3),?,?,?,?,?,?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(2, sp.getTenSP());
                 pstmt.setString(3, sp.getMaLoai());
@@ -38,7 +38,7 @@ public class sanphamDAO {
                 pstmt.setString(6, sp.getMota());
                 pstmt.setString(7, sp.getHinhanh());
                 pstmt.setInt(8, sp.getSoluong());
-                
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -74,14 +74,14 @@ public class sanphamDAO {
                 String maSP = rs.getString("MaSP");
                 String tenSP = rs.getString("TenSP");
                 String maLoai = rs.getString("TenLoai");
-                String mau=rs.getString("Mau");
+                String mau = rs.getString("Mau");
                 int giaNhap = rs.getInt("GiaNhap");
                 int giaBan = rs.getInt("GiaBan");
                 int soLuong = rs.getInt("SoLuong");
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
 
-                sanpham sp = new sanpham(maSP, tenSP, maLoai,mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+                sanpham sp = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
                 list.add(sp);
             }
         } catch (Exception e) {
@@ -89,7 +89,7 @@ public class sanphamDAO {
         }
         return list;
     }
-    
+
     public List<sanpham> findByStyle(String condition) {
         List<sanpham> list = new ArrayList();
         try {
@@ -97,20 +97,20 @@ public class sanphamDAO {
 
             Statement st = conn.createStatement();
 
-            String query = "select sp.MaSP, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaLoai ='"+condition+"' OR sp.MaLoai IS NULL";
+            String query = "select sp.MaSP, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaLoai ='" + condition + "' OR sp.MaLoai IS NULL";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 String maSP = rs.getString("MaSP");
                 String tenSP = rs.getString("TenSP");
                 String maLoai = rs.getString("TenLoai");
-                String mau=rs.getString("Mau");
+                String mau = rs.getString("Mau");
                 int giaNhap = rs.getInt("GiaNhap");
                 int giaBan = rs.getInt("GiaBan");
                 int soLuong = rs.getInt("SoLuong");
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
 
-                sanpham sp = new sanpham(maSP, tenSP, maLoai,mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+                sanpham sp = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
                 list.add(sp);
             }
         } catch (Exception e) {
@@ -121,10 +121,10 @@ public class sanphamDAO {
 
     public List<sanpham> findByKey(String key) {
         List<sanpham> list = new ArrayList();
-        
+
         return list;
     }
-    
+
     public sanpham findById(String id) {
         sanpham sp = new sanpham();
         Connection conn = null;
@@ -133,31 +133,31 @@ public class sanphamDAO {
 
             Statement st = conn.createStatement();
 
-            String query = "select sp.MaSP, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaSP ='"+id+"' OR sp.MaSP IS NULL";
+            String query = "select sp.MaSP, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaSP ='" + id + "' OR sp.MaSP IS NULL";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 String maSP = rs.getString("MaSP");
                 String tenSP = rs.getString("TenSP");
                 String maLoai = rs.getString("TenLoai");
-                String mau=rs.getString("Mau");
+                String mau = rs.getString("Mau");
                 int giaNhap = rs.getInt("GiaNhap");
                 int giaBan = rs.getInt("GiaBan");
                 int soLuong = rs.getInt("SoLuong");
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
 
-                sanpham sp1 = new sanpham(maSP, tenSP, maLoai,mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+                sanpham sp1 = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
                 sp = sp1;
             }
-            
+
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return sp;
     }
-    
+
     public List<sanpham> findById2(String id) {
         List<sanpham> sp = new ArrayList<>();
         Connection conn = null;
@@ -166,30 +166,131 @@ public class sanphamDAO {
 
             Statement st = conn.createStatement();
 
-            String query ="select sp.MaSP,sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP join Loaisanpham lsp on lsp.MaLoai=sp.MaLoai where sp.MaSP='"+id+"'";
+            String query = "select sp.MaSP, ct.MaCT, sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP join Loaisanpham lsp on lsp.MaLoai=sp.MaLoai where sp.MaSP='" + id + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 String maSP = rs.getString("MaSP");
                 String tenSP = rs.getString("TenSP");
                 String maLoai = rs.getString("TenLoai");
-                String mau=rs.getString("Mau");
+                String mau = rs.getString("Mau");
                 int giaNhap = rs.getInt("GiaNhap");
                 int giaBan = rs.getInt("GiaBan");
                 int soLuong = rs.getInt("SoLuong");
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
-                sanpham spc = new sanpham(id, tenSP, maLoai,mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+                String maCT = rs.getString("MaCT");
+                sanpham spc = new sanpham(id, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa, maCT);
                 sp.add(spc);
             }
-            
+
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return sp;
     }
-    
-    
+
+    public sanpham findByIdCT(String id) {
+        sanpham sp = new sanpham();
+        Connection conn = null;
+        try {
+            conn = DataBase.getConnection();
+
+            Statement st = conn.createStatement();
+
+            String query = "select sp.MaSP, ct.MaCT, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE ct.MaCT ='" + id + "' OR ct.MaCT IS NULL";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String maSP = rs.getString("MaSP");
+                String maCT = rs.getString("MaCT");
+                String tenSP = rs.getString("TenSP");
+                String maLoai = rs.getString("TenLoai");
+                String mau = rs.getString("Mau");
+                int giaNhap = rs.getInt("GiaNhap");
+                int giaBan = rs.getInt("GiaBan");
+                int soLuong = rs.getInt("SoLuong");
+                String hinhAnh = rs.getString("HinhAnh");
+                String MoTa = rs.getString("MoTa");
+
+                sanpham sp1 = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa, maCT);
+                sp = sp1;
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return sp;
+    }
+
+    public sanpham findByIdAndColor(String id, String color) {
+        sanpham sp = new sanpham();
+        Connection conn = null;
+        try {
+            conn = DataBase.getConnection();
+
+            Statement st = conn.createStatement();
+
+            String query = "select ct.MaCT, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaSP ='" + id + "' AND ct.Mau = N'" + color + "' OR ct.Mau IS NULL";
+            System.err.println(query);
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String maSP = rs.getString("MaCT");
+                String tenSP = rs.getString("TenSP");
+                String maLoai = rs.getString("TenLoai");
+                String mau = rs.getString("Mau");
+                int giaNhap = rs.getInt("GiaNhap");
+                int giaBan = rs.getInt("GiaBan");
+                int soLuong = rs.getInt("SoLuong");
+                String hinhAnh = rs.getString("HinhAnh");
+                String MoTa = rs.getString("MoTa");
+
+                sanpham sp1 = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+                sp = sp1;
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return sp;
+    }
+
+//    public sanpham findByIdAndColor(String id, String color) {
+//        sanpham sp = new sanpham();
+//        try (Connection conn = DataBase.getConnection()) {
+//            Statement st = conn.createStatement();
+//            ResultSet rst = null;
+//            //Buoc 3:
+//            String sql = "select ct.MaCT, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaSP = ? AND ct.Mau = ?";
+//            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//                pstmt.setString(1, id);
+//                pstmt.setNString(2, color);
+//                System.out.println(sql);
+//                rst = pstmt.executeQuery();
+//                while (rst.next()) {
+//                    String maSP = rst.getString("MaCT");
+//                    String tenSP = rst.getString("TenSP");
+//                    String maLoai = rst.getString("TenLoai");
+//                    String mau = rst.getString("Mau");
+//                    int giaNhap = rst.getInt("GiaNhap");
+//                    int giaBan = rst.getInt("GiaBan");
+//                    int soLuong = rst.getInt("SoLuong");
+//                    String hinhAnh = rst.getString("HinhAnh");
+//                    String MoTa = rst.getString("MoTa");
+//                    return new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
+//                    
+//                }
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return sp;
+//    }
 
 }

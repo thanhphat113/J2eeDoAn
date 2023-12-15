@@ -211,7 +211,7 @@ public class OrderDAO {
         try {
             Connection conn = DataBase.getConnection();
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO HoaDonBan (MaHDB, MaNV, MaKH, MaKM, TongTien, NgayTao, TinhTrang) VALUES ('" + order.getMaHD() + "','" + order.getMaNV() + "','" + order.getMaKH() + "','" + order.getMaKM() + "','" + order.getTongTien() + "','" + order.getNgayTao() + "',false)";
+            String sql = "INSERT INTO HoaDonBan (MaHDB, MaNV, MaKH, MaKM, TongTien, NgayTao, TinhTrang) VALUES ('" + order.getMaHD() + "','" + order.getMaNV() + "','" + order.getMaKH() + "','" + order.getMaKM() + "','" + order.getTongTien() + "','" + order.getNgayTao() + "', 'false')";
             ResultSet rs = stmt.executeQuery(sql);
 //			stmt.executeQuery(sql);
             conn.close();

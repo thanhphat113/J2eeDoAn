@@ -3,6 +3,7 @@
     Created on : Dec 13, 2023, 1:07:01 PM
     Author     : ACER
 --%>
+<%@page import="model.nhanvien,DAO.NhanVienDAO,java.util.List,java.io.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding: 0px">
@@ -50,7 +51,27 @@
                     </div>
                 </div>
             </li>
-
+            <%  
+                        HttpSession sessionDangNhap = request.getSession();
+                        
+                        if(sessionDangNhap.getAttribute("loginUserID")!=null){
+                            int id = Integer.parseInt(sessionDangNhap.getAttribute("loginUserID").toString());
+                            NhanVienDAO nvDAO = new NhanVienDAO();
+                            String hoten = nvDAO.searchNhanVienByMaTK(id).getHoTen();
+            %>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <span> Xin chào <%=hoten%> </span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">                
+                        <a href="/Trang-chu?action=Logout" class="list-group-item list-group-item-action py-2 ripple">
+                            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Đăng Xuất</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <%}%>
         </div>
     </div>
 </nav>

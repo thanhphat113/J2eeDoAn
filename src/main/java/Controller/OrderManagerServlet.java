@@ -57,10 +57,11 @@ public class OrderManagerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         HttpSession sessionDangNhap = request.getSession();
-        System.out.println(sessionDangNhap.getAttribute("loginUserID")+"ThuyGodBRRR");
+        
         try {
             if(sessionDangNhap.getAttribute("loginUserID")==null){
-                response.sendRedirect("login.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("login");
+                rd.forward(request, response);
             }
             String action = request.getParameter("action");
             if (action == null) {
@@ -71,7 +72,7 @@ public class OrderManagerServlet extends HttpServlet {
                 rd.forward(request, response);
             } else if (action.equals("Detail")) {
                 String maHD = request.getParameter("orderId");
-                ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder2(maHD);
+                ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder3(maHD);
                 request.setAttribute("LIST_DETAILORDER", ls);
                 RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
                 request.setAttribute("VIEW", urlChiTietDonHangAdmin);
