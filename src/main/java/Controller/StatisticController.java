@@ -45,14 +45,13 @@ public class StatisticController extends HttpServlet {
             response.sendRedirect("login");
             return;
         }
+        request.getRequestDispatcher(urlThongKeAdmin).forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
-        request.setAttribute("VIEW", urlThongKeAdmin);
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     @Override
