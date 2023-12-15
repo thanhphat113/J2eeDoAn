@@ -6,17 +6,19 @@ package DAO;
 
 import java.nio.file.Path;
 import java.util.List;
+import model.chitietsanpham;
+import model.loaisanpham;
 import model.sanpham;
-
 
 /**
  *
  * @author lythanhphat9523
  */
 public class demo {
-    public static void main(String[] args){
-        
-        String fileName = Path.of(filePart.getSubmittedFileName()).getFileName().toString();
 
+    public static void main(String[] args) {
+        sanpham sp = new sanpham();
+        chitietsanpham list = new chitietsanphamDAO().findById("CT001");
+        System.out.println(list.getMact()+list.getMasp());
     }
 }

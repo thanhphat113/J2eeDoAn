@@ -40,7 +40,19 @@ public class sanphamDAO implements iDAO<sanpham> {
 
     @Override
     public int update(sanpham sp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try (Connection conn = DataBase.getConnection()) {
+            String sql = "update SanPham set TenSP=?,MaLoai=?,HinhAnh=?,MoTa=? where MaSP='"+sp.getMasp()+"'";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, sp.getTensp());
+                pstmt.setString(2, sp.getMaloai());
+                pstmt.setString(4, sp.getMota());
+                pstmt.setString(3, sp.getHinhanh());
+                pstmt.executeUpdate();
+            }
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override
@@ -85,7 +97,24 @@ public class sanphamDAO implements iDAO<sanpham> {
 
     @Override
     public sanpham findById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        sanpham sp=new sanpham();
+        try (Connection conn = DataBase.getConnection()) {
+            Statement st = conn.createStatement();
+
+            String query = "select * from SanPham where MaSP = '" + id + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String masp = rs.getString("MaSP");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                sp = new sanpham(masp, maloai, tensp, mota, hinhanh);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sp;
     }
 
     public List<sanpham> findAllByMaSP(String Masp) {

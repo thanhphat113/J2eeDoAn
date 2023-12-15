@@ -22,9 +22,22 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
         <title>Document</title>
+        <style>
+            #myForm{
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+        </style>
     </head>
     <body class="bg-light">
-
         <!--Sản phẩm-->
         <div class="container rounded ml-3 col-md-10">
             <div class="text-center title">Chi tiết sản phẩm</div>
@@ -57,9 +70,11 @@
                                     <td>
                                         <form action="Chi-tiet" method="post">
                                             <input type="hidden" name="id" value="${sp.getMact()}">
+                                            <input type="hidden" name="masp" value="${sp.getMasp()}">
                                             <input type="hidden" name="action" value="action1">
-                                            <div class="d-flex justify-content-center"><a href="#" class="btn btn-primary size d-flex align-items-center justify-content-center"><i
-                                                        class="fa fa-pencil-alt"></i></a></div>
+                                            <button tyle="submit" class="btn btn-primary size d-flex align-items-center justify-content-center">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </button>
                                         </form>
                                     </td>
                                     <td>
@@ -67,7 +82,7 @@
                                             <input type="hidden" name="id" value="${sp.getMact()}">
                                             <input type="hidden" name="masp" value="${sp.getMasp()}">
                                             <input type="hidden" name="action" value="action2">
-                                            <button style="submit" name="action" class="btn btn-danger size d-flex align-items-center justify-content-center">
+                                            <button tyle="submit" name="action" class="btn btn-danger size d-flex align-items-center justify-content-center">
                                                 <i class="fa fa-trash-alt"></i>
                                             </button>
 
@@ -80,11 +95,61 @@
                 </div>
             </div>
             <div class="d-grid">
-                <button type="button" class="btn btn-primary btn-block m-2 bg-blue"><i class="fas fa-plus"></i>
+                <button type="button" id="toggleForm" class="btn btn-primary btn-block m-2 bg-blue"><i class="fas fa-plus"></i>
                     Thêm
                     sản
                     phẩm</button>
             </div>
         </div>
-    </body>
+
+        <form id="myForm" action="Chi-tiet" method="post">
+            <input type="hidden" name="masp" value="${masp}">
+            <input type="hidden" name="action" value="action3">
+            <div class="text-center title">Thêm chi tiết</div>
+            <div class="container-fluid m-0 p-0">
+                <div class="row border border-2 border-black ">
+                    <div class="col-md-6 ">
+                        Màu
+                        <br><input class="m-1" stype="text" name="mau" cols="30"><br>
+                        Số lượng
+                        <br><input tyle="number" class="m-1" name="soluong" cols="30"><br>
+                    </div>
+                    <div class="col-md-6">
+                        Giá nhập
+                        <br><input type="number" class="m-1" name="gianhap" cols="30"><br>
+                        Giá bán
+                        <br><input tyle="number" class="m-1" name="giaban" cols="30"></textarea><br>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button style="width: 100px;" type="submit" class="btn btn-primary">Xác nhận</button>
+                        <button style="width: 100px;" type="button" id="cancel" class="btn btn-danger ms-4">Huỷ</button>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#toggleForm").click(function () {
+                
+                $("#myForm").fadeToggle();
+                resetForm();
+            });
+            $("#cancel").click(function () {
+                        $("#myForm").fadeToggle();
+                        resetForm();
+                    });
+        });
+
+        function resetForm() {
+            // Thiết lập giá trị các trường form về rỗng
+            document.getElementsByName('mau')[0].value = '';
+            document.getElementById('soluong').value = '';
+            document.getElementsByName('giaban')[0].value = '';
+            document.getElementById('gianhap').value = '';
+        }
+    </script>
+</body>
 </html>

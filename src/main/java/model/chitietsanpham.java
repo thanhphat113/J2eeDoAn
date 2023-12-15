@@ -25,6 +25,19 @@ public class chitietsanpham extends sanpham implements Serializable {
     
     public chitietsanpham() {
     }
+    
+    public chitietsanpham(String mact,String masp, String mau, int giaNhap, int giaBan, int soluong) {
+        super(masp,null,null,null,null);
+        this.mact = mact;
+        this.mau = mau;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.soluong = soluong;
+        this.gia = decimalFormat.format(giaBan);
+        this.giaIm = decimalFormat.format(giaNhap);
+    }
+    
+    
 
     public chitietsanpham(String mact,String mau, int giaNhap, int giaBan, int soluong, String masp, String maloai, String tensp, String mota, String hinhanh) {
         super(masp, maloai, tensp, mota, hinhanh);
