@@ -5,6 +5,7 @@ import Database.DataBase;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import model.loaisanpham;
 
@@ -36,7 +37,21 @@ public class loaisanphamDAO implements iDAO<loaisanpham> {
 
     @Override
     public List<loaisanpham> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<loaisanpham> list=new ArrayList<>();
+        try(Connection conn=new DataBase().getConnection()){
+            Statement st=conn.createStatement();
+            String query="select * from Loaisanpham";
+            ResultSet rs=st.executeQuery(query);
+            while(rs.next()){
+                String maloai=rs.getString("MaLoai");
+                String tenloai=rs.getString("TenLoai");
+                loaisanpham lsp=new loaisanpham(maloai,tenloai);
+                list.add(lsp);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override

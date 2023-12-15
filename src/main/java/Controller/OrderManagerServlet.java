@@ -129,9 +129,9 @@ public class OrderManagerServlet extends HttpServlet {
                 long millis = System.currentTimeMillis();
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = format.parse(request.getParameter("date"));
-                String date = request.getParameter("date");
+                String date1 = request.getParameter("date");
                 RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
-                ArrayList<Order> ls = ordDAO.searchOrderByDate(date);
+                ArrayList<Order> ls = ordDAO.searchOrderByDate(date1);
                 request.setAttribute("LIST_ORDER", ls);
                 request.setAttribute("VIEW", urlDonHangAdmin);
                 rd.forward(request, response);    

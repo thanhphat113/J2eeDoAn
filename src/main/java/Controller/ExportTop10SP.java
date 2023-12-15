@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Random;
 import model.ChiTietDonBan;
-import model.sanpham;
+import model.sanphamver1;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
 /**
@@ -46,7 +46,7 @@ public class ExportTop10SP extends HttpServlet {
 
         ThongKeDAO thongke = new ThongKeDAO();
         sanphamDAO sanpham = new sanphamDAO();
-        List<sanpham> listSanPham = sanpham.findAll();
+        List<sanphamver1> listSanPham = sanpham.GetAllSP();
         List<ChiTietDonBan> listTop10Product = thongke.getTop10SanPhamBanChay();
 
         int maximum = 2147483647;
@@ -97,30 +97,30 @@ public class ExportTop10SP extends HttpServlet {
 
         int i = 0;
         for (ChiTietDonBan soluong : listTop10Product) {
-            for (sanpham pro : listSanPham) {
-                if (soluong.getMaSp().equals(pro.getMasp())) {
+            for (sanphamver1 pro : listSanPham) {
+                if (soluong.getMaSp().equals(pro.getMaSP())) {
                     i = i + 1;
-//                    row = workSheet.createRow(i);
-//                    cell0 = row.createCell(0);
-//                    cell0.setCellValue(pro.getMasp());
-//                    cell1 = row.createCell(1);
-//                    cell1.setCellValue(pro.getTensp());
-//                    cell2 = row.createCell(2);
-//                    cell2.setCellValue(pro.getMaloai());
-//                    cell3 = row.createCell(3);
-//                    cell3.setCellValue(pro.getGiaNhap());
-//                    cell4 = row.createCell(4);
-//                    cell4.setCellValue(pro.getGiaBan());
-//                    cell4 = row.createCell(5);
-//                    cell4.setCellValue(pro.getHinhanh());
-//                    cell4 = row.createCell(6);
-//                    cell4.setCellValue(pro.getSoluong());
-//                    cell4 = row.createCell(7);
-//                    cell4.setCellValue(pro.getMota());
-//                    cell4 = row.createCell(8);
-//                    cell4.setCellValue(pro.getGia());
-//                    cell4 = row.createCell(9);
-//                    cell4.setCellValue(soluong.getSoLuong());
+                    row = workSheet.createRow(i);
+                    cell0 = row.createCell(0);
+                    cell0.setCellValue(pro.getMaSP());
+                    cell1 = row.createCell(1);
+                    cell1.setCellValue(pro.getTenSP());
+                    cell2 = row.createCell(2);
+                    cell2.setCellValue(pro.getMaLoai());
+                    cell3 = row.createCell(3);
+                    cell3.setCellValue(pro.getGiaNhap());
+                    cell4 = row.createCell(4);
+                    cell4.setCellValue(pro.getGiaBan());
+                    cell4 = row.createCell(5);
+                    cell4.setCellValue(pro.getHinhanh());
+                    cell4 = row.createCell(6);
+                    cell4.setCellValue(pro.getSoluong());
+                    cell4 = row.createCell(7);
+                    cell4.setCellValue(pro.getMota());
+                    cell4 = row.createCell(8);
+                    cell4.setCellValue(pro.getGia());
+                    cell4 = row.createCell(9);
+                    cell4.setCellValue(soluong.getSoLuong());
                 }
             }
         }

@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import java.nio.file.Path;
 import java.util.List;
 import model.sanpham;
 
@@ -14,11 +15,8 @@ import model.sanpham;
  */
 public class demo {
     public static void main(String[] args){
-        List<sanpham> list = new sanphamDAO().findAll();
-        for (sanpham sp : list) {
-            System.out.println(new loaisanphamDAO().findById(sp.getMaloai()).getTenloai());
-            System.out.println("Mã: "+sp.getMasp()+"Tên: "+sp.getTensp());
-        }
+        
+        //String fileName = Path.of(filePart.getSubmittedFileName()).getFileName().toString();
 
     }
 }
