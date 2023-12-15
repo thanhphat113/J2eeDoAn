@@ -225,38 +225,20 @@ public class sanphamDAO {
         return sp;
     }
 
-    public sanpham findByIdAndColor(String id, String color) {
-        sanpham sp = new sanpham();
+    public void updateSoLuong(String id, int quantity) {
+        sanphamDAO spDAO = new sanphamDAO();
+        int soLuong = spDAO.findByIdCT(id).getSoluong();
+        soLuong = soLuong - quantity;
         Connection conn = null;
         try {
             conn = DataBase.getConnection();
-
-            Statement st = conn.createStatement();
-
-            String query = "select ct.MaCT, sp.TenSP, lsp.TenLoai, ct.Mau, ct.GiaNhap, ct.GiaBan, ct.HinhAnh, ct.SoLuong, sp.MoTa from (( SanPham sp INNER JOIN ChiTietSanPham ct on sp.MaSP = ct.MaSP) INNER JOIN Loaisanpham lsp on lsp.MaLoai=sp.MaLoai ) WHERE sp.MaSP ='" + id + "' AND ct.Mau = N'" + color + "' OR ct.Mau IS NULL";
-            System.err.println(query);
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String maSP = rs.getString("MaCT");
-                String tenSP = rs.getString("TenSP");
-                String maLoai = rs.getString("TenLoai");
-                String mau = rs.getString("Mau");
-                int giaNhap = rs.getInt("GiaNhap");
-                int giaBan = rs.getInt("GiaBan");
-                int soLuong = rs.getInt("SoLuong");
-                String hinhAnh = rs.getString("HinhAnh");
-                String MoTa = rs.getString("MoTa");
-
-                sanpham sp1 = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-                sp = sp1;
-            }
-
-            conn.close();
+            PreparedStatement st = conn.prepareStatement("UPDATE ChiTietSanPham SET SoLuong = ? WHERE MaCT = ?");
+            st.setInt(1, soLuong);
+            st.setString(2, id);
+            st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return sp;
     }
 
 //    public sanpham findByIdAndColor(String id, String color) {
@@ -292,5 +274,4 @@ public class sanphamDAO {
 //        }
 //        return sp;
 //    }
-
 }

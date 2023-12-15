@@ -234,7 +234,9 @@ public class CartServlet extends HttpServlet {
                 orderDAO.addOrder(order);
 
                 DetailOrderDAO detailOrderDAO = new DetailOrderDAO();
+                sanphamDAO spDAO = new sanphamDAO();
                 for (int i = 0; i < listProductCode.length; i++) {
+                    spDAO.updateSoLuong(listProductCode[i], Integer.parseInt(listProductQuantity[i]));
                     DetailOrder detailOrder = new DetailOrder(maHD, listProductCode[i], Integer.parseInt(listProductPrice[i]), Integer.parseInt(listProductQuantity[i]), Integer.parseInt(listProductTotalPrice[i]));
                     detailOrderDAO.addDetailOrder(detailOrder, i + 1);
                 }
