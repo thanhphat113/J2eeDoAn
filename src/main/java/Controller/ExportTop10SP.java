@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Random;
 import model.ChiTietDonBan;
-import model.sanpham;
+import model.sanphamver1;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
 /**
@@ -46,7 +46,7 @@ public class ExportTop10SP extends HttpServlet {
 
         ThongKeDAO thongke = new ThongKeDAO();
         sanphamDAO sanpham = new sanphamDAO();
-        List<sanpham> listSanPham = sanpham.findAll();
+        List<sanphamver1> listSanPham = sanpham.GetAllSP();
         List<ChiTietDonBan> listTop10Product = thongke.getTop10SanPhamBanChay();
 
         int maximum = 2147483647;
@@ -97,7 +97,7 @@ public class ExportTop10SP extends HttpServlet {
 
         int i = 0;
         for (ChiTietDonBan soluong : listTop10Product) {
-            for (sanpham pro : listSanPham) {
+            for (sanphamver1 pro : listSanPham) {
                 if (soluong.getMaSp().equals(pro.getMaSP())) {
                     i = i + 1;
                     row = workSheet.createRow(i);

@@ -72,8 +72,13 @@ public class OrderManagerServlet extends HttpServlet {
                 rd.forward(request, response);
             } else if (action.equals("Detail")) {
                 String maHD = request.getParameter("orderId");
+<<<<<<< HEAD
                 ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder3(maHD);
                 request.setAttribute("LIST_DETAILORDER", ls);
+=======
+                //ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder2(maHD);
+                //request.setAttribute("LIST_DETAILORDER", ls);
+>>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
                 RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
                 request.setAttribute("VIEW", urlChiTietDonHangAdmin);
                 rd.forward(request, response);
@@ -145,11 +150,11 @@ public class OrderManagerServlet extends HttpServlet {
                 rd.forward(request, response);    
             }else if (action.equals("SearchByDate")) {
                 long millis = System.currentTimeMillis();
-//                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//                Date date = format.parse(request.getParameter("date"));
-                String date = request.getParameter("date");
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = format.parse(request.getParameter("date"));
+                String date1 = request.getParameter("date");
                 RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
-                ArrayList<Order> ls = ordDAO.searchOrderByDate(date);
+                ArrayList<Order> ls = ordDAO.searchOrderByDate(date1);
                 request.setAttribute("LIST_ORDER", ls);
                 request.setAttribute("VIEW", urlDonHangAdmin);
                 rd.forward(request, response);    

@@ -20,13 +20,12 @@ import model.Account;
  *
  * @author thine
  */
+
 @WebServlet("/AccountServletManager")
 public class QLAC extends HttpServlet {
-
     String urlTaiKhoanAdmin = "/views/admin/contents/account.jsp";
     String urlUpdateAccountAdmin = "/views/admin/contents/update_account.jsp";
     String urlAdmin = "/admin.jsp";
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,49 +38,34 @@ public class QLAC extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet QLAC</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet QLAC at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AccountDAO accountDAO = new AccountDAO();
+
+        String search = request.getParameter("search");
         List<Account> account = accountDAO.getAll();
         request.setAttribute("accounts", account);
         RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
         request.setAttribute("VIEW", urlTaiKhoanAdmin);
         rd.forward(request, response);
 
+//        if (search == null || search.isEmpty()) {
+//            List<Account> account = accountDAO.getAll();
+//
+//            request.setAttribute("accounts", account);
+//            request.getRequestDispatcher("qlacmoi.jsp").forward(request, response);
+//        } else {
+//
+//            List<Account> account = accountDAO.searchByUsername(search);
+//
+//            request.setAttribute("accounts", account);
+//            request.getRequestDispatcher("qlacmoi.jsp").forward(request, response);
+//        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -92,6 +76,7 @@ public class QLAC extends HttpServlet {
             AccountDAO accountDAO = new AccountDAO();
             Account account = accountDAO.getAccountById(userId);
             request.setAttribute("accountToUpdate", account);
+            request.getRequestDispatcher("update.jsp").forward(request, response);
             RequestDispatcher rd = request.getRequestDispatcher(urlAdmin);
             request.setAttribute("VIEW", urlUpdateAccountAdmin);
             rd.forward(request, response);
@@ -99,8 +84,10 @@ public class QLAC extends HttpServlet {
             // Xử lý tác vụ khác ở đây nếu cần
 
         }
+    }
 
-        /* String accountId = request.getParameter("id");
+
+    /* String accountId = request.getParameter("id");
          String action = request.getParameter("action");
 
     if (accountId != null && !accountId.isEmpty()) {
@@ -125,17 +112,10 @@ public class QLAC extends HttpServlet {
     } else {
         // Xử lý tác vụ khác ở đây nếu cần
     }
-         */
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+            return "Short description";
+        }// </editor-fold>
 
 }

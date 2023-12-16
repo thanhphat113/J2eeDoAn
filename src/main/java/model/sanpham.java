@@ -4,43 +4,63 @@
  */
 package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import java.io.Serializable;
-import java.text.DecimalFormat;
+import DAO.loaisanphamDAO;
 
 /**
  *
  * @author lythanhphat9523
  */
-
-
-public class sanpham  implements Serializable{
-    private String maSP;   
-    private String tenSP;    
-    private String maLoai;
-    private String mau;
-    private int giaNhap;
-    private int giaBan;
-    private String hinhanh;
-    private int soluong;
+public class sanpham {
+    private String masp;
+    private String tensp;
+    private String tenloai;
+    private String maloai;
     private String mota;
+<<<<<<< HEAD
     private String gia;
     private String maCT;
     DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
+=======
+    private String hinhanh;
+
+    public sanpham(String masp,String maloai, String tensp, String mota, String hinhanh) {
+        this.masp = masp;
+        this.tensp = tensp;
+        this.tenloai=new loaisanphamDAO().findById(maloai).getTenloai();
+        this.mota = mota;
+        this.hinhanh = hinhanh;
+        this.maloai = maloai;
+    }
+>>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
     
     public sanpham() {
     }
 
-    public sanpham(String maSP, String tenSP, String maLoai, String MoTa) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.maLoai = maLoai;
+    public String getMasp() {
+        return masp;
+    }
+
+    public void setMasp(String masp) {
+        this.masp = masp;
+    }
+
+    public String getTensp() {
+        return tensp;
+    }
+
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
+    }
+
+    public String getMota() {
+        return mota;
+    }
+
+    public void setMota(String mota) {
         this.mota = mota;
     }
 
+<<<<<<< HEAD
     public String getMau() {
         return mau;
     }
@@ -137,6 +157,8 @@ public class sanpham  implements Serializable{
         this.giaBan = giaBan;
     }
 
+=======
+>>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
     public String getHinhanh() {
         return hinhanh;
     }
@@ -145,24 +167,17 @@ public class sanpham  implements Serializable{
         this.hinhanh = hinhanh;
     }
 
-    public int getSoluong() {
-        return soluong;
+    public String getMaloai() {
+        return maloai;
     }
 
-    public void setSoluong(int soluong) {
-        this.soluong = soluong;
+    public void setMaloai(String maloai) {
+        this.maloai = maloai;
     }
 
-    public String getMota() {
-        return mota;
-    }
-
-    public void setMota(String mota) {
-        this.mota = mota;
+    public String getTenloai() {
+        return tenloai;
     }
     
-    public String getGia(){
-        return gia;
-    }
     
 }

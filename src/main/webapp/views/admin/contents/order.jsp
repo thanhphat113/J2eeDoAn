@@ -16,6 +16,17 @@
                     <h5 class="mb-0 text-center"><strong>Quản lý Hóa Đơn</strong></h5>
                 </div>
 
+<<<<<<< HEAD
+=======
+                <div class="row">
+                    <div class="col-sm-12 text-left">
+                        <form action="xuatExcelTop10ProductControl" method="get"> 
+                            <button type="submit" class="mb-0 text-center btn btn-primary" style="width: 150px;height: 40px">Xuất file Excel</button> 
+                        </form>    
+                    </div>
+                </div>
+
+>>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
                 <c:if test="${mess!=null }">
                     <div class="alert alert-success" role="alert">
                         ${mess}
