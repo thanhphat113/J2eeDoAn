@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.sanpham, DAO.sanphamDAO,model.chitietsanpham,DAO.chitietsanphamDAO" %>
+
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -16,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <script src="https://cdn.tailwindcss.com"></script>
         <title>Document</title>
     </head>
@@ -42,7 +44,7 @@
                             </div>
                             <form action="/Trang-chu/Chi-tiet-san-pham" method="post">
                                 <input type="hidden" name="id" value="${masp}">
-                                <select id="ColorSelection" name="selectedColor">
+                                <select id="ColorSelection" name="selectedColor" class="border border-2 border-black">
                                     <c:forEach items="${list}" var="ct" varStatus="loop">
                                         <c:if test="${loop.index eq choise}">
                                             <option value="${loop.index}" selected>${ct.getMau()}</option>
@@ -52,7 +54,7 @@
                                         </c:if>
                                     </c:forEach>
                                 </select>
-                                <button type="submit">Xác nhận</button>
+                                <button type="submit" class="border border-2 border-primary rounded"><i class="fas fa-check m-1"></i></button>
                             </form>
                             <div class="pt-4 grid grid-cols-8 px-5 text-gray-600">
                                 <span class="col-span-2 text-base">Số lượng</span>
