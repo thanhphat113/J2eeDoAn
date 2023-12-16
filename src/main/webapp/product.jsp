@@ -4,8 +4,9 @@
     Author     : lythanhphat9523
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.sanpham, DAO.sanphamDAO" %>
+<%@page import="model.sanpham, DAO.sanphamDAO,model.chitietsanpham,DAO.chitietsanphamDAO" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -19,13 +20,6 @@
         <title>Document</title>
     </head>
     <body>
-        <%String masp=request.getParameter("productId");
-        int a=Integer.parseInt(request.getParameter("choise"));
-        if (masp != null) {
-            List<sanpham> list=new sanphamDAO().findById(masp);
-            if (!list.isEmpty()) {
-            sanpham sp = list.get(a);
-        %>
         <div class="bg-gray-100 py-6">
             <div class="bg-white p-4">
                 <div class="px-[10%]">
@@ -34,26 +28,31 @@
                             <div class="relative pt-[100%] w-full shadow">
                                 <img
                                     class="absolute top-0 left-0 w-full h-full bg-white object-cover"
-                                    src="images<%=sp.getHinhanh()%>"
+                                    src="images${ct.getHinhanh()}"
                                     alt="product detail img"
                                     />
                             </div>
                         </div>
                         <div class="col-span-7 pl-4">
                             <div class="text-black text-[24px] mt-2" >
-                                <%=sp.getTenSP()%>
+                                ${ct.getTensp()}
                             </div>
                             <div class="px-5 py-4 text-[#338dbc]">
-                                <span class="item-price text-primary" id="gia"><%=sp.getGia()%></span>
+                                <span class="item-price text-primary" id="gia">${ct.getGia()}</span>
                             </div>
-                            <form action="/Trang-chu/Chi-tiet?productId=<%=masp%>" method="post">
-
+                            <form action="/Trang-chu/Chi-tiet-san-pham" method="post">
+                                <input type="hidden" name="id" value="${masp}">
                                 <select id="ColorSelection" name="selectedColor">
-                                    <% for (int i = 0; i < list.size(); i++) {
-                                            sanpham sp1 = list.get(i);%>
-                                    <option value="<%=i%>"><%=sp1.getMau()%></option>
-                                    <% } %>
+                                    <c:forEach items="${list}" var="ct" varStatus="loop">
+                                        <c:if test="${loop.index eq choise}">
+                                            <option value="${loop.index}" selected>${ct.getMau()}</option>
+                                        </c:if>
+                                        <c:if test="${loop.index ne choise}">
+                                            <option value="${loop.index}">${ct.getMau()}</option>
+                                        </c:if>
+                                    </c:forEach>
                                 </select>
+                                <button type="submit">Xác nhận</button>
                             </form>
                             <div class="pt-4 grid grid-cols-8 px-5 text-gray-600">
                                 <span class="col-span-2 text-base">Số lượng</span>
@@ -80,7 +79,7 @@
                                             id="quantityInput"
                                             class="border border-l-0 border-r-0 text-center w-[40%] focus:border-transparent"
                                             value="1"
-                                            max="<%=sp.getSoluong()%>"
+                                            max="${ct.getSoluong()}"
                                             oninput="validateQuantity()"
                                             />
 
@@ -104,7 +103,7 @@
                                             function validateQuantity() {
                                                 var inputElement = document.getElementById("quantityInput");
                                                 var currentValue = parseInt(inputElement.value, 10);
-                                                var max = <%=sp.getSoluong()%>;
+                                                var max = ${ct.getSoluong()};
                                                 var errorElement = document.getElementById("quantityError");
                                                 if (currentValue > max) {
                                                     errorElement.innerText = "Số lượng không được lớn hơn " + max + ".";
@@ -116,7 +115,7 @@
                                             function increment() {
                                                 var inputElement = document.getElementById("quantityInput");
                                                 var currentValue = parseInt(inputElement.value, 10);
-                                                var max = <%=sp.getSoluong()%>;
+                                                var max = ${sp.getSoluong()};
 
                                                 if (max > currentValue) {
                                                     inputElement.value = currentValue + 1;
@@ -134,10 +133,10 @@
                                                 }
                                                 validateQuantity();
                                             }
-                                            
+
                                         </script>
                                     </div>
-                                    <div class="col-span-1 text-sm" id="quan"><%=sp.getSoluong()%> sản phẩm có sẵn</div>
+                                    <div class="col-span-1 text-sm" id="quan">${ct.getSoluong()} sản phẩm có sẵn</div>
                                 </div>
                             </div>
                             <div id="quantityError" class="text-red-500"></div>
@@ -174,16 +173,12 @@
                     </div>
                     <span class="text-[24px] mb-7">Thông tin chi tiết</span>
                     <div class="mt-10 bg-white text-sm w-[80%]">
-                        <%=sp.getMota()%>
+                        ${ct.getMota()}
                     </div>
                 </div>
             </div>
         </div>
-        <%
-            }} else {
-        %>
-        <p>Không tìm thấy thông tin sản phẩm.</p>
-        <%}%>
+       
 
     </body>
 </html>

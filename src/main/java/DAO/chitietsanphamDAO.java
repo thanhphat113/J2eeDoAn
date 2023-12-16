@@ -195,5 +195,5 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         }
         return list;
     }
-
+    
 }

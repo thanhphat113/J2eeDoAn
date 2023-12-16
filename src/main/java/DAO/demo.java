@@ -19,7 +19,11 @@ public class demo {
 
     public static void main(String[] args) {
         sanpham sp = new sanpham();
-        chitietsanpham list = new chitietsanphamDAO().findById("CT001");
-        System.out.println(list.getMact()+list.getMasp());
+        int a=1;
+//        int b=Integer.parseInt(a);
+        List<sanpham> list = new sanphamDAO().findAll();
+        for (sanpham product:list){
+            System.out.println(product.getHinhanh()+" "+ product.getTensp());
+        }
     }
 }
