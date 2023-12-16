@@ -48,11 +48,7 @@ public class CartServlet extends HttpServlet {
     String urlSection1 = "/views/home/components/section1.jsp";
     String urlSection2 = "/views/home/components/section2.jsp";
     String urlConfirmed = "/views/home/contents/confirmed.jsp";
-<<<<<<< HEAD
     KhachHangDAO khDAO = new KhachHangDAO();
-=======
-
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -82,7 +78,6 @@ public class CartServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
-<<<<<<< HEAD
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         try {
@@ -132,7 +127,6 @@ public class CartServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-=======
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        // TODO Auto-generated method stub
 //        try {
@@ -181,7 +175,6 @@ public class CartServlet extends HttpServlet {
 //            e.printStackTrace();
 //        }
 //    }
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -191,7 +184,6 @@ public class CartServlet extends HttpServlet {
         // TODO Auto-generated method stub
         try {
             String action = request.getParameter("action");
-<<<<<<< HEAD
             if (action.equals("View Cart")) {
                 request.setAttribute("VIEW", urlGioHang);
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
@@ -302,15 +294,6 @@ public class CartServlet extends HttpServlet {
                 shop.clear();
                 request.setAttribute("VIEW", urlConfirmed);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-=======
-            switch (action) {
-                case "Detail":
-
-                    break;
-                default:
-                    throw new AssertionError();
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
-            }
 
         } catch (Exception e) {
             // TODO: handle exception

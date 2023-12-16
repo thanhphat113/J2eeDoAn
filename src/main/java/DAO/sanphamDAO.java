@@ -39,7 +39,6 @@ public class sanphamDAO implements iDAO<sanpham> {
         }
     }
 
-<<<<<<< HEAD
     public boolean create(sanpham sp) {
         try (Connection conn = DataBase.getConnection()) {
             Statement st = conn.createStatement();
@@ -61,7 +60,8 @@ public class sanphamDAO implements iDAO<sanpham> {
             int ketqua = st.executeUpdate(sql);
             if (ketqua > 0) {
                 return true;
-=======
+            }
+        }
     @Override
     public int update(sanpham sp) {
         try (Connection conn = DataBase.getConnection()) {
@@ -112,7 +112,6 @@ public class sanphamDAO implements iDAO<sanpham> {
                 String mota = rs.getString("MoTa");
                 sanpham sp = new sanpham(masp, maloai, tensp, mota, hinhanh);
                 list.add(sp);
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -204,12 +203,7 @@ public class sanphamDAO implements iDAO<sanpham> {
                 int soLuong = rs.getInt("SoLuong");
                 String hinhAnh = rs.getString("HinhAnh");
                 String MoTa = rs.getString("MoTa");
-
-<<<<<<< HEAD
-                sanpham sp = new sanpham(maSP, tenSP, maLoai, mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
-=======
                 sanphamver1 sp = new sanphamver1(maSP, tenSP, maLoai,mau, giaNhap, giaBan, hinhAnh, soLuong, MoTa);
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
                 list.add(sp);
             }
         } catch (Exception e) {
@@ -217,7 +211,6 @@ public class sanphamDAO implements iDAO<sanpham> {
         }
         return list;
     }
-<<<<<<< HEAD
 
     public List<sanpham> findByStyle(String condition) {
         List<sanpham> list = new ArrayList();
@@ -403,6 +396,4 @@ public class sanphamDAO implements iDAO<sanpham> {
 //        }
 //        return sp;
 //    }
-=======
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
 }

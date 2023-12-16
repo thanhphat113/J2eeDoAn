@@ -10,7 +10,6 @@ import model.sanpham;
 import Database.DataBase;
 
 public class DetailOrderDAO {
-<<<<<<< HEAD
         sanphamDAO spDAO = new sanphamDAO();
 	public int addDetailOrder(DetailOrder detailOrder, int stt) {
 		try {
@@ -100,9 +99,6 @@ public class DetailOrderDAO {
 		}
 		return ls;
 	}
-=======
-
-    sanphamDAO spDAO = new sanphamDAO();
 
     public int addDetailOrder(DetailOrder detailOrder, int stt) {
         try {
@@ -159,7 +155,7 @@ public class DetailOrderDAO {
                 int donGia = rs.getInt("DonGia");
                 int soLuong = rs.getInt("SoLuong");
                 int tongTien = rs.getInt("TongTien");
-                DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien,"123","123" /*spDAO.findById(maSP).getTenSP(), spDAO.findById(maSP).getHinhanh()*/);
+                DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien,spDAO.findById(maSP).getTenSP(), spDAO.findById(maSP).getHinhanh());
                 ls.add(detailOrder);
             }
             conn.close();
@@ -168,5 +164,4 @@ public class DetailOrderDAO {
         }
         return ls;
     }
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
 }

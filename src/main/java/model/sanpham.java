@@ -5,6 +5,7 @@
 package model;
 
 import DAO.loaisanphamDAO;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -16,11 +17,9 @@ public class sanpham {
     private String tenloai;
     private String maloai;
     private String mota;
-<<<<<<< HEAD
     private String gia;
     private String maCT;
     DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
-=======
     private String hinhanh;
 
     public sanpham(String masp,String maloai, String tensp, String mota, String hinhanh) {
@@ -31,7 +30,6 @@ public class sanpham {
         this.hinhanh = hinhanh;
         this.maloai = maloai;
     }
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
     
     public sanpham() {
     }
@@ -60,7 +58,6 @@ public class sanpham {
         this.mota = mota;
     }
 
-<<<<<<< HEAD
     public String getMau() {
         return mau;
     }
@@ -157,8 +154,6 @@ public class sanpham {
         this.giaBan = giaBan;
     }
 
-=======
->>>>>>> 1be078e5f6224451b3723f85e2b6d596aaff18f4
     public String getHinhanh() {
         return hinhanh;
     }
