@@ -28,9 +28,17 @@ public class sanpham  implements Serializable{
     private int soluong;
     private String mota;
     private String gia;
+    private String maCT;
     DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
     
     public sanpham() {
+    }
+
+    public sanpham(String maSP, String tenSP, String maLoai, String MoTa) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.maLoai = maLoai;
+        this.mota = mota;
     }
 
     public String getMau() {
@@ -52,6 +60,28 @@ public class sanpham  implements Serializable{
         this.mota = mota;
         this.mau=mau;
         this.gia = decimalFormat.format(giaBan);
+    }
+    
+    public sanpham(String maSP, String tenSP, String maLoai,String mau, int giaNhap, int giaBan, String hinhanh, int soluong, String mota, String maCT) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.maLoai = maLoai;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.hinhanh = hinhanh;
+        this.soluong = soluong;
+        this.mota = mota;
+        this.mau=mau;
+        this.maCT = maCT;
+        this.gia = decimalFormat.format(giaBan);
+    }
+
+    public String getMaCT() {
+        return maCT;
+    }
+
+    public void setMaCT(String maCT) {
+        this.maCT = maCT;
     }
 
     public sanpham(String maSP, String tenSP, String maLoai, int giaNhap, int giaBan, String hinhanh, String mota) {

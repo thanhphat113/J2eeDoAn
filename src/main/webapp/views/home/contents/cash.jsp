@@ -10,13 +10,14 @@
         <h1>Your Shopping Cart</h1>
         <c:set var="shop" value="${sessionScope.SHOP }"/>
         <c:if test="${not empty shop }">
-            <form action="/J2eeDoAn/CartServlet" method="post">
+            <form action="CartServlet" method="post">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <td>No.</td>
                             <td>Image</td>
                             <td>Name</td>
+                            <td>Color</td>
                             <td>Price</td>
                             <td>Quantity</td>
                             <td>Total Price</td>
@@ -28,9 +29,10 @@
                         <c:forEach var="rows" items="${shop }">
                             <c:set var="count" value="${count+1}"/>
                             <tr>
-                                <td>${count }</td><input type="hidden" value="${rows.value.sanpham.maSP}" name="coded">
+                                <td>${count }</td><input type="hidden" value="${rows.value.sanpham.maCT}" name="coded">
                                 <td style="width: 20%"><img src="images${rows.value.sanpham.hinhanh}" alt="product-item" class="img-fluid" ></td>
                                 <td>${rows.value.sanpham.tenSP}<input type="hidden" value="${rows.value.sanpham.tenSP}" name="named"></td>
+                                <td>${rows.value.sanpham.mau}<input type="hidden" value="${rows.value.sanpham.mau}" name="colord"></td>
                                 <td>${rows.value.sanpham.gia} <input type="hidden" value="${rows.value.sanpham.giaBan}" name="priced"></td>
                                 <td>${rows.value.soluong}<input type="hidden" value="${rows.value.soluong}" name="quantityd"></td>
                                 <td>${rows.value.sanpham.giaBan * rows.value.soluong} VND<input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price"></td>
@@ -45,27 +47,23 @@
     <div class="col-sm-4 sidenav">
         <div class="container-fluid">
             <h2>Your Information</h2>
-            <form action="/J2eeDoAn/CartServlet" style="padding-bottom: 10px" method="post">
+            <form action="CartServlet" style="padding-bottom: 10px" method="post">
                 <div class="form-group">
                     <label for="email">Fullname:</label>
-                    <input type="hidden" class="form-control" name="name">
-                    <p>Tang Xuan Thuy</p>
+                    <input type="text" class="form-control" name="name" required="Please input your name" placeholder="Your Name">
 
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address:</label>
-                    <input type="hidden" class="form-control" name="email">
-                    <p>thuy@gmail.com</p>
+                    <input type="email" class="form-control" name="email" required="Please input email" placeholder="Your Email">
                 </div>
                 <div class="form-group">
                     <label for="email">Phone Number:</label>
-                    <input type="hidden" class="form-control" name="phone">
-                    <p>0987654321</p>
+                    <input type="text" class="form-control" name="phone" required="Please input phone number" placeholder="Your Phone Number">
                 </div>
                 <div class="form-group">
                     <label for="pwd">Address:</label>
-                    <input type="hidden" class="form-control" name="address">
-                    <p>TP HCM, Q12</p>
+                    <input type="text" class="form-control" name="address" required="Please input your address" placeholder="Your Address">
                 </div>
                 <div class="form-group">
                     <label for="email">Discount Code:</label>
@@ -86,8 +84,9 @@
 
                     <p>${REALPRICE} VND</p>
                     <c:forEach var="rows" items="${shop }">
-                        <input type="hidden" value="${rows.value.sanpham.maSP}" name="coded">
+                        <input type="hidden" value="${rows.value.sanpham.maCT}" name="coded">
                         <input type="hidden" value="${rows.value.sanpham.tenSP}" name="named">
+                        <input type="hidden" value="${rows.value.sanpham.mau}" name="colord">
                         <input type="hidden" value="${rows.value.sanpham.giaBan}" name="priced">
                         <input type="hidden" value="${rows.value.soluong}" name="quantityd">
                         <input type="hidden" value="${rows.value.sanpham.giaBan * rows.value.soluong}" name="price">

@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import DAO.DetailOrderDAO;
+import DAO.KhachHangDAO;
 import DAO.KhuyenMaiDAO;
 import DAO.OrderDAO;
 import DAO.sanphamDAO;
@@ -47,6 +48,7 @@ public class CartServlet extends HttpServlet {
     String urlSection1 = "/views/home/components/section1.jsp";
     String urlSection2 = "/views/home/components/section2.jsp";
     String urlConfirmed = "/views/home/contents/confirmed.jsp";
+    KhachHangDAO khDAO = new KhachHangDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -90,13 +92,14 @@ public class CartServlet extends HttpServlet {
                 String code = request.getParameter("productid");
                 sanphamDAO spDAO = new sanphamDAO();
 
-                sanpham sp = spDAO.findById(code);
+                sanpham sp = spDAO.findByIdCT(code);
                 ProductDTO spDTO = new ProductDTO(sp);
                 shop.addCart(spDTO);
                 session.setAttribute("SHOP", shop);
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
                 rd.forward(request, response);
             } else if (action.equals("View Cart")) {
+                changeQuantity(request, response);
                 request.setAttribute("VIEW", urlGioHang);
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
                 rd.forward(request, response);
@@ -133,31 +136,7 @@ public class CartServlet extends HttpServlet {
         // TODO Auto-generated method stub
         try {
             String action = request.getParameter("action");
-            if (action.equals("Add To Cart")) {
-                request.setAttribute("VIEW", urlGioHang);
-                HttpSession session = request.getSession(true);
-                Cart shop = (Cart) session.getAttribute("SHOP");
-                if (shop == null) {
-                    shop = new Cart();
-                }
-
-                String code = request.getParameter("txtCode");
-                String name = request.getParameter("txtName");
-                String price = request.getParameter("txtPrice");
-                String type = request.getParameter("txtCodeType");
-                String image = request.getParameter("txtPicture");
-                String priceEx = request.getParameter("txtPriceEx");
-                int iprice = Integer.valueOf(price);
-                int ipriceEx = Integer.valueOf(priceEx);
-                sanpham sp = new sanpham(code, name, type, ipriceEx, iprice, image, "Awnsome");
-                ProductDTO spDTO = new ProductDTO(sp);
-
-                shop.addCart(spDTO);
-                session.setAttribute("SHOP", shop);
-                RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
-                rd.forward(request, response);
-            } else if (action.equals("View Cart")) {
-                changeQuantity(request, response);
+            if (action.equals("View Cart")) {
                 request.setAttribute("VIEW", urlGioHang);
                 RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
                 rd.forward(request, response);
@@ -184,22 +163,29 @@ public class CartServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher(url);
                 rd.forward(request, response);
             } else if (action.equals("Buy")) {
-                changeQuantity(request, response);
-                KhuyenMai km = new KhuyenMai();
-                KhuyenMaiDAO kmDAO = new KhuyenMaiDAO();
-                ArrayList<KhuyenMai> ls = kmDAO.selectAllKhuyenMai();
-                request.setAttribute("LIST_KHUYENMAI", ls);
-                String[] listPrice = request.getParameterValues("price");
-                int totalPrice = 0;
-                for (int i = 0; i < listPrice.length; i++) {
-                    totalPrice += Integer.valueOf(listPrice[i]);
-                }
+                HttpSession sessionDangNhap = request.getSession();
+                if (sessionDangNhap.getAttribute("loginUserID") == null) {
+                    RequestDispatcher rd = request.getRequestDispatcher("login");
+                    rd.forward(request, response);
+                } else {
+                    changeQuantity(request, response);
+                    KhuyenMai km = new KhuyenMai();
+                    KhuyenMaiDAO kmDAO = new KhuyenMaiDAO();
+                    ArrayList<KhuyenMai> ls = kmDAO.selectAllKhuyenMai();
+                    request.setAttribute("LIST_KHUYENMAI", ls);
+                    String[] listPrice = request.getParameterValues("price");
+                    int totalPrice = 0;
+                    for (int i = 0; i < listPrice.length; i++) {
+                        totalPrice += Integer.valueOf(listPrice[i]);
+                    }
 //				request.setAttribute("KM_APPLY", 1);
-                request.setAttribute("TOTAL", totalPrice);
-                request.setAttribute("REALPRICE", totalPrice);
-                request.setAttribute("VIEW", urlThanhToan);
-                RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
-                rd.forward(request, response);
+                    request.setAttribute("TOTAL", totalPrice);
+                    request.setAttribute("REALPRICE", totalPrice);
+                    request.setAttribute("VIEW", urlThanhToan);
+                    RequestDispatcher rd = request.getRequestDispatcher(urlTrangChu);
+                    rd.forward(request, response);
+                }
+
             } else if (action.equals("Apply Code")) {
                 KhuyenMai km = new KhuyenMai();
                 KhuyenMaiDAO kmDAO = new KhuyenMaiDAO();
@@ -224,24 +210,33 @@ public class CartServlet extends HttpServlet {
             } else if (action.equals("Confirm")) {
                 String[] listProductCode = request.getParameterValues("coded");
                 String[] listProductName = request.getParameterValues("named");
+                String[] listProductColor = request.getParameterValues("colord");
                 String[] listProductPrice = request.getParameterValues("priced");
                 String[] listProductQuantity = request.getParameterValues("quantityd");
                 String[] listProductTotalPrice = request.getParameterValues("price");
-                String maKH = "MKH005";
-                String maNV = "NV006";
+                HttpSession sessionDangNhap = request.getSession();
+                String maKH = khDAO.searchKhachHangByMaTK(sessionDangNhap.getAttribute("loginUserID").toString()).getMaKH();
+                String maNV = "";
                 String maKM = request.getParameter("codediscount");
                 float totalPrice = Float.valueOf(request.getParameter("totalprice"));
                 int totalPrice1 = (int) totalPrice;
                 long millis = System.currentTimeMillis();
                 java.sql.Date today = new java.sql.Date(millis);
+
                 OrderDAO orderDAO = new OrderDAO();
                 String maHD = orderDAO.createNewMaHD();
-                Order order = new Order(maHD, maNV, maKH, maKM, totalPrice1, today);
-                khachhang kh = new khachhang("MKH005", "nguyen ha", "123124123", "thuythatthanthanh@gmail.com", today, "10");
+                Order order = new Order(maHD, maNV, maKH, maKM, totalPrice1, today, false);
+                String name = request.getParameter("name");
+                String email = request.getParameter("email");
+                String phone = request.getParameter("phone");
+                String address = request.getParameter("address");
+                khachhang kh = new khachhang(maKH, name, phone, email, today, "10", address);
                 orderDAO.addOrder(order);
 
                 DetailOrderDAO detailOrderDAO = new DetailOrderDAO();
+                sanphamDAO spDAO = new sanphamDAO();
                 for (int i = 0; i < listProductCode.length; i++) {
+                    spDAO.updateSoLuong(listProductCode[i], Integer.parseInt(listProductQuantity[i]));
                     DetailOrder detailOrder = new DetailOrder(maHD, listProductCode[i], Integer.parseInt(listProductPrice[i]), Integer.parseInt(listProductQuantity[i]), Integer.parseInt(listProductTotalPrice[i]));
                     detailOrderDAO.addDetailOrder(detailOrder, i + 1);
                 }

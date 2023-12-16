@@ -19,6 +19,15 @@ public class khachhang implements Serializable{
     private String email;
     private Date ngaySinh;
     private String maTK;
+    private String diaChi;
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
 
     public khachhang(String maKH, String hoTen, String SDT, String email, Date ngaySinh, String maTK) {
         this.maKH = maKH;
@@ -27,6 +36,17 @@ public class khachhang implements Serializable{
         this.email = email;
         this.ngaySinh = ngaySinh;
         this.maTK = maTK;
+        this.diaChi = diaChi;
+    }
+    
+    public khachhang(String maKH, String hoTen, String SDT, String email, Date ngaySinh, String maTK, String diaChi) {
+        this.maKH = maKH;
+        this.hoTen = hoTen;
+        this.SDT = SDT;
+        this.email = email;
+        this.ngaySinh = ngaySinh;
+        this.maTK = maTK;
+        this.diaChi = diaChi;
     }
 
     public khachhang() {

@@ -1,14 +1,9 @@
 package DAO;
 
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
-
 import Database.DBContext;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -16,90 +11,83 @@ import java.util.List;
 import model.Account;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import  java.sql.SQLException;
+import java.sql.SQLException;
 
 /**
  *
  * @author thine
  */
-public class AccountDAO extends DBContext{
-      
-    
-    
-    public List<Account> getAll(){
+public class AccountDAO extends DBContext {
+
+    public List<Account> getAll() {
         List<Account> list = new ArrayList<>();
         String sql = "select * from Taikhoan";
         try {
             Connection conn = DBContext.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Account a = new Account(rs.getInt("UserID"),
-                                        rs.getString("Username"), 
-                                        rs.getString("Password"),
-                                        rs.getInt("Quyen"),
-                                        rs.getInt("TrangThai")
-                                        );
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getInt("Quyen"),
+                        rs.getInt("TrangThai")
+                );
                 list.add(a);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         return list;
     }
-    
 
     public Account checkLogin(String username, String password) {
-    String sql = "SELECT * FROM Taikhoan WHERE Username = ? AND Password = ?";
-    try {
-        Connection conn = DBContext.getConnection();
-        PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1, username);
-        st.setString(2, password);
-        ResultSet rs = st.executeQuery();
-        if (rs.next()) {
-            return new Account(rs.getInt("UserID"),
-                               rs.getString("Username"),
-                               rs.getString("Password"),
-                               rs.getInt("Quyen"),
-                                    rs.getInt("TrangThai"));
-             }
-         } catch (SQLException e) {
-             System.out.println(e);
-         }
-         return null;
+        String sql = "SELECT * FROM Taikhoan WHERE Username = ? AND Password = ?";
+        try {
+            Connection conn = DBContext.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, username);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new Account(rs.getInt("UserID"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getInt("Quyen"),
+                        rs.getInt("TrangThai"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
         }
-    
-          
-   public boolean  registerAccount(String username, String password) throws SQLException{
-       String query = "insert into TaiKhoan(Username, Password, Quyen, TrangThai) VALUES (?, ?, ?, ?)";
-       
-       try{
-               Connection conn = DBContext.getConnection();
-               PreparedStatement ps = conn.prepareStatement(query);
-       
-           ps.setString(1,username);
-           ps.setString(2,password);
-           ps.setInt(3, 3); // Giá trị mặc định cho quyen
-           ps.setInt(4, 1); // Giá trị mặc định cho trangThai
-           
-           int rowsInserted  = ps.executeUpdate();
-           return  rowsInserted > 0;
-       }
-       catch(SQLException e ){
-           e.printStackTrace();
-           return false;
-       }
+        return null;
+    }
 
-              
-     }
-       
-   public void deleteAccount(int userId) {
+    public boolean registerAccount(String username, String password) throws SQLException {
+        String query = "insert into TaiKhoan(Username, Password, Quyen, TrangThai) VALUES (?, ?, ?, ?)";
+
+        try {
+            Connection conn = DBContext.getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setInt(3, 3); // Giá trị mặc định cho quyen
+            ps.setInt(4, 1); // Giá trị mặc định cho trangThai
+
+            int rowsInserted = ps.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    public void deleteAccount(int userId) {
         String query = "DELETE FROM TaiKhoan WHERE UserID = ?";
 
-        try (Connection conn = DBContext.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
+        try (Connection conn = DBContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
 
             ps.setInt(1, userId);
             ps.executeUpdate();
@@ -107,15 +95,14 @@ public class AccountDAO extends DBContext{
             e.printStackTrace(); // Xử lý lỗi nếu có
         }
     }
-   
-   // lay value
+
+    // lay value
     public Account getAccountById(int userId) {
         Account account = null;
         String query = "SELECT * FROM TaiKhoan WHERE UserID = ?";
-        
-        try (Connection conn = DBContext.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-            
+
+        try (Connection conn = DBContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -125,7 +112,7 @@ public class AccountDAO extends DBContext{
                     String password = rs.getString("Password");
                     int quyen = rs.getInt("Quyen");
                     int trangThai = rs.getInt("TrangThai");
-                    
+
                     // Tạo đối tượng Account từ thông tin lấy được
                     account = new Account(userID, username, password, quyen, trangThai);
                 }
@@ -136,13 +123,11 @@ public class AccountDAO extends DBContext{
         return account;
     }
 
-    
-        public void updateAccount(Account account) {
+    public void updateAccount(Account account) {
         String query = "UPDATE TaiKhoan SET Username=?, Password=?, Quyen=?, TrangThai=? WHERE UserID=?";
-        
-        try (Connection conn = DBContext.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-            
+
+        try (Connection conn = DBContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+
             ps.setString(1, account.getUsername());
             ps.setString(2, account.getPassword());
             ps.setInt(3, account.getQuyen());
@@ -159,16 +144,36 @@ public class AccountDAO extends DBContext{
             e.printStackTrace(); // Xử lý lỗi nếu có
         }
     }
-       
-  
-   
 
+    public Account findByUsername(String username) {
+        String sql = "select * from Taikhoan where Username = ? ";
+        try {
+            Connection conn = DBContext.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, username);
+            Account a = null;
 
-    
-    
-    
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    a = new Account(rs.getInt("UserID"),
+                            rs.getString("Username"),
+                            rs.getString("Password"),
+                            rs.getInt("Quyen"),
+                            rs.getInt("TrangThai")
+                    );
+                }
+            } catch (SQLException e1) {
+            }
+            return a;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
     public static void main(String[] args) throws SQLException {
-      /*  AccountDAO a = new AccountDAO();
+        /*  AccountDAO a = new AccountDAO();
         List<Account> list = a.getAll();
          for (Account account : list) {
             System.out.println("UserID: " + account.getUserID());
@@ -178,29 +183,21 @@ public class AccountDAO extends DBContext{
             System.out.println("trangthai: "+ account.getTrangThai());
            
          }
-        */
-    
-      
-      
-      /*
+         */
+
+ /*
         int userIdToDelete = 5; // Thay đổi userId này thành ID thực tế cần xóa
 
         AccountDAO accountDAO = new AccountDAO();
         accountDAO.deleteAccount(userIdToDelete);
 
         System.out.println("Account with ID " + userIdToDelete + " deleted successfully.");
-    */
-      
- 
-      
-      
-   AccountDAO accountDAO = new AccountDAO();
-   boolean result = accountDAO.registerAccount("thi1", "123"); 
-    System.out.println(result);
-       
-  
-  
-  /*
+         */
+        AccountDAO accountDAO = new AccountDAO();
+        boolean result = accountDAO.registerAccount("thi1", "123");
+        System.out.println(result);
+
+        /*
   //lay value ở list
   AccountDAO accountDAO = new AccountDAO();
         
@@ -221,10 +218,9 @@ public class AccountDAO extends DBContext{
         } else {
             System.out.println("Không tìm thấy tài khoản với ID: " + userId);
         }
-  */
-  
-  //ham cap nhat account
-   /* AccountDAO accountDAO = new AccountDAO();
+         */
+        //ham cap nhat account
+        /* AccountDAO accountDAO = new AccountDAO();
 
         // Tạo đối tượng Account mới với thông tin cần cập nhật
         Account updatedAccount = new Account();
@@ -236,13 +232,7 @@ public class AccountDAO extends DBContext{
 
         // Gọi hàm updateAccount để cập nhật thông tin tài khoản
         accountDAO.updateAccount(updatedAccount);
-  */
+         */
     }
-    
-    
 
-  
-    
 }
-
-

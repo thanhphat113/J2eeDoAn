@@ -23,7 +23,8 @@ import java.util.List;
  */
 @WebServlet(name = "Top5KhachHangControl", urlPatterns = {"/top5khachhang"})
 public class Top5KhachHangControl extends HttpServlet {
-
+    String urlTop5KhachHang = "/views/admin/contents/Top5KhachHang.jsp";
+    String urlAdmin = "/admin.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,8 +46,8 @@ public class Top5KhachHangControl extends HttpServlet {
         
         request.setAttribute("listAllAccount", listKhachHang);
         request.setAttribute("listTop5KhachHang", listTop5KhachHang);
-        
-        request.getRequestDispatcher("Top5KhachHang.jsp").forward(request, response);
+        request.setAttribute("VIEW", urlTop5KhachHang);
+        request.getRequestDispatcher(urlAdmin).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

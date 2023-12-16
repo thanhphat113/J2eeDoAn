@@ -26,16 +26,24 @@
                     <div class="offcanvas-body">
                         <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link me-4 active" href="/J2eeDoAn/trang-chu">Home</a>
+                                <a class="nav-link me-4 active" href="/Trang-chu">Home</a>
                             </li>
                            
                             <li class="nav-item">
                                 <a class="nav-link me-4" href="#mobile-products">Products</a>
                             </li>
+                            <%
+                                HttpSession sessionDangNhap = request.getSession();
+                                
+                                if(sessionDangNhap.getAttribute("loginUserID") != null){
+                                String id = sessionDangNhap.getAttribute("loginUserID").toString();%>
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="#latest-blog">Blog</a>
+                                <a class="nav-link me-4" href="/Trang-chu?action=View Info&accountid=<%=id%>">Info</a>
+                            </li>    
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="/Trang-chu?action=Logout">Logout</a>
                             </li>
-                            
+                                <%}%>
                             <li class="nav-item">
                                 <div class="user-items ps-5">
                                     <ul class="d-flex justify-content-end list-unstyled">
@@ -47,14 +55,14 @@
                                             </a>
                                         </li>
                                         <li class="pe-3">
-                                             <a href="login.jsp">
+                                             <a href="login">
                                                 <svg class="user">
                                                 <use xlink:href="#user"></use>
                                                 </svg>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/J2eeDoAn/CartServlet?action=View Cart">
+                                            <a href="CartServlet?action=View Cart">
                                                 <svg class="cart">
                                                 <use xlink:href="#cart"></use>
                                                 </svg>

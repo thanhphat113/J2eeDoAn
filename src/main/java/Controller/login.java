@@ -21,9 +21,6 @@ import model.Account;
  */
 @WebServlet(name="login", urlPatterns={"/login"})
 public class login extends HttpServlet {
-   
-
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +34,9 @@ public class login extends HttpServlet {
            } else {
                
             HttpSession session = request.getSession();
+               System.out.println("a"+a.getQuyen()+a.getUsername());
             session.setAttribute("loginSuccessMessage", "Đăng nhập thành công!");
+            session.setAttribute("loginUserID", a.getUserID());
                // response.sendRedirect("qlac");
                switch (a.getQuyen()) {
                    case 1:
@@ -46,10 +45,10 @@ public class login extends HttpServlet {
                        response.sendRedirect("qlac");
                        break;
                    case 3:
-                       response.sendRedirect("admin.jsp");
+                       response.sendRedirect("/Trang-chu");
                        break;
                    default:
-                       response.sendRedirect("admin.jsp");
+                       response.sendRedirect("/Trang-chu");
                        break;
                }
   

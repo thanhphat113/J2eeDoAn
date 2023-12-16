@@ -5,12 +5,12 @@ import java.util.HashMap;
 
 public class Cart extends HashMap{
 	public void addCart(ProductDTO sanpham) {
-		String key = sanpham.getSanpham().getMaSP();
+		String key = sanpham.getSanpham().getMaCT();
 		if(this.containsKey(key)) {
 			int soluongCu = ((ProductDTO)this.get(key)).getSoluong();
 			((ProductDTO)this.get(key)).setSoluong(soluongCu+1);
 		}else {
-			this.put(sanpham.getSanpham().getMaSP(), sanpham);
+			this.put(sanpham.getSanpham().getMaCT(), sanpham);
 		}
 	}
 	

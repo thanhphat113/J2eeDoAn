@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.DetailOrderDAO;
+import DAO.KhachHangDAO;
 import DAO.OrderDAO;
 import DAO.sanphamDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -14,6 +15,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import model.Account;
@@ -32,6 +34,7 @@ public class Home extends HttpServlet {
     Account acc = new Account();
     khachhang kh = new khachhang();
     nhanvien nv = new nhanvien();
+    KhachHangDAO khDAO = new KhachHangDAO();
     Order ord = new Order();
     OrderDAO ordDAO = new OrderDAO();
     DetailOrder dord = new DetailOrder();
@@ -70,17 +73,23 @@ public class Home extends HttpServlet {
             req.setAttribute("SECTION2", urlSection2);
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else if (action.equals("View Info")) {
-            ArrayList<Order> ls = ordDAO.searchOrderByMaKH("MKH001");
+            String id = req.getParameter("accountid");
+            ArrayList<Order> ls = ordDAO.searchOrderByMaKH(khDAO.searchKhachHangByMaTK(id).getMaKH());
             req.setAttribute("LIST_ORDER", ls);
             req.setAttribute("VIEW", urlInfor);
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else if (action.equals("Detail")) {
             String maHD = req.getParameter("orderId");
-            ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder2(maHD);
+            ArrayList<DetailOrder> ls = dordDAO.searchDetailOrder3(maHD);
             req.setAttribute("LIST_DETAILORDER", ls);
             RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
             req.setAttribute("VIEW", urlChiTietDonHang);
             rd.forward(req, resp);
+        } else if (action.equals("Logout")) {
+            HttpSession sessionDangNhap = req.getSession();
+            sessionDangNhap.invalidate();
+            resp.sendRedirect("login.jsp");
+            return; // <--- Here.
         }
 
     }
@@ -93,5 +102,5 @@ public class Home extends HttpServlet {
             doGet(req, resp);
         }
     }
-    
+
 }

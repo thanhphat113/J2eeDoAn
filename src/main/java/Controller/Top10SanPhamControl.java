@@ -23,7 +23,8 @@ import model.ChiTietDonBan;
  */
 @WebServlet(name = "Top10SanPhamControl", urlPatterns = {"/top10"})
 public class Top10SanPhamControl extends HttpServlet {
-
+    String urlTop10SanPham = "/views/admin/contents/Top10SanPhamBanChay.jsp";
+    String urlAdmin = "/admin.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,8 +46,8 @@ public class Top10SanPhamControl extends HttpServlet {
         
         request.setAttribute("listAllProduct", listSanPham);
         request.setAttribute("listTop10Product", listTop10Product);
-        
-        request.getRequestDispatcher("Top10SanPhamBanChay.jsp").forward(request, response);
+        request.setAttribute("VIEW", urlTop10SanPham);
+        request.getRequestDispatcher(urlAdmin).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

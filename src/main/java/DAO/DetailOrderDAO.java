@@ -50,7 +50,32 @@ public class DetailOrderDAO {
 		return ls;
 	}
         
-        public ArrayList<DetailOrder> searchDetailOrder2(String id){
+//        public ArrayList<DetailOrder> searchDetailOrder2(String id){
+//		ArrayList<DetailOrder> ls = new ArrayList<DetailOrder>();
+//		Connection conn = null;
+//		try {
+//			conn = DataBase.getConnection();
+//			String sql = "SELECT * FROM ChiTietDonBan WHERE MaHDB ='"+id+"'";
+//			Statement stmt = conn.createStatement();
+//			
+//			ResultSet rs = stmt.executeQuery(sql);
+//			while (rs.next()) {
+//				String maHD = rs.getString("MaHDB");
+//				String maSP = rs.getString("MaSP");
+//				int  donGia = rs.getInt("DonGia");
+//				int soLuong = rs.getInt("SoLuong");
+//				int tongTien = rs.getInt("TongTien");
+//				DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien, spDAO.findById(maSP).getTenSP(), spDAO.findById(maSP).getHinhanh());
+//				ls.add(detailOrder);
+//			}
+//		conn.close();
+//		} catch (Exception e) {
+//			System.out.print("Cant connect");
+//		}
+//		return ls;
+//	}
+        
+        public ArrayList<DetailOrder> searchDetailOrder3(String id){
 		ArrayList<DetailOrder> ls = new ArrayList<DetailOrder>();
 		Connection conn = null;
 		try {
@@ -65,7 +90,7 @@ public class DetailOrderDAO {
 				int  donGia = rs.getInt("DonGia");
 				int soLuong = rs.getInt("SoLuong");
 				int tongTien = rs.getInt("TongTien");
-				DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien, spDAO.findById(maSP).getTenSP(), spDAO.findById(maSP).getHinhanh());
+				DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien, spDAO.findByIdCT(maSP).getTenSP(), spDAO.findByIdCT(maSP).getHinhanh(), spDAO.findByIdCT(maSP).getMau());
 				ls.add(detailOrder);
 			}
 		conn.close();
